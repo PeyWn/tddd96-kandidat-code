@@ -1,0 +1,8 @@
+{
+  "name": "Server",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "~6.0.60"
+  }
+}
