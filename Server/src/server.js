@@ -1,16 +1,16 @@
-const http = require('http');
-const url = require("url");
-const path = require("path");
-const fs = require("fs");
+const HTTP = require('http');
+const URL = require('url');
+const PATH = require('path');
+const FS = require('fs');
 
-const HOST_PATH = path.join(__dirname, "/../../Client/dist"); // Hardcoded right now
+const HOST_PATH = PATH.join(__dirname, "/../../Client/dist"); // Hardcoded right now
 const PORT = 80;
 
-http.createServer(function(request, response) {
-  var uri = url.parse(request.url).pathname;
-  var fileName = path.join(HOST_PATH, uri);
+HTTP.createServer(function(request, response) {
+  var uri = URL.parse(request.url).pathname;
+  var fileName = PATH.join(HOST_PATH, uri);
 
-  fs.exists(fileName, function(exists) {
+  FS.exists(fileName, function(exists) {
     if(!exists) {
       response.writeHead(404, {"Content-Type": "text/plain"});
       response.write("404 Not Found\n");
@@ -18,11 +18,11 @@ http.createServer(function(request, response) {
       return;
     }
 
-    if (fs.statSync(fileName).isDirectory()) {
+    if (FS.statSync(fileName).isDirectory()) {
       fileName += '/index.html';
     }
 
-    fs.readFile(fileName, "binary", function(err, file) {
+    FS.readFile(fileName, "binary", function(err, file) {
       if(err) {
         response.writeHead(500, {"Content-Type": "text/plain"});
         response.write(err + "\n");
