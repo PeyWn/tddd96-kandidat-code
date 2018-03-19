@@ -1,0 +1,11 @@
+{
+  "name": "Server",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "~6.0.60"
+  }
+}
