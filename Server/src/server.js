@@ -4,7 +4,7 @@ const PATH = require('path');
 const FS = require('fs');
 
 const HOST_PATH = PATH.join(__dirname, '/../../Client/dist'); // Hardcoded right now
-const PORT = 80;
+const PORT = 4900;
 
 HTTP.createServer(function(request, response) {
   var uri = URL.parse(request.url).pathname;
