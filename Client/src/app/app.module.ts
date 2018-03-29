@@ -3,10 +3,16 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MenubarComponent } from './menubar/menubar.component';
+import { ContentareaComponent } from './contentarea/contentarea.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidebarComponent,
+    MenubarComponent,
+    ContentareaComponent
   ],
   imports: [
     BrowserModule,
