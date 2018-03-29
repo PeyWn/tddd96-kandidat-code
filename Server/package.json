@@ -4,7 +4,9 @@
   "scripts": {
     "start": "node src/server.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.16.3"
+  },
   "devDependencies": {
     "@types/node": "~6.0.60"
   }
