@@ -1,0 +1,3 @@
+<ul>
+  <li *ngFor="let a of testItems" [class.selected]="a === selected" (click)="onSelect(a)">{{a.name}}</li>
+</ul>

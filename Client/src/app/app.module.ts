@@ -9,6 +9,8 @@ import { ContentareaComponent } from './scheduler/contentarea/contentarea.compon
 import { LoginComponent } from './login/login.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { LoginService } from './login.service';
+import { InboxComponent } from './scheduler/sidebar/inbox/inbox.component';
+import { DecisionComponent } from './scheduler/sidebar/decision/decision.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { LoginService } from './login.service';
     MenubarComponent,
     ContentareaComponent,
     LoginComponent,
-    SchedulerComponent
+    SchedulerComponent,
+    InboxComponent,
+    DecisionComponent
   ],
   imports: [
     BrowserModule,
