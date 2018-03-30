@@ -10,7 +10,6 @@ import { LoginComponent } from './login/login.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { LoginService } from './login.service';
 import { InboxComponent } from './scheduler/sidebar/inbox/inbox.component';
-import { DecisionComponent } from './scheduler/sidebar/decision/decision.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { DecisionComponent } from './scheduler/sidebar/decision/decision.compone
     LoginComponent,
     SchedulerComponent,
     InboxComponent,
-    DecisionComponent
   ],
   imports: [
     BrowserModule,
