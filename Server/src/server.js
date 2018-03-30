@@ -1,7 +1,8 @@
-const express = require('express');
+const EXPRESS = require('express');
+const API = require('./api');
+const APP = EXPRESS();
 
-const app = express();
+API.initAPI(APP);
 
-app.use(express.static(__dirname + '/../../Client/dist'));
-
-app.listen(80);
+APP.use(EXPRESS.static(__dirname + '/../../Client/dist'));
+APP.listen(80);
