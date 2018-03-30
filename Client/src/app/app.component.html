@@ -1,3 +1,2 @@
-<div id="menubar"><app-menubar></app-menubar></div>
-<div id="sidebar"><app-sidebar></app-sidebar></div>
-<div id="contentarea"><app-contentarea></app-contentarea></div>
+<div id="login" *ngIf="!loginService.loggedIn"><app-login></app-login></div>
+<div id="scheduler" *ngIf="loginService.loggedIn"><app-scheduler></app-scheduler></div>

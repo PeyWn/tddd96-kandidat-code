@@ -1,26 +1,8 @@
-#menubar {
+#login {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
-  height: 30px;
-  background-color: red;
-}
-
-#sidebar {
-  position: absolute;
-  left: 0;
-  width: 20%;
-  top: 30px;
   bottom: 0;
   background-color: blue;
-}
-
-#contentarea {
-  position: absolute;
-  left: 20%;
-  right: 0;
-  top: 30px;
-  bottom: 0;
-  background-color: green;
 }
