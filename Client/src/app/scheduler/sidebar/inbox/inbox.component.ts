@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {InboxService} from './inbox.service';
 
 @Component({
   selector: 'app-inbox',
@@ -7,23 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InboxComponent implements OnInit {
 
-  testItems = [
-    {name: 'test1', test: 'something'},
-    {name: 'test2', test: 'lala'},
-    {name: 'test3', test: 'thing'},
-    {name: 'test4', test: 'some'}
-  ];
-
-  selected;
-
-  constructor() {
-    this.selected = this.testItems[0];
-  }
+  constructor(private inboxService: InboxService) {}
 
   ngOnInit() {
-  }
-
-  onSelect(item) {
-    this.selected = item;
+    this.inboxService.selected = this.inboxService.testItems[0];
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {InboxService} from '../sidebar/inbox/inbox.service';
 
 @Component({
   selector: 'app-contentarea',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentareaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private inboxService: InboxService) { }
 
   ngOnInit() {
   }

@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { LoginService } from './login.service';
 import { InboxComponent } from './scheduler/sidebar/inbox/inbox.component';
+import {InboxService} from './scheduler/sidebar/inbox/inbox.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,10 @@ import { InboxComponent } from './scheduler/sidebar/inbox/inbox.component';
     BrowserModule,
     HttpClientModule
   ],
-  providers: [LoginService],
+  providers: [
+    LoginService,
+    InboxService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
