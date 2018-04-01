@@ -22,8 +22,8 @@
   position: absolute;
   top: 30px;
   bottom: 0;
+  left: 25%;
   right: 0;
-  width: 75%;
 
   background-color: white;
 }
