@@ -7,6 +7,8 @@ import { MainComponent } from './main/main.component';
 import { MenubarComponent } from './main/menubar/menubar.component';
 import { SidebarComponent } from './main/sidebar/sidebar.component';
 import { ContentComponent } from './main/content/content.component';
+import { NavbarComponent } from './main/content/navbar/navbar.component';
+import { ContentBodyComponent } from './main/content/content-body/content-body.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { ContentComponent } from './main/content/content.component';
     MainComponent,
     MenubarComponent,
     SidebarComponent,
-    ContentComponent
+    ContentComponent,
+    NavbarComponent,
+    ContentBodyComponent
   ],
   imports: [
     BrowserModule,

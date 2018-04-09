@@ -2,7 +2,7 @@
   position: absolute;
   top: 0;
   height: 30px;
-  left: 0;
+  left: 25%;
   right: 0;
 
   background-color: red;
@@ -10,7 +10,7 @@
 
 #sidebar {
   position: absolute;
-  top: 30px;
+  top: 0;
   bottom: 0;
   left: 0;
   width: 25%;
