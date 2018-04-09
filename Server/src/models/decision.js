@@ -1,10 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Decision = sequelize.define('Decision', {
-    decisionTime: DataTypes.DATE
+    decisionDate: DataTypes.DATE,
+    urgent: DataTypes.BOOLEAN,
+    latestDate: DataTypes.DATE
   }, {});
   Decision.associate = function(models) {
-    // associations can be defined here
+    Decision.belongsTo(models.Patient);
   };
   return Decision;
 };
