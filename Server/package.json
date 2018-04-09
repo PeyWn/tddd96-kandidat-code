@@ -5,7 +5,8 @@
     "start": "node src/server.js"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "sequelize": "^4.37.6"
   },
   "devDependencies": {
     "@types/node": "~6.0.60"
