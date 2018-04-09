@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Decision.associate = function(models) {
     Decision.belongsTo(models.Patient);
+    Decision.belongsTo(models.Icd10);
   };
   return Decision;
 };

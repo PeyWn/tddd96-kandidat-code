@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING
   }, {});
   ICD10.associate = function(models) {
-    // associations can be defined here
+    ICD10.hasMany(models.Decision);
   };
   return ICD10;
 };
