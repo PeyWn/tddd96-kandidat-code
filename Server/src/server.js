@@ -5,4 +5,4 @@ const APP = EXPRESS();
 API.initAPI(APP);
 
 APP.use(EXPRESS.static(__dirname + '/../../Client/dist'));
-APP.listen(80);
+APP.listen(4900);
