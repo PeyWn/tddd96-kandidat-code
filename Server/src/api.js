@@ -1,9 +1,9 @@
 const EXPRESS = require('express');
 const DB = require('./models');
-DB.sequelize.authenticate().then(function(error) {
-  if (error) {
-    console.log(errors);
-  }
+DB.sequelize.authenticate().then(function() {
+  console.log('Successfully connected to database!');
+}).catch(function(err) {
+  console.error('Unable to connect to database:', err);
 });
 DB.sequelize.sync();
 
