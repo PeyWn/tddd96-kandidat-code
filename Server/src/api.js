@@ -1,4 +1,6 @@
 const EXPRESS = require('express');
+const DB = require('./models');
+DB.sequelize.sync();
 
 module.exports.initAPI = function(APP) {
   APP.use(EXPRESS.json());
