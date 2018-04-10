@@ -4,7 +4,6 @@ module.exports = {
     return queryInterface.createTable('Specialities', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
