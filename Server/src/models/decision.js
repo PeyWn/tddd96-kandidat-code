@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     Decision.belongsTo(models.Icd10);
     Decision.belongsToMany(models.Procedure, {through: models.Decisionprocedure});
     Decision.belongsToMany(models.Clinic);
+    Decision.hasOne(models.Booking);
   };
   return Decision;
 };
