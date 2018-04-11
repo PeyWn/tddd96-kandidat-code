@@ -9,7 +9,6 @@ import { SidebarComponent } from './main/sidebar/sidebar.component';
 import { ContentComponent } from './main/content/content.component';
 import { NavbarComponent } from './main/content/navbar/navbar.component';
 import { ContentBodyComponent } from './main/content/content-body/content-body.component';
-import { BoottestComponent } from './main/boottest/boottest.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { BoottestComponent } from './main/boottest/boottest.component';
     ContentComponent,
     NavbarComponent,
     ContentBodyComponent,
-    BoottestComponent
   ],
   imports: [
     BrowserModule,
