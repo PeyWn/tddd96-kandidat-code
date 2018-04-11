@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     Decision.belongsToMany(models.Procedure, {through: models.DecisionProcedure});
     Decision.belongsTo(models.Clinic);
     Decision.hasOne(models.Booking);
+    Decision.belongsTo(models.Staff);
   };
   return Decision;
 };
