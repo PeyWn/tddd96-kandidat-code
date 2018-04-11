@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Local.associate = function(models) {
     Local.hasOne(models.Local_type);
+    Local.belongsToMany(models.Booking, {through: models.Booked_local});
   };
   return Local;
 };

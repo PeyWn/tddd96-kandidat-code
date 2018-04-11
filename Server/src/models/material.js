@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     sterilizing_time: DataTypes.INTEGER
   }, {});
   Material.associate = function(models) {
-    // associations can be defined here
+    Material.belongsToMany(models.Booking, {through: models.Booked_material});
   };
   return Material;
 };

@@ -5,8 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     end_time: DataTypes.DATE
   }, {});
   Booked_local.associate = function(models) {
-    Booked_local.hasMany(models.Local);
-    Booked_local.hasMany(models.Booking);
   };
   return Booked_local;
 };
