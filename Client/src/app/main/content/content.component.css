@@ -8,9 +8,9 @@
   background-color: magenta;
 }
 
-#content-body {
+.content-body{
   position: absolute;
-  top: 30px;
+  top: 60px;
   bottom: 0;
   left: 0;
   right: 0;

@@ -9,6 +9,9 @@ import { SidebarComponent } from './main/sidebar/sidebar.component';
 import { ContentComponent } from './main/content/content.component';
 import { NavbarComponent } from './main/content/navbar/navbar.component';
 import { ContentBodyComponent } from './main/content/content-body/content-body.component';
+import { CalenderViewComponent } from './main/content/calender-view/calender-view.component';
+import { DayViewComponent } from './main/content/day-view/day-view.component';
+import { DetailViewComponent } from './main/content/detail-view/detail-view.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { ContentBodyComponent } from './main/content/content-body/content-body.c
     ContentComponent,
     NavbarComponent,
     ContentBodyComponent,
+    CalenderViewComponent,
+    DayViewComponent,
+    DetailViewComponent,
   ],
   imports: [
     BrowserModule,
