@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Staff.associate = function(models) {
     Staff.hasMany(models.Decision);
-    Staff.hasMany(models.Speciality);
+    Staff.belongsTo(models.Speciality);
     Staff.belongsTo(models.Clinic);
     Staff.belongsToMany(models.Booking, {through: models.Booked_staff});
   };
