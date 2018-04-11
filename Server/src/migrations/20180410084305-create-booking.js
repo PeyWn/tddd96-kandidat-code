@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       preliminary: {
+        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       createdAt: {

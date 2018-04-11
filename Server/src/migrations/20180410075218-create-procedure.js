@@ -8,21 +8,27 @@ module.exports = {
         type: Sequelize.STRING
       },
       description: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       preparationTime: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       operationTime: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       dismantlingTime: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       postOperationalTime: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       downTime: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {

@@ -3,10 +3,17 @@ module.exports = (sequelize, DataTypes) => {
   var Patient = sequelize.define('Patient', {
     ssn: {
       type: DataTypes.STRING,
+      allowNull: false,
       primaryKey: true
     },
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {});
   Patient.associate = function(models) {
     Patient.hasMany(models.Decision);

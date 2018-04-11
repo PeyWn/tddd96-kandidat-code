@@ -9,12 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       start_time: {
+        allowNull: false,
         type: Sequelize.TIME
       },
       end_time: {
+        allowNull: false,
         type: Sequelize.TIME
       },
       weekday: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

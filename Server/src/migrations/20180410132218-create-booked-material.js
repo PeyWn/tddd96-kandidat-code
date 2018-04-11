@@ -2,12 +2,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Booked_materials', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
       start_time: {
         type: Sequelize.DATE
       },
