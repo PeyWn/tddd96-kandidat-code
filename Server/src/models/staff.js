@@ -8,8 +8,10 @@ module.exports = (sequelize, DataTypes) => {
   Staff.associate = function(models) {
     Staff.hasMany(models.Booked_staff);
     Staff.hasMany(models.Decision);
-    Staff.hasMany(models.Speciality);
+    Staff.belongsTo(models.Speciality);
     Staff.hasOne(models.Clinic);
+    Staff.hasMany(models.Decision);
+    Staff.hasMany(models.Free_times);
   };
   return Staff;
 };

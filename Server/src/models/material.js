@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     sterilizing_time: DataTypes.INTEGER
   }, {});
   Material.associate = function(models) {
-    // associations can be defined here
+    Material.hasOne(models.Material_type);
   };
   return Material;
 };

@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {});
   Material_type.associate = function(models) {
-    // associations can be defined here
+    Material_type.hasMany(models.Material);
   };
   return Material_type;
 };
