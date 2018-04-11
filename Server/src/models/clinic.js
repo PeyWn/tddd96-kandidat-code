@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Clinic.associate = function(models) {
     Clinic.hasMany(models.Decision);
+    Clinic.hasMany(models.Staff);
   };
   return Clinic;
 };
