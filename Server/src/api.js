@@ -1,4 +1,5 @@
 const EXPRESS = require('express');
+const PATIENT = require('./api/patient');
 const DB = require('./models');
 DB.sequelize.authenticate().then(function() {
   console.log('Successfully connected to database!');
@@ -10,6 +11,8 @@ DB.sequelize.sync();
 module.exports.initAPI = function(APP) {
   APP.use(EXPRESS.json());
   APP.use(EXPRESS.urlencoded({extended: true}));
+
+  PATIENT.initAPI(APP);
 
   // One example, TODO Replace with actual
   APP.get('/api/test', function (req, res) {
