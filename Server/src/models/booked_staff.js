@@ -5,8 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     end_time: DataTypes.DATE
   }, {});
   Booked_staff.associate = function(models) {
-    Booked_staff.hasMany(models.Staff);
-    Booked_staff.hasMany(models.Booking);
   };
   return Booked_staff;
 };

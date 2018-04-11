@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT
   }, {});
   Local_type.associate = function(models) {
-    Local_type.hasMany(models.Local);
+    Local_type.belongsTo(models.Local);
   };
   return Local_type;
 };

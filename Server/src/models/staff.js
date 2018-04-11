@@ -6,12 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     lastname: DataTypes.STRING
   }, {});
   Staff.associate = function(models) {
-    Staff.hasMany(models.Booked_staff);
     Staff.hasMany(models.Decision);
-    Staff.belongsTo(models.Speciality);
-    Staff.hasOne(models.Clinic);
-    Staff.hasMany(models.Decision);
-    Staff.hasMany(models.Free_times);
+    Staff.hasMany(models.Speciality);
+    Staff.belongsTo(models.Clinic);
+    Staff.belongsToMany(models.Booking, {through: models.Booked_staff});
   };
   return Staff;
 };

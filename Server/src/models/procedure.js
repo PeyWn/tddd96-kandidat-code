@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     downTime: DataTypes.INTEGER
   }, {});
   Procedure.associate = function(models) {
-    Procedure.hasMany(models.Decision);
+    Procedure.belongsToMany(models.Decision, {through: models.DecisionProcedure});
   };
   return Procedure;
 };
