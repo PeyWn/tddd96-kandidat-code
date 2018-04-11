@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Procedure = sequelize.define('Procedure', {
-    kvåCode: DataTypes.STRING,
+    kvåCode: {
+      type: DataTypes.STRING,
+      primaryKey: true
+    },
     description: DataTypes.STRING,
     preparationTime: DataTypes.INTEGER,
     operationTime: DataTypes.INTEGER,
