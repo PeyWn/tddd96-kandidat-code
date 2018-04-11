@@ -7,9 +7,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Decision.associate = function(models) {
     Decision.belongsTo(models.Patient);
-    Decision.belongsTo(models.Icd10);
-    Decision.belongsToMany(models.Procedure, {through: models.Decisionprocedure});
-    Decision.belongsToMany(models.Clinic);
+    Decision.belongsTo(models.ICD10);
+    Decision.belongsToMany(models.Procedure, {through: models.DecisionProcedure});
+    Decision.belongsTo(models.Clinic);
     Decision.hasOne(models.Booking);
   };
   return Decision;
