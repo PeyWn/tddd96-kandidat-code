@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Patient = sequelize.define('Patient', {
-    ssn: DataTypes.STRING,
+    ssn: {
+      type: DataTypes.STRING,
+      primaryKey: true
+    },
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING
   }, {});
