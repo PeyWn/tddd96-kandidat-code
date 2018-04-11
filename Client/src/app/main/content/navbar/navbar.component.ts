@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CurrentViewService} from '../../current-view.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,17 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  test = 'one';
-  constructor() { }
+  currentview;
+  getView() {
+    this.currentview = this.cvService.getCurrentView();
+  }
+  setView(newView) {
+    this.cvService.setCurrentView(newView);
+  }
+  constructor(private cvService: CurrentViewService ) { }
 
   ngOnInit() {
+    this.setView("calendar");
   }
 
-  setTest(charmander) {
-    this.test = charmander;
-  }
-
-  getTest() {
-    return this.test;
-  }
 }

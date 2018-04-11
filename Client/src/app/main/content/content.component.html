@@ -1,2 +1,5 @@
-<div id ="content-body"><app-content-body></app-content-body></div>
+<div id ="calendar-view" class="content-body" *ngIf="getView() == 'calendar'"><app-calender-view></app-calender-view></div>
+<div id ="day-view" class="content-body" *ngIf="getView() == 'day'"><app-day-view></app-day-view></div>
+<div id ="detail-view" class="content-body" *ngIf="getView() == 'detail'"><app-detail-view></app-detail-view></div>
+
 <div id = navbar><app-navbar></app-navbar></div>
