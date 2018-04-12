@@ -14,7 +14,7 @@ module.exports = {
         updatedAt: new Date()
       },{
         id: 3,
-        description: 'Preoperativ vårdplats'
+        description: 'Preoperativ vårdplats',
         createdAt: new Date(),
         updatedAt: new Date()
       },{
