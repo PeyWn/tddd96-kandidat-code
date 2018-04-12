@@ -102,6 +102,76 @@ module.exports = {
       downTime: 15,
       createdAt: new Date(),
       updatedAt: new Date()
+    },{
+      kvåCode: 'JLA20',
+      description: 'Punktionsbiopsi av pankreas',
+      preparationTime: 40,
+      operationTime: 150,
+      dismantlingTime: 70,
+      postOperationalTime: 170,
+      downTime: 15,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      kvåCode: 'PJD98',
+      description: 'Annan radikal regional lymfkörtelutrymning',
+      preparationTime: 30,
+      operationTime: 130,
+      dismantlingTime: 30,
+      postOperationalTime: 200,
+      downTime: 15,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      kvåCode: 'JFB40',
+      description: 'Resektion av colon transversum',
+      preparationTime: 45,
+      operationTime: 200,
+      dismantlingTime: 45,
+      postOperationalTime: 100,
+      downTime: 15,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      kvåCode: 'JMW97',
+      description: 'Annan laparoskopisk operation på mjälte',
+      preparationTime: 50,
+      operationTime: 120,
+      dismantlingTime: 20,
+      postOperationalTime: 200,
+      downTime: 15,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      kvåCode: 'PHE30',
+      description: 'Trombektomi i v. cava inferior',
+      preparationTime: 43,
+      operationTime: 100,
+      dismantlingTime: 25,
+      postOperationalTime: 100,
+      downTime: 15,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      kvåCode: 'TJK00',
+      description: 'Peroperativ kolangiografi',
+      preparationTime: 35,
+      operationTime: 75,
+      dismantlingTime: 30,
+      postOperationalTime: 100,
+      downTime: 15,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      kvåCode: 'LAF00',
+      description: 'Unilateral salpingo-ooforektomi',
+      preparationTime: 40,
+      operationTime: 90,
+      dismantlingTime: 30,
+      postOperationalTime: 100,
+      downTime: 15,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }]);
   },
 
