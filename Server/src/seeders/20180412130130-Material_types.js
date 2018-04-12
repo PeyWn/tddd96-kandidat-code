@@ -2,21 +2,31 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    queryInterface.bulkInsert('Material_types', [{
+    return queryInterface.bulkInsert('Material_types', [{
       id: 1,
-      name: 'Container'
+      name: 'Container',
+      createdAt: new Date(),
+      updatedAt: new Date()
     },{
       id: 2,
-      name: 'Utrustning'
+      name: 'Utrustning',
+      createdAt: new Date(),
+      updatedAt: new Date()
     },{
       id: 3,
-      name: 'Extrainstrument'
+      name: 'Extrainstrument',
+      createdAt: new Date(),
+      updatedAt: new Date()
     },{
       id: 4,
-      name: 'Engångsmaterial'
+      name: 'Engångsmaterial',
+      createdAt: new Date(),
+      updatedAt: new Date()
     },{
       id: 5,
-      name: 'Material'
+      name: 'Material',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }]);
   },
 

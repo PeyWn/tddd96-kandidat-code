@@ -51,7 +51,7 @@ module.exports = {
       id: 6,
       name: 'Spol-sug, Stryker',
       article_no: '464643221',
-      sterilizing_time: 0, //null?
+      sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
       createdAt: new Date(),
@@ -60,7 +60,7 @@ module.exports = {
       id: 7,
       name: 'Da Vinci Xi-robot',
       article_no: '6545434644',
-      sterilizing_time: 0, //null?
+      sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
       createdAt: new Date(),
@@ -69,7 +69,7 @@ module.exports = {
       id: 8,
       name: 'Da Vinci Xi-stapel',
       article_no: '54656644',
-      sterilizing_time: 0, //null?
+      sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
       createdAt: new Date(),
@@ -78,7 +78,7 @@ module.exports = {
       id: 9,
       name: 'Operationskonsol Da Vinci Xi',
       article_no: '65434315',
-      sterilizing_time: 0, //null?
+      sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
       createdAt: new Date(),
@@ -183,17 +183,8 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 20,
-      name: 'Nervmonitorering',
-      article_no: '1313464656',
-      sterilizing_time: 270,
-      quantity: 1,
-      MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
       id: 21,
-      name: 'Lap.scopi  Grund',
+      name: 'Lap.scopi Grund',
       article_no: '994513234',
       sterilizing_time: 270,
       quantity: 2,
@@ -231,7 +222,7 @@ module.exports = {
       id: 25,
       name: 'Thunderbeat',
       article_no: '87349343535',
-      sterilizing_time: 0, //null?
+      sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
       createdAt: new Date(),
@@ -249,7 +240,7 @@ module.exports = {
       id: 27,
       name: 'Gastrocopistapel',
       article_no: '323213213',
-      sterilizing_time: 0, //null?
+      sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
       createdAt: new Date(),
