@@ -15,6 +15,7 @@ import { CalenderViewComponent } from './main/content/calender-view/calender-vie
 import { DayViewComponent } from './main/content/day-view/day-view.component';
 import { DetailViewComponent } from './main/content/detail-view/detail-view.component';
 import { ButtonpanelComponent } from './main/sidebar/buttonpanel/buttonpanel.component';
+import { InfoheaderComponent } from './main/sidebar/infoheader/infoheader.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ButtonpanelComponent } from './main/sidebar/buttonpanel/buttonpanel.com
     DayViewComponent,
     DetailViewComponent,
     ButtonpanelComponent,
+    InfoheaderComponent,
   ],
   imports: [
     BrowserModule,
