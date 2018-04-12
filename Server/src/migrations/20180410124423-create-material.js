@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       article_no: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       quantity: {
