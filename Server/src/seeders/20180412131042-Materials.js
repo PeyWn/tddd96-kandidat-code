@@ -326,6 +326,150 @@ module.exports = {
       MaterialTypeId: 3,
       createdAt: new Date(),
       updatedAt: new Date()
+    },{
+      id: 37,
+      name: 'Thomson hake 3',
+      article_no: '546131211',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 38,
+      name: 'Sonoca 300',
+      article_no: '56451321213',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 39,
+      name: 'Tillägg till övre buk',
+      article_no: '66354121',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 40,
+      name: 'Thompson hake 1',
+      article_no: '5415541355',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 41,
+      name: 'Thomson hake 2',
+      article_no: '6566325663',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 42,
+      name: 'Clipstång Yasargil +2stora,2små clips',
+      article_no: '5541225511',
+      sterilizing_time: 270,
+      quantity: 3,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 43,
+      name: 'Rengöringsborste till söring',
+      article_no: '632214563',
+      sterilizing_time: 270,
+      quantity: 5,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 44,
+      name: 'Pincett DeBakey 30cm',
+      article_no: '8962178',
+      sterilizing_time: 270,
+      quantity: 20,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 45,
+      name: 'Lamphandtag stort + manöverhandtag',
+      article_no: '9974232',
+      sterilizing_time: 270,
+      quantity: 40,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 46,
+      name: 'Söring MBC',
+      article_no: '64684321451',
+      sterilizing_time: 0,
+      quantity: 1,
+      MaterialTypeId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 47,
+      name: 'Hake Perman Självhållande 2 del',
+      article_no: '5451326841',
+      sterilizing_time: 270,
+      quantity: 4,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 48,
+      name: 'Tång Cremaliere',
+      article_no: '415464364',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 49,
+      name: 'Kanyl Cholangiografi 1,8 15G',
+      article_no: '236532',
+      sterilizing_time: 270,
+      quantity: 10,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 50,
+      name: 'Tång Hultén',
+      article_no: '464316131',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 51,
+      name: 'Philips C-båge',
+      article_no: '1122336655',
+      sterilizing_time: 0,
+      quantity: 1,
+      MaterialTypeId: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 52,
+      name: 'Röntgenskärm',
+      article_no: '33565233',
+      sterilizing_time: 0,
+      quantity: 1,
+      MaterialTypeId: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }]);
   },
 
