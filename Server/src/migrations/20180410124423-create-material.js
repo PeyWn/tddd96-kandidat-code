@@ -14,14 +14,14 @@ module.exports = {
       },
       article_no: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       quantity: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       sterilizing_time: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       createdAt: {

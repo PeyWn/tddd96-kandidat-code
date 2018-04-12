@@ -7,14 +7,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     article_no: {
       allowNull: false,
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
     },
     quantity: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER
     },
     sterilizing_time: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER
     }
   }, {});
