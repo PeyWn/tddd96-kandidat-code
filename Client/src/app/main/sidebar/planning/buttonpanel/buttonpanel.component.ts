@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SidebarPanelService} from '../../sidebar-panel.service';
 
 @Component({
   selector: 'app-buttonpanel',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./buttonpanel.component.css']
 })
 export class ButtonpanelComponent implements OnInit {
+  setPanel(charmander) {this.spService.setCurrentPanel(charmander); }
 
-  constructor() { }
+  constructor(private spService: SidebarPanelService) { }
 
   ngOnInit() {
   }

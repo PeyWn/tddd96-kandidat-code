@@ -21,6 +21,7 @@ import { PlanningComponent } from './main/sidebar/planning/planning.component';
 import { OverviewComponent } from './main/sidebar/overview/overview.component';
 import { ButtonpanelOverviewComponent } from './main/sidebar/overview/buttonpanel-overview/buttonpanel-overview.component';
 import { TitlebarViewComponent } from './main/sidebar/overview/titlebar-view/titlebar-view.component';
+import { SidebarPanelService} from "./main/sidebar/sidebar-panel.service";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,10 @@ import { TitlebarViewComponent } from './main/sidebar/overview/titlebar-view/tit
     HttpClientModule,
     FormsModule
   ],
-  providers: [CurrentViewService],
+  providers: [
+    CurrentViewService,
+    SidebarPanelService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
