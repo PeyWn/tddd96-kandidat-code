@@ -1,3 +1,20 @@
-<p>
-  detail-view works!
-</p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td><h2>Personnummer</h2></td>
+      <td><h2>Namn</h2></td>
+      <td><h2>Beslut</h2></td>
+      <td><h2>Beskrivning</h2></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of patient">
+      <td>{{p.Personnummer}}</td>
+      <td>{{p.Namn}}</td>
+      <td>{{p.Beslut}}</td>
+      <td>{{p.Beskrivning}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
