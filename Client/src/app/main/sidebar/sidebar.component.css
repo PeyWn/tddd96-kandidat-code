@@ -3,7 +3,7 @@
   background-color: #111; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
-  top: 90px;
+  top: 210px;
   height: 100%;
   position: absolute;
   right: 0;
@@ -37,6 +37,7 @@
   .sidenav a {font-size: 18px;}
 }
 
+/*Titelbar*/
 #titlebar{
   position: absolute;
   top: 0;
@@ -50,6 +51,7 @@
   text-align: center;
 }
 
+/*Buttons for decisions panel*/
 #buttonpanel{
   position: absolute;
   top: 30px;
@@ -57,4 +59,14 @@
   left: 0;
   right: 0;
   background-color: #111111;
+}
+
+#infoheader {
+  position: absolute;
+  top: 90px;
+  height: 120px;
+  left: 0;
+  right: 0;
+  background-color: yellowgreen;
+
 }
