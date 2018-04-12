@@ -10,7 +10,6 @@ DB.sequelize.authenticate().then(function() {
 }).catch(function(err) {
   console.error('Unable to connect to database:', err);
 });
-DB.sequelize.sync({force: true});
 
 module.exports.initAPI = function(APP) {
   APP.use(EXPRESS.json());
