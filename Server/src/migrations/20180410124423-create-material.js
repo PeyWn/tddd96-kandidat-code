@@ -14,7 +14,7 @@ module.exports = {
       },
       article_no: {
         allowNull: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       quantity: {
         allowNull: true,
