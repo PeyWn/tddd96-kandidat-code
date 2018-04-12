@@ -1,21 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import {Patient} from './Patient';
+import {Component, Input, OnInit} from '@angular/core';
+import {GetPatientsService} from '../../../get-patients.service';
 
 @Component({
   selector: 'app-infoheader',
   templateUrl: './infoheader.component.html',
-  styleUrls: ['./infoheader.component.css'],
-  inputs: ['patient']
+  styleUrls: ['./infoheader.component.css']
 })
 export class InfoheaderComponent implements OnInit {
-
-  patient:Array<Patient>;
-
-  constructor() {
-    this.patient = [
-      new Patient("Tor", 902391, "hickar för mycket", "BE321"),
-      new Patient("Björn", 900000, "Magont", "BE312")
-    ]
+  patient = this.getPatient();
+  getPatient() {
+    return this.gpService.currentPatient;
+  }
+  constructor(private gpService:GetPatientsService ) {
   }
   ngOnInit() {
   }

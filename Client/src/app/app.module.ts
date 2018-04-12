@@ -22,6 +22,8 @@ import { OverviewComponent } from './main/sidebar/overview/overview.component';
 import { ButtonpanelOverviewComponent } from './main/sidebar/overview/buttonpanel-overview/buttonpanel-overview.component';
 import { TitlebarViewComponent } from './main/sidebar/overview/titlebar-view/titlebar-view.component';
 import { SidebarPanelService} from "./main/sidebar/sidebar-panel.service";
+import { DecisionsComponent } from './main/sidebar/overview/decisions/decisions.component';
+import { GetPatientsService} from './main/get-patients.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { SidebarPanelService} from "./main/sidebar/sidebar-panel.service";
     OverviewComponent,
     ButtonpanelOverviewComponent,
     TitlebarViewComponent,
+    DecisionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { SidebarPanelService} from "./main/sidebar/sidebar-panel.service";
   ],
   providers: [
     CurrentViewService,
-    SidebarPanelService
+    SidebarPanelService,
+    GetPatientsService
   ],
   bootstrap: [AppComponent]
 })

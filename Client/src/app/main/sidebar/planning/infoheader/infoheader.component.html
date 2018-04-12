@@ -4,25 +4,25 @@
     <div class="col-md-9 " style="background-color: #6d7fcc">
 
       <div class="row" style="height: 25%">
-      <div class="col-md-12 rowh">Namn: {{patient[0].Namn}}</div>
+      <div class="col-md-12 rowh">Namn: {{getPatient().Namn}}</div>
       </div>
 
       <div class="row" style="height: 25%">
-        <div class="col-md-12 rowh">Personnummer: {{patient[0].Personnummer}}</div>
+        <div class="col-md-12 rowh">Personnummer: {{getPatient().Personnummer}}</div>
       </div>
 
       <div class="row" style="height: 25%">
-        <div class="col-md-12 rowh">Operationstyp: {{patient[0].Operationstyp}} </div>
+        <div class="col-md-12 rowh">Operationstyp: {{getPatient().Operationstyp}} </div>
       </div>
 
       <div class="row" style="height: 25%">
-        <div class="col-md-12 rowh">ICD10: {{patient[0].ICD10}}</div>
+        <div class="col-md-12 rowh">ICD10: {{getPatient().ICD10}}</div>
       </div>
 
     </div>
 
-    <div class="col-md-3 " style="top: 32px; padding: 6px; text-align: center; font-size: 24px; height: 88px"> AKUT
-      <div class="row-md" style="font-size: medium"> Tid kvar: <br> 20 min</div>
+    <div class="col-md-3 " style="top: 32px; padding: 6px; text-align: center; font-size: 24px; height: 88px"> {{getPatient().Bradskandegrad}}
+      <div class="row-md" style="font-size: medium"> Tid kvar: <br> {{getPatient().Tid}}</div>
     </div>
 
 
