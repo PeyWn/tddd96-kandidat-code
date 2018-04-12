@@ -1,6 +1,6 @@
 const SEQUELIZE = require('sequelize');
 
-const SEQ = new SEQUELIZE('', 'root', '', {
+const SEQ = new SEQUELIZE('', 'root', 'password', {
   dialect: 'mysql'
 });
 

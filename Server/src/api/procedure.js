@@ -26,4 +26,38 @@ module.exports.initAPI = function(APP) {
     });
   });
 
+  //Get staff assigned to a procedure
+  APP.get('/procedure/:code/staff', function(req,res){
+    DB.Procedure.findById(req.params.code).then(function(procedure){
+      if(procedure){
+        procedure.getStaff({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(staff) {
+            res.send(staff);
+        }).catch(function(err){
+            res.status(500).send(err);
+        });
+      }else{
+        res.status(404).send('Procedure not found');
+      }
+    }).catch(function(err){
+      res.status(500).send(err);
+    });
+  });
+
+  //Get local assigned to a procedure
+  APP.get('/procedure/:code/local', function(req,res){
+    DB.Procedure.findById(req.params.code).then(function(procedure){
+      if(procedure){
+        procedure.getLocal({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(local){
+          res.send(local);
+        }).catch(function(err){
+          res.status(500).send(err);
+        });
+      }else{
+        res.status(404).send('Procedure not found');
+      }
+    }).catch(function(err){
+      res.status(500).send(err);
+    });
+  });
+
 };
