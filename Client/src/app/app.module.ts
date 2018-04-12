@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -18,6 +19,8 @@ import { ButtonpanelComponent } from './main/sidebar/planning/buttonpanel/button
 import { InfoheaderComponent } from './main/sidebar/planning/infoheader/infoheader.component';
 import { PlanningComponent } from './main/sidebar/planning/planning.component';
 import { OverviewComponent } from './main/sidebar/overview/overview.component';
+import { ButtonpanelOverviewComponent } from './main/sidebar/overview/buttonpanel-overview/buttonpanel-overview.component';
+import { TitlebarViewComponent } from './main/sidebar/overview/titlebar-view/titlebar-view.component';
 
 @NgModule({
   declarations: [
@@ -36,10 +39,13 @@ import { OverviewComponent } from './main/sidebar/overview/overview.component';
     InfoheaderComponent,
     PlanningComponent,
     OverviewComponent,
+    ButtonpanelOverviewComponent,
+    TitlebarViewComponent,
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [CurrentViewService],
   bootstrap: [AppComponent]
