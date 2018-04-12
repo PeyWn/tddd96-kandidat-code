@@ -6,15 +6,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     article_no: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER
     },
     quantity: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER
     },
     sterilizing_time: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER
     }
   }, {});

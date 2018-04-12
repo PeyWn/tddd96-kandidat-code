@@ -13,15 +13,15 @@ module.exports = {
         type: Sequelize.STRING
       },
       article_no: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       quantity: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       sterilizing_time: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       createdAt: {
