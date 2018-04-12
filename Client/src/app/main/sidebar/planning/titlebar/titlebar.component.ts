@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./titlebar.component.css']
 })
 export class TitlebarComponent implements OnInit {
-  title = "Planeringsvy";
+  title = 'Planeringsvy';
   constructor() { }
 
   ngOnInit() {
