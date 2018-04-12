@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var DecisionProcedure = sequelize.define('DecisionProcedure', {
-    procedureOrder: DataTypes.INTEGER,
+    procedureOrder: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
     side: DataTypes.STRING
   }, {});
   DecisionProcedure.associate = function(models) {
