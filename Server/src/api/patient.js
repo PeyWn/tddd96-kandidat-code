@@ -4,6 +4,8 @@ module.exports.initAPI = function(APP) {
   APP.get('/patient', function(req, res) {
     DB.Patient.findAll({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(patients) {
       res.send(patients);
+    }).catch(function(err) {
+      res.status(500).send(err);
     });
   });
   //Add patient
