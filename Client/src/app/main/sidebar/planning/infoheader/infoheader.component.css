@@ -10,11 +10,18 @@
 }
 
 .red-bg {
-  background-color: red;
+  background-color: #dd0000;
 }
 
 .blue-bg {
   background-color: #1e7faa;
+  color: whitesmoke;
+
+}
+
+
+ .a.table-hover {
+  background-color: #0d2b37;
   color: whitesmoke;
 
 }
