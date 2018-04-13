@@ -16,23 +16,24 @@ export class DecisionsComponent implements OnInit {
     return this.gpService.currentPatient;
   }
   createComponent(newPatient) {
-    const factory:ComponentFactory<InfoheaderComponent> = this.resolver.resolveComponentFactory(InfoheaderComponent);
-    const componentRef:ComponentRef<InfoheaderComponent> = this.container.createComponent(factory);
+    const factory: ComponentFactory<InfoheaderComponent> = this.resolver.resolveComponentFactory(InfoheaderComponent);
+    const componentRef: ComponentRef<InfoheaderComponent> = this.container.createComponent(factory);
     componentRef.instance.patient = newPatient;
   }
   createComponents(){
     this.container.clear();
-    for (let i = 0; i < this.decisionList.length;i++){
+    for (let i = 0; i < this.decisionList.length; i++) {
       this.createComponent(this.decisionList[i]);
     }
   }
 
   @ViewChild('infoh', { read: ViewContainerRef }) container;
-  constructor(private gpService: GetPatientsService, private resolver:ComponentFactoryResolver) {
+  constructor(private gpService: GetPatientsService, private resolver: ComponentFactoryResolver) {
 
   }
 
   ngOnInit() {
+    this.createComponents();
   }
 
 }
