@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {SidebarPanelService} from '../../sidebar-panel.service';
 @Component({
   selector: 'app-buttonpanel-overview',
   templateUrl: './buttonpanel-overview.component.html',
@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonpanelOverviewComponent implements OnInit {
   searchTxt;
-  constructor() { }
+  search() {
+  }
+  constructor(private spService: SidebarPanelService) { }
 
   ngOnInit() {
   }

@@ -7,8 +7,10 @@ import {InfoheaderComponent} from '../../planning/infoheader/infoheader.componen
   templateUrl: './decisions.component.html',
   styleUrls: ['./decisions.component.css']
 })
+
 export class DecisionsComponent implements OnInit {
   decisionList = this.gpService.patients;
+  processList;
   setPatient(newPatient) {
     this.gpService.currentPatient = newPatient;
   }
@@ -20,16 +22,22 @@ export class DecisionsComponent implements OnInit {
     const componentRef: ComponentRef<InfoheaderComponent> = this.container.createComponent(factory);
     componentRef.instance.patient = newPatient;
   }
-  createComponents(){
+  createComponents() {
     this.container.clear();
-    for (let i = 0; i < this.decisionList.length; i++) {
-      this.createComponent(this.decisionList[i]);
+    for (let i = 0; i < this.processList.length; i++) {
+      this.createComponent(this.processList[i]);
     }
   }
-
+  iteratePatients(obj) {
+    for (let i = 0; i < this.decisionList.length; i++) {
+      if (this.decisionList[i].Namn === obj) {
+        this.processList.push(this.decisionList[i]);
+      }
+    }
+  }
   @ViewChild('infoh', { read: ViewContainerRef }) container;
   constructor(private gpService: GetPatientsService, private resolver: ComponentFactoryResolver) {
-
+    this.processList = this.decisionList;
   }
 
   ngOnInit() {
