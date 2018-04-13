@@ -1,4 +1,28 @@
+.row-s {
+  height: 120px
+}
+.rowp {
+  padding: 4px;
+}
 
 .rowh {
-  padding: 6px;
+  height: 25%
+}
+
+.red-bg {
+  background-color: red;
+}
+
+.blue-bg {
+  background-color: #1e7faa;
+}
+
+.col-md-12 {
+  color: whitesmoke;
+  font-size: 16px;
+}
+
+col-l9 {
+  border-right-style: solid;
+  border-color: DARKSLATEBLUE;
 }

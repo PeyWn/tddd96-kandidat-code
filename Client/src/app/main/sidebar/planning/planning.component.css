@@ -1,6 +1,5 @@
 .sidenav {
   z-index: 1; /* Stay on top */
-  background-color: #111; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
   top: 210px;
@@ -46,7 +45,6 @@
   right: 0;
   font-size: 16px;
   color: whitesmoke;
-  background-color: black;
   font-weight: bold;
   text-align: center;
 }
@@ -58,15 +56,13 @@
   height: 60px;
   left: 0;
   right: 0;
-  background-color: #111111;
 }
 
 #infoheader {
   position: absolute;
   top: 90px;
   height: 120px;
-  left: 0;
-  right: 0;
-  background-color: yellowgreen;
-
+  width: 100%;
+  padding-left: 3%;
+  padding-right: 3%;
 }
