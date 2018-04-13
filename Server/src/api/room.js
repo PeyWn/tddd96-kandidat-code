@@ -45,7 +45,7 @@ module.exports.initAPI = function(APP) {
 
   //Get room by type
   APP.get('/room/t/:type', function (req, res) {
-    DB.Local.findAll({where: {LocalTypeId: req.params.type}}).then(function(rooms) {
+    DB.Local.findAll({where: {LocalTypeId: req.params.type}, attributes: {exclude: ['createdAt', 'updateAt']}}).then(function(rooms) {
       res.send(rooms);
     });
   });
@@ -55,7 +55,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/room/:id/available', function (req, res) {
     DB.Local.findById(req.params.id, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function (room) {
       if(room) {
-        room.getFree_times().then(function (bookings) {
+        room.getFree_times({attributes: {exclude: ['createdAt', 'updateAt']}}).then(function (bookings) {
           res.send(bookings)
         }).catch(function (err) {
           res.status(500).send(err);
@@ -85,7 +85,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/room/:id/procedures', function (req, res) {
     DB.Local.findById(req.params.id, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function (room) {
       if(room) {
-        room.getProcedures().then(function (procedures) {
+        room.getProcedures({attributes: {exclude: ['createdAt', 'updateAt']}}).then(function (procedures) {
           res.send(procedures)
         }).catch(function (err) {
           res.status(500).send(err);

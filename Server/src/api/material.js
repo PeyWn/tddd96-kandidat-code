@@ -45,7 +45,7 @@ module.exports.initAPI = function(APP) {
 
   //Get material by type
   APP.get('/material/t/:type', function (req, res) {
-    DB.Material.findAll({where: {MaterialTypeId: req.params.type}}).then(function(materials) {
+    DB.Material.findAll({where: {MaterialTypeId: req.params.type}, attributes: {exclude: ['createdAt', 'updateAt']}}).then(function(materials) {
       res.send(materials);
     });
   });
