@@ -1,16 +1,10 @@
-.sidenav {
-  top: 210px;
-  height: 79%;
-}
 
 /*Titelbar*/
 #titlebar{
   position: absolute;
-  top: 0;
-  height: 30px;
-  left: 0;
-  right: 0;
-  font-size: 16px;
+  height: 3%;
+  width: 100%;
+  font-size: x-large;
   color: whitesmoke;
   font-weight: bold;
   text-align: center;
@@ -18,18 +12,24 @@
 
 /*Buttons for decisions panel*/
 #buttonpanel{
+  top: 3%;
   position: absolute;
-  top: 30px;
-  height: 60px;
-  left: 0;
-  right: 0;
+  height: 5%;
+  width: 100%;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
 #infoheader {
+  top: 8%;
   position: absolute;
-  top: 90px;
-  height: 120px;
+  height: 15%;
   width: 100%;
   padding-left: 3%;
   padding-right: 3%;
+}
+
+.sidenav {
+  top: 23%;
+  height: 77%;
 }

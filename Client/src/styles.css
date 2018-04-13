@@ -10,7 +10,7 @@
 .sidenav {
   z-index: 1; /* Stay on top */
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding: 7% 3% 7% 3%;
+  padding: 5% 3% 5% 3%;
   position: absolute;
   width: 100%;
 }
@@ -41,3 +41,7 @@
   .sidenav a {font-size: 18px;}
 }
 
+button {
+  color: orange;
+  font-size: large;
+}
