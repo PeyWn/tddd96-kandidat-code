@@ -13,7 +13,7 @@
 
 /*Buttons for decisions panel*/
 #buttonpanel{
-  top: 4%;
+  top: 5%;
   position: absolute;
   height: 5%;
   width: 100%;
@@ -24,13 +24,13 @@
 #infoheader {
   top: 9%;
   position: absolute;
-  height: 15%;
+  height: 17%;
   width: 100%;
   padding-left: 3%;
   padding-right: 3%;
 }
 
 .sidenav {
-  top: 24%;
-  height: 76%;
+  top: 30%;
+  height: 70%;
 }
