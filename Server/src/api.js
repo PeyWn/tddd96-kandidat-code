@@ -4,6 +4,7 @@ const DB = require('./models');
 const PATIENT = require('./api/patient');
 const BOOKING = require('./api/booking');
 const DECISION = require('./api/decision');
+const MATERIAL = require('./api/material');
 
 DB.sequelize.authenticate().then(function() {
   console.log('Successfully connected to database!');
@@ -18,6 +19,7 @@ module.exports.initAPI = function(APP) {
   PATIENT.initAPI(APP);
   BOOKING.initAPI(APP);
   DECISION.initAPI(APP);
+  MATERIAL.initAPI(APP)
 
   APP.get('/test', function(req, res) {
     DB.Decision.find({where: {PatientSsn: '199004122397'}}).then(function(decision) {
