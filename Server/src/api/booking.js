@@ -62,4 +62,36 @@ module.exports.initAPI = function(APP) {
       res.status(500).send(err);
     });
   });
+
+  APP.get('/booking/:ID/material', function (res,req){
+    DB.Booking.findById(req.params.ID).then(function(booking){
+      if(booking){
+        booking.getMaterial({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(material){
+          res.send(material);
+        }).catch(function(err){
+          res.status(500).send(err);
+        });
+      }else{
+        res.status(404).send('Booking not found');
+      }
+    }).catch(function(err){
+      res.status(500).send(err);
+    });
+  });
+
+  APP.get('booking/:ID/local', function(res,req){
+    DB.Booking.findById(req.params.ID).then(function(booking){
+      if(booking){
+        booking.getLocals({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(local){
+          res.send(local);
+        }).catch(function(err){
+          res.status(500).send(err);
+        });
+      }else{
+        res.status(404).send('Booking not found');
+      }
+    }).catch(function(err){
+      res.status(500).send(err);
+    });
+  });
 };
