@@ -5,6 +5,7 @@ const PATIENT = require('./api/patient');
 const BOOKING = require('./api/booking');
 const DECISION = require('./api/decision');
 const MATERIAL = require('./api/material');
+const CLINIC = require('./api/clinic');
 const STAFF = require('./api/staff');
 const ROOM = require('./api/room');
 const PROCEDURE = require('./api/procedure');
@@ -26,6 +27,7 @@ module.exports.initAPI = function(APP) {
   STAFF.initAPI(APP);
   MATERIAL.initAPI(APP);
   ROOM.initAPI(APP);
+  CLINIC.initAPI(APP);
   PROCEDURE.initAPI(APP);
   ICD10.initAPI(APP);
 };
