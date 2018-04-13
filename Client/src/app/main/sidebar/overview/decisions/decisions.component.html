@@ -1,6 +1,4 @@
-Beslut
-  <div *ngFor="let d of decisionList">
-    {{setPatient(d)}}
-    <div><app-infoheader></app-infoheader></div>
-    <br>
-  </div>
+
+<button (click)="createComponent(decisionList[0]);createComponent(decisionList[1]);createComponent(decisionList[2])">Test</button>
+    <div><template #infoh></template></div>
+

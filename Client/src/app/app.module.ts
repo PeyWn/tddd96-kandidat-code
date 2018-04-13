@@ -56,6 +56,7 @@ import { GetPatientsService} from './main/get-patients.service';
     SidebarPanelService,
     GetPatientsService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [InfoheaderComponent]
 })
 export class AppModule { }

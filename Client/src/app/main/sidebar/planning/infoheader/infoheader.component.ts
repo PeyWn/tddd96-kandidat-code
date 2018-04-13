@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GetPatientsService} from '../../../get-patients.service';
+import {Patient} from './Patient';
 
 @Component({
   selector: 'app-infoheader',
@@ -7,7 +8,7 @@ import {GetPatientsService} from '../../../get-patients.service';
   styleUrls: ['./infoheader.component.css']
 })
 export class InfoheaderComponent implements OnInit {
-  patient = this.getPatient();
+  @Input() patient:Patient;
   getPatient() {
     return this.gpService.currentPatient;
   }
