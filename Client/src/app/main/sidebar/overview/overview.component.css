@@ -2,17 +2,18 @@
 /*Titelbar*/
 #titlebar-overview{
   position: absolute;
-  height: 3%;
+  height: 4%;
   width: 100%;
   font-size: x-large;
   color: whitesmoke;
   font-weight: bold;
   text-align: center;
+  padding: 1% 2% 2% 2%;
 }
 
 /*Buttons for decisions panel*/
 #buttonpanel-overview{
-  top: 3%;
+  top: 4%;
   position: absolute;
   height: 15%;
   width: 100%;
@@ -21,6 +22,6 @@
 }
 
 .sidenav {
-  top: 18%;
-  height: 82%;
+  top: 19%;
+  height: 81%;
 }
