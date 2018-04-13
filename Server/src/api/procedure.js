@@ -5,6 +5,8 @@ module.exports.initAPI = function(APP) {
   APP.get('/procedure', function(req,res){
     DB.Procedure.findAll({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(procedures){
       res.send(procedures);
+    }).catch(function(err) {
+      res.status(500).send(err);
     });
   });
 

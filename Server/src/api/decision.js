@@ -4,6 +4,8 @@ module.exports.initAPI = function(APP) {
   APP.get('/decision', function(req,res){
     DB.Decision.findAll({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(decisions){
       res.send(decisions);
+    }).catch(function(err) {
+      res.status(500).send(err);
     });
   });
 
@@ -59,5 +61,4 @@ module.exports.initAPI = function(APP) {
       res.status(500).send(err);
     })
   })
-
 };

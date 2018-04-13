@@ -5,6 +5,8 @@ module.exports.initAPI = function(APP) {
   APP.get('/booking', function(req,res){
     DB.Booking.findAll({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(bookings){
       res.send(bookings);
+    }).catch(function(err) {
+      res.status(500).send(err);
     });
   });
 
@@ -60,5 +62,4 @@ module.exports.initAPI = function(APP) {
       res.status(500).send(err);
     });
   });
-
 };
