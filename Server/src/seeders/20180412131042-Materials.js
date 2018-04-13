@@ -148,16 +148,7 @@ module.exports = {
       updatedAt: new Date()
     },{
       id: 17,
-      name: 'Bipolär diatermikabel med pincett 15-16 cm',
-      article_no: '54463111',
-      sterilizing_time: 270,
-      quantity: 15,
-      MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      id: 18,
-      name: 'Hake Langenbeck 20 x 45 mm  2 st',
+      name: 'Hake Langenbeck 20 x 45 mm 2 st',
       article_no: '4543216431',
       sterilizing_time: 270,
       quantity: 10,
@@ -165,7 +156,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 19,
+      id: 18,
       name: 'Lap.tomi stort',
       article_no: '98122551223',
       sterilizing_time: 270,
@@ -174,16 +165,16 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 20,
+      id: 19,
       name: 'Nervmonitorering',
       article_no: '1313464656',
-      sterilizing_time: 270,
+      sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 21,
+      id: 20,
       name: 'Lap.scopi Grund',
       article_no: '994513234',
       sterilizing_time: 270,
@@ -192,7 +183,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 22,
+      id: 21,
       name: 'EndoEye',
       article_no: '649324522',
       sterilizing_time: 270,
@@ -201,7 +192,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 23,
+      id: 22,
       name: 'Grund 1',
       article_no: '55313513',
       sterilizing_time: 270,
@@ -210,7 +201,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 24,
+      id: 23,
       name: 'Thunderbeatsladd Olympys',
       article_no: '6563994123',
       sterilizing_time: 270,
@@ -219,7 +210,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 25,
+      id: 24,
       name: 'Thunderbeat',
       article_no: '87349343535',
       sterilizing_time: 0,
@@ -228,7 +219,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 26,
+      id: 25,
       name: 'Gastroscop',
       article_no: '9513543116',
       sterilizing_time: 90,
@@ -237,7 +228,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 27,
+      id: 26,
       name: 'Gastrocopistapel',
       article_no: '323213213',
       sterilizing_time: 0,
@@ -246,7 +237,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 28,
+      id: 27,
       name: 'Omni-Tract 2',
       article_no: '8765456454',
       sterilizing_time: 270,
@@ -255,7 +246,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 29,
+      id: 28,
       name: 'Omni-Tract 1',
       article_no: '46434524',
       sterilizing_time: 270,
@@ -264,7 +255,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 30,
+      id: 29,
       name: 'Revbensinstrument',
       article_no: '16434225',
       sterilizing_time: 270,
@@ -273,7 +264,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 31,
+      id: 30,
       name: 'Hake Rehn böjd bajonett 50 x 130',
       article_no: '32131132531',
       sterilizing_time: 270,
@@ -282,7 +273,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 32,
+      id: 31,
       name: 'Hake Rehn böjd bajonett 70 x 130',
       article_no: '53116510',
       sterilizing_time: 270,
@@ -291,7 +282,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 33,
+      id: 32,
       name: 'Peang Crafoord böjd 24cm 5st',
       article_no: '54613541213',
       sterilizing_time: 270,
@@ -300,7 +291,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 34,
+      id: 33,
       name: 'Hake Doyen 55 x 120',
       article_no: '564510331',
       sterilizing_time: 270,
@@ -309,7 +300,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 35,
+      id: 34,
       name: 'Hake Desmarres ögonlock 15mm 2st',
       article_no: '56430315421',
       sterilizing_time: 270,
@@ -318,12 +309,156 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      id: 36,
+      id: 35,
       name: 'Hake Doyen 35 x 130',
       article_no: '5433121543',
       sterilizing_time: 270,
       quantity: 3,
       MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 36,
+      name: 'Thomson hake 3',
+      article_no: '546131211',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 37,
+      name: 'Sonoca 300',
+      article_no: '56451321213',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 38,
+      name: 'Tillägg till övre buk',
+      article_no: '66354121',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 39,
+      name: 'Thompson hake 1',
+      article_no: '5415541355',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 40,
+      name: 'Thomson hake 2',
+      article_no: '6566325663',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 41,
+      name: 'Clipstång Yasargil +2stora,2små clips',
+      article_no: '5541225511',
+      sterilizing_time: 270,
+      quantity: 3,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 42,
+      name: 'Rengöringsborste till söring',
+      article_no: '632214563',
+      sterilizing_time: 270,
+      quantity: 5,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 43,
+      name: 'Pincett DeBakey 30cm',
+      article_no: '8962178',
+      sterilizing_time: 270,
+      quantity: 20,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 44,
+      name: 'Lamphandtag stort + manöverhandtag',
+      article_no: '9974232',
+      sterilizing_time: 270,
+      quantity: 40,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 45,
+      name: 'Söring MBC',
+      article_no: '64684321451',
+      sterilizing_time: 0,
+      quantity: 1,
+      MaterialTypeId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 46,
+      name: 'Hake Perman Självhållande 2 del',
+      article_no: '5451326841',
+      sterilizing_time: 270,
+      quantity: 4,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 47,
+      name: 'Tång Cremaliere',
+      article_no: '415464364',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 48,
+      name: 'Kanyl Cholangiografi 1,8 15G',
+      article_no: '236532',
+      sterilizing_time: 270,
+      quantity: 10,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 49,
+      name: 'Tång Hultén',
+      article_no: '464316131',
+      sterilizing_time: 270,
+      quantity: 2,
+      MaterialTypeId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 50,
+      name: 'Philips C-båge',
+      article_no: '1122336655',
+      sterilizing_time: 0,
+      quantity: 1,
+      MaterialTypeId: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      id: 51,
+      name: 'Röntgenskärm',
+      article_no: '33565233',
+      sterilizing_time: 0,
+      quantity: 1,
+      MaterialTypeId: 2,
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
