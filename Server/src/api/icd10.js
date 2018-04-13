@@ -1,10 +1,11 @@
 const DB = require('./../models');
 module.exports.initAPI = function(APP) {
-
   //Get all ICD-10 codes
   APP.get('/icd10', function(req,res){
     DB.icd10.findAll({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(icd10){
       res.send(icd10);
+    }).catch(function(err) {
+      res.status(500).send(err);
     });
   });
 

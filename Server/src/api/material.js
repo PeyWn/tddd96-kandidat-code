@@ -4,6 +4,8 @@ module.exports.initAPI = function(APP) {
   APP.get('/material', function(req, res) {
     DB.Material.findAll({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(materials) {
       res.send(materials);
+    }).catch(function(err) {
+      res.status(500).send(err);
     });
   });
 
@@ -62,6 +64,8 @@ module.exports.initAPI = function(APP) {
       } else {
         res.status(404).send("Material does not exist!");
       }
+    }).catch(function(err) {
+      res.status(500).send(err);
     });
   });
 
@@ -77,6 +81,8 @@ module.exports.initAPI = function(APP) {
       } else {
         res.status(404).send("Material does not exist!");
       }
+    }).catch(function(err) {
+      res.status(500).send(err);
     });
   });
 };

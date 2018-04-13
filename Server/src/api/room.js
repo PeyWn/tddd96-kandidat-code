@@ -4,6 +4,8 @@ module.exports.initAPI = function(APP) {
   APP.get('/room', function(req, res) {
     DB.Local.findAll({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(rooms) {
       res.send(rooms);
+    }).catch(function(err) {
+      res.status(500).send(err);
     });
   });
 
@@ -63,6 +65,8 @@ module.exports.initAPI = function(APP) {
       } else {
         res.status(404).send("Local does not exist!");
       }
+    }).catch(function(err) {
+      res.status(500).send(err);
     });
   });
 
@@ -78,6 +82,8 @@ module.exports.initAPI = function(APP) {
       } else {
         res.status(404).send("Local does not exist!");
       }
+    }).catch(function(err) {
+      res.status(500).send(err);
     });
   });
 
@@ -93,6 +99,8 @@ module.exports.initAPI = function(APP) {
       } else {
         res.status(404).send("Local does not exist!");
       }
+    }).catch(function(err) {
+      res.status(500).send(err);
     });
   });
 };
