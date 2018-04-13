@@ -4,6 +4,7 @@ const DB = require('./models');
 const PATIENT = require('./api/patient');
 const BOOKING = require('./api/booking');
 const DECISION = require('./api/decision');
+const MATERIAL = require('./api/material');
 
 DB.sequelize.authenticate().then(function() {
   console.log('Successfully connected to database!');
