@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     Staff.belongsTo(models.Clinic);
     Staff.belongsToMany(models.Booking, {through: models.Booked_staff});
     Staff.belongsToMany(models.Procedure, {through: 'procedure_staff'});
-    Staff.hasMany(models.Free_times);
+    Staff.belongsToMany(models.Free_times, {through: 'staff_free_times'});
   };
   return Staff;
 };
