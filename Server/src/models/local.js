@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     Local.belongsTo(models.Local_type);
     Local.belongsToMany(models.Booking, {through: models.Booked_local});
     Local.belongsToMany(models.Procedure, {through: 'procedure_local'});
-    Local.belongsToMany(models.Free_times, {through: 'local_free_times'});
+    Local.hasMany(models.Free_times);
   };
   return Local;
 };

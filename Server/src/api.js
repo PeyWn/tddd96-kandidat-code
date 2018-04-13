@@ -18,12 +18,4 @@ module.exports.initAPI = function(APP) {
   PATIENT.initAPI(APP);
   BOOKING.initAPI(APP);
   DECISION.initAPI(APP);
-
-  APP.get('/test', function(req, res) {
-    DB.Decision.find({where: {PatientSsn: '199004122397'}}).then(function(decision) {
-      decision.getProcedures().then(function(procedures) {
-        res.send(procedures);
-      });
-    });
-  });
 };
