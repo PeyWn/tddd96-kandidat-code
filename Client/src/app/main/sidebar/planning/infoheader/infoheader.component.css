@@ -15,14 +15,16 @@
 
 .blue-bg {
   background-color: #1e7faa;
+  color: whitesmoke;
+
 }
 
 .col-md-12 {
-  color: whitesmoke;
   font-size: 16px;
 }
 
-col-l9 {
+.col-l9 {
   border-right-style: solid;
-  border-color: DARKSLATEBLUE;
+  border-color: #0d2b37;
+  border-width: 5px;
 }
