@@ -33,6 +33,7 @@ export class DecisionsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.createComponents();
   }
 
 }
