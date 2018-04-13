@@ -1,27 +1,32 @@
 <div class="container-fluid" >
 
-  <div class="row" style="height: 120px">
-    <div class="col-md-9 " style="background-color: #6d7fcc">
+  <div class="row row-s">
+    <div class="col-md-9 blue-bg col-l9">
 
-      <div class="row" style="height: 25%">
-      <div class="col-md-12 rowh">Namn: {{patient.Namn}}</div>
+
+      <div class="row" rowh>
+      <div class="col-md-12 rowp">Namn: {{patient.Namn}}</div>
       </div>
 
-      <div class="row" style="height: 25%">
-        <div class="col-md-12 rowh">Personnummer: {{patient.Personnummer}}</div>
+
+      <div class="row" rowh>
+        <div class="col-md-12 rowp">Personnummer: {{patient.Personnummer}}</div>
       </div>
 
-      <div class="row" style="height: 25%">
-        <div class="col-md-12 rowh">Operationstyp: {{patient.Operationstyp}} </div>
+
+      <div class="row" rowh>
+        <div class="col-md-12 rowp">Operationstyp: {{patient.Operationstyp}} </div>
       </div>
 
-      <div class="row" style="height: 25%">
-        <div class="col-md-12 rowh">ICD10: {{patient.ICD10}}</div>
+
+      <div class="row" rowh>
+        <div class="col-md-12 rowp">ICD10: {{patient.ICD10}}</div>
       </div>
 
     </div>
 
-    <div class="col-md-3 " style="top: 32px; padding: 6px; text-align: center; font-size: 24px; height: 88px"> {{patient.Bradskandegrad}}
+
+    <div class="col-md-3" [ngClass]="patient.Bradskandegrad == 'AKUT' ? 'red-bg' : 'blue-bg'" style="padding-top: 24px; text-align: center; font-size: 24px; height: 100%"> {{getPatient().Bradskandegrad}}
       <div class="row-md" style="font-size: medium"> Tid kvar: <br> {{patient.Tid}}</div>
     </div>
 
