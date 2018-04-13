@@ -2,6 +2,8 @@ const EXPRESS = require('express');
 const DB = require('./models');
 
 const PATIENT = require('./api/patient');
+const BOOKING = require('./api/booking');
+const DECISION = require('./api/decision');
 
 DB.sequelize.authenticate().then(function() {
   console.log('Successfully connected to database!');
@@ -14,6 +16,8 @@ module.exports.initAPI = function(APP) {
   APP.use(EXPRESS.urlencoded({extended: true}));
 
   PATIENT.initAPI(APP);
+  BOOKING.initAPI(APP);
+  DECISION.initAPI(APP);
 
   APP.get('/test', function(req, res) {
     DB.Decision.find({where: {PatientSsn: '199004122397'}}).then(function(decision) {
