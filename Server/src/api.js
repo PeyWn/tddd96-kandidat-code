@@ -6,6 +6,7 @@ const BOOKING = require('./api/booking');
 const DECISION = require('./api/decision');
 const MATERIAL = require('./api/material');
 const STAFF = require('./api/staff');
+const ROOM = require('./api/room')
 
 DB.sequelize.authenticate().then(function() {
   console.log('Successfully connected to database!');
@@ -21,4 +22,6 @@ module.exports.initAPI = function(APP) {
   BOOKING.initAPI(APP);
   DECISION.initAPI(APP);
   STAFF.initAPI(APP);
+  MATERIAL.initAPI(APP);
+  ROOM.initAPI(APP);
 };
