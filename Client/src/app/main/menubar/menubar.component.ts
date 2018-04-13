@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {GetPatientsService} from '../get-patients.service';
+import {SidebarPanelService} from '../sidebar/sidebar-panel.service';
 
 @Component({
   selector: 'app-menubar',
@@ -6,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menubar.component.css']
 })
 export class MenubarComponent implements OnInit {
+  patient;
+  updatePanel() {
+    this.patient = this.gpService.currentPatient;
+    return this.spService.getCurrentPanel();
+  }
 
-  constructor() { }
+  constructor(private gpService: GetPatientsService, private spService:SidebarPanelService) {
+  this.patient = this.gpService.currentPatient;
+  }
 
   ngOnInit() {
   }
