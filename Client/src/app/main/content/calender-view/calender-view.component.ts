@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalenderViewComponent implements OnInit {
 
+  viewDate = new Date();
+  events = [];
+
   constructor() { }
 
   ngOnInit() {

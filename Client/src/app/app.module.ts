@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -49,7 +51,9 @@ import { GetPatientsService} from './main/get-patients.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot()
   ],
   providers: [
     CurrentViewService,
