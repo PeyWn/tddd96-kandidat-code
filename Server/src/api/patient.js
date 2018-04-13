@@ -1,3 +1,12 @@
+/**
+ * Patient:
+ * {
+ *   ssn: string;
+ *   firstName: string;
+ *   lastName: string;
+ * }
+ */
+
 const DB = require('./../models');
 module.exports.initAPI = function(APP) {
   //Get all patients

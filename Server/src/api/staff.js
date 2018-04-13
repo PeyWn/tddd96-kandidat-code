@@ -1,3 +1,15 @@
+/**
+ * Staff:
+ * {
+ *    id: int;
+ *    title: string; ("Läkare" eller "Jourläkare")
+ *    firstname: string;
+ *    lastname: string;
+ *    ClinicId: int;
+ *    SpecialityId: int;
+ * }
+ */
+
 const DB = require('./../models');
 
 module.exports.initAPI = function(APP) {
@@ -63,6 +75,22 @@ module.exports.initAPI = function(APP) {
       if (staff) {
         staff.getBookings({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(bookings) {
           res.send(bookings);
+        }).catch(function(err) {
+          res.status(500).send(err);
+        });
+      } else {
+        res.status(404).send('Staff not found.');
+      }
+    }).catch(function(err) {
+      res.status(500).send(err);
+    });
+  });
+  //Get decisions done by staff found by id
+  APP.get('/staff/:id/decision', function(req, res) {
+    DB.Staff.findById(req.params.id).then(function(staff) {
+      if (staff) {
+        staff.getDecisions({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(decisions) {
+          res.send(decisions);
         }).catch(function(err) {
           res.status(500).send(err);
         });

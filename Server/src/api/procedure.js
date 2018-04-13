@@ -45,12 +45,46 @@ module.exports.initAPI = function(APP) {
     });
   });
 
-  //Get local assigned to a procedure
+  //Get room assigned to a procedure
   APP.get('/procedure/:code/local', function(req,res){
     DB.Procedure.findById(req.params.code).then(function(procedure){
       if(procedure){
         procedure.getLocal({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(local){
           res.send(local);
+        }).catch(function(err){
+          res.status(500).send(err);
+        });
+      }else{
+        res.status(404).send('Procedure not found');
+      }
+    }).catch(function(err){
+      res.status(500).send(err);
+    });
+  });
+
+  //Get materials assigned to a procedure
+  APP.get('/procedure/:code/material', function(req,res){
+    DB.Procedure.findById(req.params.code).then(function(procedure){
+      if(procedure){
+        procedure.getMaterials({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(materials){
+          res.send(materials);
+        }).catch(function(err){
+          res.status(500).send(err);
+        });
+      }else{
+        res.status(404).send('Procedure not found');
+      }
+    }).catch(function(err){
+      res.status(500).send(err);
+    });
+  });
+
+  //Get decisions for a procedure
+  APP.get('/procedure/:code/decision', function(req,res){
+    DB.Procedure.findById(req.params.code).then(function(procedure){
+      if(procedure){
+        procedure.getDecisions({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(decisions){
+          res.send(decisions);
         }).catch(function(err){
           res.status(500).send(err);
         });
