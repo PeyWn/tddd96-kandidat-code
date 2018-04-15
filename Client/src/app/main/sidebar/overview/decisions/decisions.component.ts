@@ -1,6 +1,7 @@
 import { Component, ViewChild, ViewContainerRef, ComponentRef, ComponentFactory, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { GetPatientsService} from '../../../get-patients.service';
 import {InfoheaderComponent} from '../../planning/infoheader/infoheader.component';
+import {Patient} from '../../planning/infoheader/Patient';
 
 @Component({
   selector: 'app-decisions',
@@ -48,6 +49,64 @@ export class DecisionsComponent implements OnInit {
       this.viewAll();
     }
   }
+
+
+
+  sortByTime() {
+    this.quickSort(this.processList);
+    this.createComponents();
+  }
+
+
+  sortByTimeReverse() {
+    this.quickSort(this.processList);
+    this.processList = this.processList.reverse();
+    this.createComponents();
+  }
+
+  partition(array: Array<Patient>, left: number = 0, right: number = array.length - 1) {
+    const pivot = array[Math.floor((right + left) / 2)].Tid;
+    let i = left;
+    let j = right;
+
+    while (i <= j) {
+      while (array[i].Tid < pivot) {
+        i++;
+      }
+
+      while (array[j].Tid > pivot) {
+        j--;
+      }
+
+      if (i <= j) {
+        [array[i], array[j]] = [array[j], array[i]];
+        i++;
+        j--;
+      }
+    }
+
+    return i;
+  }
+
+  quickSort(array:Array<Patient>, left: number = 0, right: number = array.length - 1) {
+    let index;
+
+    if (array.length > 1) {
+      index = this.partition(array, left, right);
+
+      if (left < index - 1) {
+        this.quickSort(array, left, index - 1);
+      }
+
+      if (index < right) {
+        this.quickSort(array, index, right);
+      }
+    }
+
+    return array;
+  }
+
+
 
   @ViewChild('infoh', { read: ViewContainerRef }) container;
   constructor(private gpService: GetPatientsService, private resolver: ComponentFactoryResolver) {

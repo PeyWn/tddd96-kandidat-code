@@ -14,8 +14,16 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
   }
 
-  filterSearch($event) {
+  filterSearch($event:string) {
     this.desitions.iteratePatients($event);
+  }
+
+  recieveModifiers($event:string) {
+    switch($event){
+      case 'time': {this.desitions.sortByTime(); break;}
+      case 'timeR': {this.desitions.sortByTimeReverse(); break;}
+      default: break;
+    }
   }
 
 }
