@@ -28,20 +28,34 @@ export class DecisionsComponent implements OnInit {
       this.createComponent(this.processList[i]);
     }
   }
-  iteratePatients(obj) {
-    for (let i = 0; i < this.decisionList.length; i++) {
-      if (this.decisionList[i].Namn === obj) {
-        this.processList.push(this.decisionList[i]);
+
+  viewAll() {
+    this.processList = this.decisionList;
+    this.createComponents();
+  }
+  iteratePatients($event) {
+    this.processList = [];
+    if($event){
+      for (let i = 0; i < this.decisionList.length; i++) {
+        if (this.decisionList[i].Namn === $event.toString()) {
+          this.processList.push(this.decisionList[i]);
+        }
       }
+      this.createComponents();
+    }
+
+    else{
+      this.viewAll();
     }
   }
+
   @ViewChild('infoh', { read: ViewContainerRef }) container;
   constructor(private gpService: GetPatientsService, private resolver: ComponentFactoryResolver) {
     this.processList = this.decisionList;
   }
 
   ngOnInit() {
-    this.createComponents();
+    this.viewAll();
   }
 
 }

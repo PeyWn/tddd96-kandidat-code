@@ -2,7 +2,7 @@
 <div id = titlebar-overview class="dark-c"><app-titlebar-view></app-titlebar-view></div>
 
 <!-- Titlebar -->
-<div id="buttonpanel-overview" class="dark-c"><app-buttonpanel-overview></app-buttonpanel-overview></div>
+<div id="buttonpanel-overview" class="dark-c"><app-buttonpanel-overview (searchMessage)='this.filterSearch($event)'></app-buttonpanel-overview></div>
 
 
 <!-- Side navigation -->
