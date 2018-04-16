@@ -1,0 +1,10 @@
+.container-fluid {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+.row{
+  overflow: scroll;
+  height: 100%;
+  margin: 0;
+}
