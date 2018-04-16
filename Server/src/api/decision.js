@@ -49,7 +49,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/decision/:ID/procedures', function(req,res){
     DB.Decision.findById(req.params.ID).then(function(decision){
       if(decision){
-        decision.getProcedures({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(procedures){
+        decision.getProcedure({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(procedures){
           res.send(procedures);
         }).catch(function(err){
           res.status(500).send(err);
