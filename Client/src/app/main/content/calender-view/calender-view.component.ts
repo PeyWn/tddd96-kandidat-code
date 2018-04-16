@@ -8,8 +8,19 @@ import { Component, OnInit } from '@angular/core';
 export class CalenderViewComponent implements OnInit {
 
   viewDate = new Date();
-  events = [];
+  events = [{
+    title: 'TEST',
+    color: {
+      primary: '#e3bc08',
+      secondary: '#fdf1ba'
+    },
+      start: new Date(2018,4,16,15)
 
+  }]
+
+  onDateClick(calendarEvent) {
+    console.log(calendarEvent);
+  }
   constructor() { }
 
   ngOnInit() {
