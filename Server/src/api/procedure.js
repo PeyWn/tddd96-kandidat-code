@@ -46,7 +46,7 @@ module.exports.initAPI = function(APP) {
   });
 
   //Get room assigned to a procedure
-  APP.get('/procedure/:code/local', function(req,res){
+  APP.get('/procedure/:code/room', function(req,res){
     DB.Procedure.findById(req.params.code).then(function(procedure){
       if(procedure){
         procedure.getLocal({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(local){
