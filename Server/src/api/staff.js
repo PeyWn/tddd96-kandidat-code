@@ -1,21 +1,9 @@
-/**
- * Staff:
- * {
- *    id: int;
- *    title: string; ("Läkare" eller "Jourläkare")
- *    firstname: string;
- *    lastname: string;
- *    ClinicId: int;
- *    SpecialityId: int;
- * }
- */
-
 const DB = require('./../models');
 
 module.exports.initAPI = function(APP) {
   //Get all staff
   APP.get('/staff', function(req, res) {
-    DB.Staff.findAll({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(staff) {
+    DB.Staff.findAll().then(function(staff) {
       res.send(staff);
     }).catch(function(err) {
       res.status(500).send(err);
@@ -31,7 +19,7 @@ module.exports.initAPI = function(APP) {
   });
   //Get staff by id
   APP.get('/staff/:id', function(req, res) {
-    DB.Staff.findById(req.params.id, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(staff) {
+    DB.Staff.findById(req.params.id).then(function(staff) {
       res.send(staff);
     }).catch(function(err) {
       res.status(500).send(err);
@@ -57,7 +45,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/staff/:id/available', function(req, res) {
     DB.Staff.findById(req.params.id).then(function(staff) {
       if (staff) {
-        staff.getFree_times({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(free_times) {
+        staff.getFree_times().then(function(free_times) {
           res.send(free_times);
         }).catch(function(err) {
           res.status(500).send(err);
@@ -73,7 +61,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/staff/:id/booked', function(req, res) {
     DB.Staff.findById(req.params.id).then(function(staff) {
       if (staff) {
-        staff.getBookings({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(bookings) {
+        staff.getBookings().then(function(bookings) {
           res.send(bookings);
         }).catch(function(err) {
           res.status(500).send(err);
@@ -89,7 +77,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/staff/:id/decision', function(req, res) {
     DB.Staff.findById(req.params.id).then(function(staff) {
       if (staff) {
-        staff.getDecisions({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(decisions) {
+        staff.getDecisions().then(function(decisions) {
           res.send(decisions);
         }).catch(function(err) {
           res.status(500).send(err);

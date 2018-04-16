@@ -2,7 +2,7 @@ const DB = require('./../models');
 module.exports.initAPI = function(APP) {
   //Get all clinics
   APP.get('/clinic', function(req, res) {
-    DB.Clinic.findAll({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(clinics) {
+    DB.Clinic.findAll().then(function(clinics) {
       res.send(clinics);
     });
   });
@@ -18,7 +18,7 @@ module.exports.initAPI = function(APP) {
 
   // Get clinic by id
   APP.get('/clinic/:id', function (req, res) {
-    DB.Clinic.findById(req.params.id, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function (clinic) {
+    DB.Clinic.findById(req.params.id).then(function (clinic) {
       res.send(clinic);
     });
   });
@@ -46,7 +46,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/clinic/:ID/decision', function(req,res){
     DB.Clinic.findById(req.params.ID).then(function(clinic){
       if(clinic){
-        clinic.getDecisions({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(decision){
+        clinic.getDecisions().then(function(decision){
           res.send(decision);
         }).catch(function(err){
           res.status(500).send(err);
@@ -63,7 +63,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/clinic/:ID/staff', function(req,res){
     DB.Clinic.findById(req.params.ID).then(function(clinic){
       if(clinic){
-        clinic.getStaff({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(staff){
+        clinic.getStaff().then(function(staff){
           res.send(staff);
         }).catch(function(err){
           res.status(500).send(err);

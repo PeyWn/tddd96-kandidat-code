@@ -1,17 +1,8 @@
-/**
- * Patient:
- * {
- *   ssn: string;
- *   firstName: string;
- *   lastName: string;
- * }
- */
-
 const DB = require('./../models');
 module.exports.initAPI = function(APP) {
   //Get all patients
   APP.get('/patient', function(req, res) {
-    DB.Patient.findAll({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(patients) {
+    DB.Patient.findAll().then(function(patients) {
       res.send(patients);
     }).catch(function(err) {
       res.status(500).send(err);
@@ -27,7 +18,7 @@ module.exports.initAPI = function(APP) {
   });
   //Get patient by ssn
   APP.get('/patient/:ssn', function(req, res) {
-    DB.Patient.findById(req.params.ssn, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(patient) {
+    DB.Patient.findById(req.params.ssn).then(function(patient) {
       res.send(patient);
     }).catch(function(err) {
       res.status(500).send(err);
@@ -53,7 +44,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/patient/:ssn/decisions', function(req, res) {
     DB.Patient.findById(req.params.ssn).then(function(patient) {
       if (patient) {
-        patient.getDecisions({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(decisions) {
+        patient.getDecisions().then(function(decisions) {
           res.send(decisions);
         }).catch(function(err) {
           res.status(500).send(err);

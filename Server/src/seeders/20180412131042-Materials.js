@@ -9,8 +9,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 4,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 2,
       name: 'Optik 0 Da Vinci Xi',
@@ -18,8 +16,6 @@ module.exports = {
       sterilizing_time: 300,
       quantity: 3,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 3,
       name: 'Lap.scopi Da Vinci 1',
@@ -27,8 +23,6 @@ module.exports = {
       sterilizing_time: 300,
       quantity: 3,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 4,
       name: 'Lap.scopi Da Vinci 2',
@@ -36,8 +30,6 @@ module.exports = {
       sterilizing_time: 300,
       quantity: 2,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 5,
       name: 'Gasvärmare 2 del',
@@ -45,8 +37,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 4,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 6,
       name: 'Spol-sug, Stryker',
@@ -54,8 +44,6 @@ module.exports = {
       sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 7,
       name: 'Da Vinci Xi-robot',
@@ -63,8 +51,6 @@ module.exports = {
       sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 8,
       name: 'Da Vinci Xi-stapel',
@@ -72,8 +58,6 @@ module.exports = {
       sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 9,
       name: 'Operationskonsol Da Vinci Xi',
@@ -81,8 +65,6 @@ module.exports = {
       sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 10,
       name: 'Hysterektomi',
@@ -90,8 +72,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 6,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 11,
       name: 'Spärrar till Permanhake 2 st BRÅDSKANDE',
@@ -99,8 +79,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 6,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 12,
       name: 'Hake Perman självhållande',
@@ -108,8 +86,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 6,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 13,
       name: 'Tång Ligasure 21 cm  BRÅDSKANDE',
@@ -117,8 +93,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 2,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 14,
       name: 'Magnetmatta',
@@ -126,8 +100,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 10,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 15,
       name: 'Grund 3',
@@ -135,8 +107,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 4,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 16,
       name: 'Bipolär diatermikabel med pincett 15-16 cm',
@@ -144,8 +114,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 15,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 17,
       name: 'Hake Langenbeck 20 x 45 mm 2 st',
@@ -153,8 +121,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 10,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 18,
       name: 'Lap.tomi stort',
@@ -162,8 +128,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 3,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 19,
       name: 'Nervmonitorering',
@@ -171,8 +135,6 @@ module.exports = {
       sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 20,
       name: 'Lap.scopi Grund',
@@ -180,8 +142,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 2,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 21,
       name: 'EndoEye',
@@ -189,8 +149,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 1,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 22,
       name: 'Grund 1',
@@ -198,8 +156,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 5,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 23,
       name: 'Thunderbeatsladd Olympys',
@@ -207,8 +163,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 1,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 24,
       name: 'Thunderbeat',
@@ -216,8 +170,6 @@ module.exports = {
       sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 25,
       name: 'Gastroscop',
@@ -225,8 +177,6 @@ module.exports = {
       sterilizing_time: 90,
       quantity: 2,
       MaterialTypeId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 26,
       name: 'Gastrocopistapel',
@@ -234,8 +184,6 @@ module.exports = {
       sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 27,
       name: 'Omni-Tract 2',
@@ -243,8 +191,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 2,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 28,
       name: 'Omni-Tract 1',
@@ -252,8 +198,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 2,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 29,
       name: 'Revbensinstrument',
@@ -261,8 +205,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 1,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 30,
       name: 'Hake Rehn böjd bajonett 50 x 130',
@@ -270,8 +212,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 5,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 31,
       name: 'Hake Rehn böjd bajonett 70 x 130',
@@ -279,8 +219,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 5,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 32,
       name: 'Peang Crafoord böjd 24cm 5st',
@@ -288,8 +226,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 20,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 33,
       name: 'Hake Doyen 55 x 120',
@@ -297,8 +233,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 7,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 34,
       name: 'Hake Desmarres ögonlock 15mm 2st',
@@ -306,8 +240,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 3,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 35,
       name: 'Hake Doyen 35 x 130',
@@ -315,8 +247,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 3,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 36,
       name: 'Thomson hake 3',
@@ -324,8 +254,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 2,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 37,
       name: 'Sonoca 300',
@@ -333,8 +261,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 2,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 38,
       name: 'Tillägg till övre buk',
@@ -342,8 +268,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 2,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 39,
       name: 'Thompson hake 1',
@@ -351,8 +275,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 2,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 40,
       name: 'Thomson hake 2',
@@ -360,8 +282,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 2,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 41,
       name: 'Clipstång Yasargil +2stora,2små clips',
@@ -369,8 +289,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 3,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 42,
       name: 'Rengöringsborste till söring',
@@ -378,8 +296,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 5,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 43,
       name: 'Pincett DeBakey 30cm',
@@ -387,8 +303,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 20,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 44,
       name: 'Lamphandtag stort + manöverhandtag',
@@ -396,8 +310,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 40,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 45,
       name: 'Söring MBC',
@@ -405,8 +317,6 @@ module.exports = {
       sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 46,
       name: 'Hake Perman Självhållande 2 del',
@@ -414,8 +324,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 4,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 47,
       name: 'Tång Cremaliere',
@@ -423,8 +331,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 2,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 48,
       name: 'Kanyl Cholangiografi 1,8 15G',
@@ -432,8 +338,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 10,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 49,
       name: 'Tång Hultén',
@@ -441,8 +345,6 @@ module.exports = {
       sterilizing_time: 270,
       quantity: 2,
       MaterialTypeId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 50,
       name: 'Philips C-båge',
@@ -450,8 +352,6 @@ module.exports = {
       sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 51,
       name: 'Röntgenskärm',
@@ -459,8 +359,6 @@ module.exports = {
       sterilizing_time: 0,
       quantity: 1,
       MaterialTypeId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     }]);
   },
 

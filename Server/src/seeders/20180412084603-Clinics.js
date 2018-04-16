@@ -5,18 +5,12 @@ module.exports = {
     return queryInterface.bulkInsert('Clinics', [{
       id: 1,
       name: 'Kirugiska kliniken',
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 2,
       name: 'Urologiska kliniken',
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 3,
       name: 'Gynekologiska kliniken',
-      createdAt: new Date(),
-      updatedAt: new Date()
     }]);
   },
 

@@ -2,7 +2,7 @@ const DB = require('./../models');
 module.exports.initAPI = function(APP) {
   //Get all decisions
   APP.get('/decision', function(req,res){
-    DB.Decision.findAll({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(decisions){
+    DB.Decision.findAll().then(function(decisions){
       res.send(decisions);
     }).catch(function(err) {
       res.status(500).send(err);
@@ -20,7 +20,7 @@ module.exports.initAPI = function(APP) {
 
   //Get specific decision
   APP.get('/decision/:ID', function(req,res){
-    DB.Decision.findById(req.params.ID, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(decision){
+    DB.Decision.findById(req.params.ID).then(function(decision){
       res.send(decision);
     }).catch(function(err){
       res.status(500).send(err);
@@ -49,7 +49,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/decision/:ID/procedures', function(req,res){
     DB.Decision.findById(req.params.ID).then(function(decision){
       if(decision){
-        decision.getProcedure({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(procedures){
+        decision.getProcedure().then(function(procedures){
           res.send(procedures);
         }).catch(function(err){
           res.status(500).send(err);

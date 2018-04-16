@@ -20,7 +20,7 @@ module.exports.initAPI = function(APP) {
 
   //Get material by id
   APP.get('/material/:id', function(req, res) {
-    DB.Material.findById(req.params.id, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(material) {
+    DB.Material.findById(req.params.id).then(function(material) {
       res.send(material);
     }).catch(function(err) {
       res.status(500).send(err);
@@ -47,14 +47,14 @@ module.exports.initAPI = function(APP) {
 
   //Get material by type
   APP.get('/material/t/:type', function (req, res) {
-    DB.Material.findAll({where: {MaterialTypeId: req.params.type}, attributes: {exclude: ['createdAt', 'updateAt']}}).then(function(materials) {
+    DB.Material.findAll({where: {MaterialTypeId: req.params.type}}).then(function(materials) {
       res.send(materials);
     });
   });
 
   //Get all bookings of this material
   APP.get('/material/:id/booked', function (req, res) {
-    DB.Material.findById(req.params.id, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function (material) {
+    DB.Material.findById(req.params.id).then(function (material) {
       if(material) {
         material.getBookings().then(function (bookings) {
           res.send(bookings)
@@ -71,7 +71,7 @@ module.exports.initAPI = function(APP) {
 
   //Get all procedures using this material
   APP.get('/material/:id/procedures', function (req, res) {
-    DB.Material.findById(req.params.id, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function (material) {
+    DB.Material.findById(req.params.id).then(function (material) {
       if(material) {
         material.getProcedures().then(function (procedures) {
           res.send(procedures)

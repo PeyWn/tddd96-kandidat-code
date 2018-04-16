@@ -2,7 +2,7 @@ const DB = require('./../models');
 module.exports.initAPI = function(APP) {
   //Get all rooms
   APP.get('/room', function(req, res) {
-    DB.Local.findAll({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(rooms) {
+    DB.Local.findAll().then(function(rooms) {
       res.send(rooms);
     }).catch(function(err) {
       res.status(500).send(err);
@@ -20,7 +20,7 @@ module.exports.initAPI = function(APP) {
 
   //Get room by id
   APP.get('/room/:id', function(req, res) {
-    DB.Local.findById(req.params.id, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(room) {
+    DB.Local.findById(req.params.id).then(function(room) {
       res.send(room);
     }).catch(function(err) {
       res.status(500).send(err);
@@ -47,7 +47,7 @@ module.exports.initAPI = function(APP) {
 
   //Get room by type
   APP.get('/room/t/:type', function (req, res) {
-    DB.Local.findAll({where: {LocalTypeId: req.params.type}, attributes: {exclude: ['createdAt', 'updateAt']}}).then(function(rooms) {
+    DB.Local.findAll({where: {LocalTypeId: req.params.type}}).then(function(rooms) {
       res.send(rooms);
     });
   });
@@ -55,9 +55,9 @@ module.exports.initAPI = function(APP) {
 
   //Get all available times of this room
   APP.get('/room/:id/available', function (req, res) {
-    DB.Local.findById(req.params.id, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function (room) {
+    DB.Local.findById(req.params.id).then(function (room) {
       if(room) {
-        room.getFree_times({attributes: {exclude: ['createdAt', 'updateAt']}}).then(function (bookings) {
+        room.getFree_times().then(function (bookings) {
           res.send(bookings)
         }).catch(function (err) {
           res.status(500).send(err);
@@ -72,7 +72,7 @@ module.exports.initAPI = function(APP) {
 
   //Get all bookings of this room
   APP.get('/room/:id/booked', function (req, res) {
-    DB.Local.findById(req.params.id, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function (room) {
+    DB.Local.findById(req.params.id).then(function (room) {
       if(room) {
         room.getBookings().then(function (bookings) {
           res.send(bookings)
@@ -89,9 +89,9 @@ module.exports.initAPI = function(APP) {
 
   //Get all procedures using this room
   APP.get('/room/:id/procedures', function (req, res) {
-    DB.Local.findById(req.params.id, {attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function (room) {
+    DB.Local.findById(req.params.id).then(function (room) {
       if(room) {
-        room.getProcedures({attributes: {exclude: ['createdAt', 'updateAt']}}).then(function (procedures) {
+        room.getProcedures().then(function (procedures) {
           res.send(procedures)
         }).catch(function (err) {
           res.status(500).send(err);

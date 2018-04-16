@@ -9,8 +9,6 @@ module.exports = {
       weekday: 'mån',
       LocalId: null,
       StaffId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 2,
       start_time: '08:00',
@@ -18,8 +16,6 @@ module.exports = {
       weekday: 'tis',
       LocalId: null,
       StaffId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 3,
       start_time: '13:00',
@@ -27,8 +23,6 @@ module.exports = {
       weekday: 'ons',
       LocalId: null,
       StaffId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 4,
       start_time: '00:00',
@@ -36,8 +30,6 @@ module.exports = {
       weekday: 'mån',
       LocalId: null,
       StaffId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 5,
       start_time: '00:00',
@@ -45,8 +37,6 @@ module.exports = {
       weekday: 'tis',
       LocalId: null,
       StaffId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 6,
       start_time: '00:00',
@@ -54,8 +44,6 @@ module.exports = {
       weekday: 'ons',
       LocalId: null,
       StaffId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 7,
       start_time: '00:00',
@@ -63,8 +51,6 @@ module.exports = {
       weekday: 'tor',
       LocalId: null,
       StaffId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 8,
       start_time: '00:00',
@@ -72,8 +58,6 @@ module.exports = {
       weekday: 'fre',
       LocalId: null,
       StaffId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 9,
       start_time: '00:00',
@@ -81,8 +65,6 @@ module.exports = {
       weekday: 'lör',
       LocalId: null,
       StaffId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 10,
       start_time: '00:00',
@@ -90,8 +72,6 @@ module.exports = {
       weekday: 'sön',
       LocalId: null,
       StaffId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 11,
       start_time: '08:00',
@@ -99,8 +79,6 @@ module.exports = {
       weekday: 'tis',
       LocalId: null,
       StaffId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 12,
       start_time: '08:00',
@@ -108,8 +86,6 @@ module.exports = {
       weekday: 'ons',
       LocalId: null,
       StaffId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 13,
       start_time: '13:00',
@@ -117,8 +93,6 @@ module.exports = {
       weekday: 'tor',
       LocalId: null,
       StaffId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 14,
       start_time: '08:00',
@@ -126,8 +100,6 @@ module.exports = {
       weekday: 'fre',
       LocalId: null,
       StaffId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 15,
       start_time: '08:00',
@@ -135,8 +107,6 @@ module.exports = {
       weekday: 'mån',
       LocalId: null,
       StaffId: 4,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 16,
       start_time: '08:00',
@@ -144,8 +114,6 @@ module.exports = {
       weekday: 'tis',
       LocalId: null,
       StaffId: 4,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 17,
       start_time: '08:00',
@@ -153,8 +121,6 @@ module.exports = {
       weekday: 'tor',
       LocalId: null,
       StaffId: 4,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       id: 18,
       start_time: '08:00',
@@ -162,8 +128,6 @@ module.exports = {
       weekday: 'fre',
       LocalId: null,
       StaffId: 4,
-      createdAt: new Date(),
-      updatedAt: new Date()
     }];
     //Room 1
     for (let i = 0; i < 5; ++i) {
@@ -173,8 +137,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 1,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     //Room 2
@@ -185,8 +147,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 2,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     //Room 3
@@ -197,8 +157,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 3,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     //Room 4
@@ -209,8 +167,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 4,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     //Room 5
@@ -221,8 +177,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 5,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     //Room 6
@@ -233,8 +187,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 6,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     //Room 7
@@ -245,8 +197,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 7,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     //Room 8
@@ -257,8 +207,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 8,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     //Room 9
@@ -269,8 +217,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 9,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     //Room 10
@@ -281,8 +227,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 10,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     //Room 11
@@ -293,8 +237,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 11,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     //Room 12
@@ -305,8 +247,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 12,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     //Room 13
@@ -317,8 +257,6 @@ module.exports = {
         weekday: getDayString(i),
         LocalId: 13,
         StaffId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       });
     }
     return queryInterface.bulkInsert('Free_times', times);

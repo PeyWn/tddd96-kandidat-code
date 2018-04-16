@@ -10,8 +10,6 @@ module.exports = {
       dismantlingTime: 39,
       postOperationalTime: 464,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'JEA00',
       description: 'Appendektomi',
@@ -20,8 +18,6 @@ module.exports = {
       dismantlingTime: 30,
       postOperationalTime: 240,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'KEC01',
       description: 'Perkutan endoskopisk radikal prostatektomi',
@@ -30,8 +26,6 @@ module.exports = {
       dismantlingTime: 30,
       postOperationalTime: 199,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'LCD00',
       description: 'Hysterektomi',
@@ -40,8 +34,6 @@ module.exports = {
       dismantlingTime: 29,
       postOperationalTime: 302,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'BAA60',
       description: 'Tyreoidektomi',
@@ -50,8 +42,6 @@ module.exports = {
       dismantlingTime: 37,
       postOperationalTime: 270,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'KED22',
       description: 'Transuretral resektion av prostata (i)',
@@ -60,8 +50,6 @@ module.exports = {
       dismantlingTime: 20,
       postOperationalTime: 197,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'JKA20',
       description: 'Kolecystektomi',
@@ -70,8 +58,6 @@ module.exports = {
       dismantlingTime: 40,
       postOperationalTime: 278,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'JMA10',
       description: 'Abdominal splenektomi',
@@ -80,8 +66,6 @@ module.exports = {
       dismantlingTime: 38,
       postOperationalTime: 450,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'UJD02',
       description: 'Gastroskopi',
@@ -90,8 +74,6 @@ module.exports = {
       dismantlingTime: 28,
       postOperationalTime: 100,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'KAC00',
       description: 'Nefrektomi',
@@ -100,8 +82,6 @@ module.exports = {
       dismantlingTime: 72,
       postOperationalTime: 406,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'JLA20',
       description: 'Punktionsbiopsi av pankreas',
@@ -110,8 +90,6 @@ module.exports = {
       dismantlingTime: 70,
       postOperationalTime: 170,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'PJD98',
       description: 'Annan radikal regional lymfkörtelutrymning',
@@ -120,8 +98,6 @@ module.exports = {
       dismantlingTime: 30,
       postOperationalTime: 200,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'JFB40',
       description: 'Resektion av colon transversum',
@@ -130,8 +106,6 @@ module.exports = {
       dismantlingTime: 45,
       postOperationalTime: 100,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'JMW97',
       description: 'Annan laparoskopisk operation på mjälte',
@@ -140,8 +114,6 @@ module.exports = {
       dismantlingTime: 20,
       postOperationalTime: 200,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'PHE30',
       description: 'Trombektomi i v. cava inferior',
@@ -150,8 +122,6 @@ module.exports = {
       dismantlingTime: 25,
       postOperationalTime: 100,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'TJK00',
       description: 'Peroperativ kolangiografi',
@@ -160,8 +130,6 @@ module.exports = {
       dismantlingTime: 30,
       postOperationalTime: 100,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     },{
       kvåCode: 'LAF00',
       description: 'Unilateral salpingo-ooforektomi',
@@ -170,8 +138,6 @@ module.exports = {
       dismantlingTime: 30,
       postOperationalTime: 100,
       downTime: 15,
-      createdAt: new Date(),
-      updatedAt: new Date()
     }]);
   },
 

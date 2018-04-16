@@ -49,7 +49,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/procedure/:code/room', function(req,res){
     DB.Procedure.findById(req.params.code).then(function(procedure){
       if(procedure){
-        procedure.getLocal({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(local){
+        procedure.getLocal().then(function(local){
           res.send(local);
         }).catch(function(err){
           res.status(500).send(err);
@@ -66,7 +66,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/procedure/:code/material', function(req,res){
     DB.Procedure.findById(req.params.code).then(function(procedure){
       if(procedure){
-        procedure.getMaterials({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(materials){
+        procedure.getMaterials().then(function(materials){
           res.send(materials);
         }).catch(function(err){
           res.status(500).send(err);
@@ -83,7 +83,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/procedure/:code/decision', function(req,res){
     DB.Procedure.findById(req.params.code).then(function(procedure){
       if(procedure){
-        procedure.getDecisions({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(decisions){
+        procedure.getDecisions().then(function(decisions){
           res.send(decisions);
         }).catch(function(err){
           res.status(500).send(err);
