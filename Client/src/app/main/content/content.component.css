@@ -1,18 +1,8 @@
-#navbar {
-  position: absolute;
-  top: 0;
-  height: 30px;
-  left: 0;
-  right: 0;
 
-  background-color: magenta;
-}
 
 .content-body{
   position: absolute;
-  top: 60px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #ccccaa;
+  height: 100%;
+  padding: 1% 1% 1% 1%;
+  background-color: whitesmoke;
 }

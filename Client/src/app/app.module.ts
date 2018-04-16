@@ -4,6 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -26,6 +29,7 @@ import { TitlebarViewComponent } from './main/sidebar/overview/titlebar-view/tit
 import { SidebarPanelService} from "./main/sidebar/sidebar-panel.service";
 import { DecisionsComponent } from './main/sidebar/overview/decisions/decisions.component';
 import { GetPatientsService} from './main/get-patients.service';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -47,13 +51,16 @@ import { GetPatientsService} from './main/get-patients.service';
     ButtonpanelOverviewComponent,
     TitlebarViewComponent,
     DecisionsComponent,
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    CommonModule,
+    NgbModalModule.forRoot(),
   ],
   providers: [
     CurrentViewService,
