@@ -34,11 +34,28 @@ export class DecisionsComponent implements OnInit {
     this.processList = this.decisionList;
     this.createComponents();
   }
+
+
   iteratePatients($event) {
     this.processList = [];
     if($event){
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Namn === $event.toString()) {
+        if (this.decisionList[i].Namn === $event) {
+          this.processList.push(this.decisionList[i]);
+        }
+      }
+      for (let i = 0; i < this.decisionList.length; i++) {
+        if (this.decisionList[i].Personnummer === Number($event)) {
+          this.processList.push(this.decisionList[i]);
+        }
+      }
+      for (let i = 0; i < this.decisionList.length; i++) {
+        if (this.decisionList[i].ICD10 === $event) {
+          this.processList.push(this.decisionList[i]);
+        }
+      }
+      for (let i = 0; i < this.decisionList.length; i++) {
+        if (this.decisionList[i].Operationstyp === $event) {
           this.processList.push(this.decisionList[i]);
         }
       }
