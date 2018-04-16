@@ -3,6 +3,7 @@
 .content-body{
   position: absolute;
   height: 100%;
-  padding: 1% 1% 1% 1%;
+  padding: 1% 0 1% 0;
   background-color: whitesmoke;
+  overflow: hidden;
 }

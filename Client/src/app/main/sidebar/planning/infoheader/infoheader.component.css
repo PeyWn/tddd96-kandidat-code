@@ -1,12 +1,13 @@
 .row-s {
   height: auto;
+  margin: 0;
 }
 .rowp {
   padding: 4px;
 }
 
 .rowh {
-  height: 25%
+  height: 25%;
 }
 
 .red-bg {
@@ -20,7 +21,7 @@
 }
 
 
- .blue-bg:hover {
+.blue-bg:hover {
   background-color: #177288;
   color: whitesmoke;
 

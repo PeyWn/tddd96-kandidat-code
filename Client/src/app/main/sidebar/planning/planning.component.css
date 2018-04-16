@@ -9,6 +9,7 @@
   font-weight: bold;
   text-align: center;
   padding: 1% 2% 2% 2%;
+  min-width: 40px;
 }
 
 /*Buttons for decisions panel*/
@@ -19,6 +20,7 @@
   width: 100%;
   padding-top: 2%;
   padding-bottom: 2%;
+  min-height: 50px;
 }
 
 #infoheader {
@@ -26,11 +28,12 @@
   position: absolute;
   height: 17%;
   width: 100%;
-  padding-left: 3%;
-  padding-right: 3%;
+  padding: 5% 0 0 0;
+  min-height: 300px;
 }
 
 .sidenav {
   top: 30%;
   height: 70%;
+  min-height: 300px;
 }

@@ -1,7 +1,7 @@
-<div class="container-fluid a" (click)="setPatient(patient); setPanel('planning')" style="padding: 2%" >
+<div class="container-fluid a" (click)="setPatient(patient); setPanel('planning')" style="padding: 2% 5% 2% 5%" >
 
   <div class="row row-s">
-    <div class="col-md-9 blue-bg col-l9">
+    <div class="col-md blue-bg col-l9">
 
 
       <div class="row" rowh>
@@ -26,7 +26,7 @@
     </div>
 
 
-    <div class="col-md-3" [ngClass]="patient.Bradskandegrad == 'AKUT' ? 'red-bg' : 'blue-bg'" style="padding: 5% 2% 0 2%; text-align: center; font-size: x-large; height: auto"> {{patient.Bradskandegrad}}
+    <div class="col-md-3" [ngClass]="patient.Bradskandegrad == 'AKUT' ? 'red-bg' : 'blue-bg'" style="padding: 5% 2% 0 2%; min-width: 80px; min-height: 100px text-align: center; font-size: x-large; height: auto"> {{patient.Bradskandegrad}}
       <div class="row-md" style="font-size: medium"> Tid kvar: <br> {{patient.Tid}}</div>
     </div>
 
