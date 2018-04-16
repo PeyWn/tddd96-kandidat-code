@@ -26,6 +26,8 @@ export class CalenderViewComponent implements OnInit {
   }
 
   test($event) {
+    this.viewDate = $event;
+
     console.log($event.day.date.toString());
 
   }
