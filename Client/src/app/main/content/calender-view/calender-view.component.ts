@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calender-view.component.css']
 })
 export class CalenderViewComponent implements OnInit {
-
   viewDate = new Date();
   events = [{
     title: 'TEST',
@@ -24,6 +23,11 @@ export class CalenderViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  test($event) {
+    console.log($event.day.date.toString());
+
   }
 
 }
