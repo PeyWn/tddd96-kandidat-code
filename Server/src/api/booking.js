@@ -79,7 +79,7 @@ module.exports.initAPI = function(APP) {
     });
   });
 
-  APP.get('booking/:ID/local', function(res,req){
+  APP.get('booking/:ID/room', function(res,req){
     DB.Booking.findById(req.params.ID).then(function(booking){
       if(booking){
         booking.getLocals({attributes: {exclude: ['createdAt', 'updatedAt']}}).then(function(local){
