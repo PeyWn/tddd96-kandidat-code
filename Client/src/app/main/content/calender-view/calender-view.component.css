@@ -11,3 +11,8 @@ pre {
   margin: 0;
 }
 
+.myclass a {
+  color: purple !important;
+  background-color: mediumseagreen !important;
+  float: right;
+}

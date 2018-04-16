@@ -75,6 +75,8 @@
   </div>
 </div>
 <br>
+<button (click)="combineEvents()">COMBINE</button>
+<button (click)="changeEvents()">TESTBUTTON</button>
   <div [ngSwitch]="view">
     <mwl-calendar-month-view
       *ngSwitchCase="'month'"

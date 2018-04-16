@@ -1,10 +1,10 @@
 
   import {
-    Component,
-    ChangeDetectionStrategy,
-    ViewChild,
-    TemplateRef
-  } from '@angular/core';
+  Component,
+  ChangeDetectionStrategy,
+  ViewChild,
+  TemplateRef, ViewEncapsulation
+} from '@angular/core';
     import {
     startOfDay,
     endOfDay,
@@ -25,7 +25,7 @@
 
     const colors: any = {
       red: {
-        primary: '#ad2121',
+        primary: '#dabdab',
         secondary: '#FAE3E3'
       },
       blue: {
@@ -41,16 +41,28 @@
   @Component({
     selector: 'app-calender-view',
     templateUrl: './calender-view.component.html',
+    encapsulation: ViewEncapsulation.None,
     styleUrls: ['./calender-view.component.css']
   })
   export class CalenderViewComponent{
 
     @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
+    combineEvents() {
+      this.eventsNew.push(this.eventOverlap(this.events2[0], this.events1[0]));
+      this.events = this.eventsNew;
+    }
+
+    changeEvents() {
+      if (this.events === this.events1){
+        this.events = this.events2
+      } else {
+        this.events = this.events1
+      }
+    }
     view = 'month';
 
     viewDate: Date = new Date();
-
     modalData: {
       action: string;
       event: CalendarEvent;
@@ -73,40 +85,62 @@
     ];
 
     refresh: Subject<any> = new Subject();
-
-    events: CalendarEvent[] = [
+    events1:CalendarEvent[] = [
       {
-        start: subDays(startOfDay(new Date()), 1),
-        end: addDays(new Date(), 1),
-        title: 'A 3 day event',
-        color: colors.red,
-        actions: this.actions
-      },
-      {
-        start: startOfDay(new Date()),
-        title: 'An event with no end date',
-        color: colors.yellow,
-        actions: this.actions
-      },
-      {
-        start: subDays(endOfMonth(new Date()), 3),
-        end: addDays(endOfMonth(new Date()), 3),
-        title: 'A long event that spans 2 months',
-        color: colors.blue
-      },
-      {
-        start: addHours(startOfDay(new Date()), 2),
-        end: new Date(),
-        title: 'A draggable and resizable event',
-        color: colors.yellow,
+        start: addHours(startOfDay(new Date()), 3),
+        end: addHours(startOfDay(new Date()), 14),
+        title: 'Test',
+        color: colors.blue,
         actions: this.actions,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true
-        },
-        draggable: true
       }
     ];
+    events2: CalendarEvent[] = [
+      {
+        start: addHours(startOfDay(new Date()), 5),
+        end: addHours(startOfDay(new Date()), 17),
+        title: 'A 3 day event',
+        color: colors.red,
+        actions: this.actions,
+        cssClass : 'myclass'
+      }
+    ];
+
+    events:CalendarEvent[] = this.events1;
+
+
+    eventsNew: CalendarEvent[] = []
+
+    eventOverlap(event1:CalendarEvent, event2:CalendarEvent) : CalendarEvent{
+      let start1 = event1.start.getHours();
+      let start2 = event2.start.getHours();
+      let end1 = event1.end.getHours();
+      let end2 = event2.end.getHours();
+
+
+
+      if (start1 < start2){
+        if (end1 < end2) {
+          let test: CalendarEvent = {start: addHours(startOfDay(new Date()), start2), end: addHours(startOfDay(new Date()), end1),title: 'TESTEVENT', color: colors.yellow};
+          return test;
+        } else {
+          let test: CalendarEvent = {start: addHours(startOfDay(new Date()), start2), end: addHours(startOfDay(new Date()), end2),title: 'TESTEVENT', color: colors.yellow};
+          return test;}
+      } else {
+        if (end1 < end2) {
+        let test: CalendarEvent = {start: addHours(startOfDay(new Date()), start1), end: addHours(startOfDay(new Date()), end1),title: 'TESTEVENT', color: colors.yellow};
+        return test;
+      } else {
+          let test: CalendarEvent = {
+            start: addHours(startOfDay(new Date()), start1),
+            end: addHours(startOfDay(new Date()), end2),
+            title: 'TESTEVENT',
+            color: colors.yellow
+          };
+          return test;
+        }
+      }
+    }
+
 
     activeDayIsOpen = true;
 
