@@ -41,7 +41,6 @@
   @Component({
     selector: 'app-calender-view',
     templateUrl: './calender-view.component.html',
-    encapsulation: ViewEncapsulation.None,
     styleUrls: ['./calender-view.component.css']
   })
   export class CalenderViewComponent{
@@ -49,16 +48,14 @@
     @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
     combineEvents() {
-      this.eventsNew.push(this.eventOverlap(this.events2[0], this.events1[0]));
       this.events = this.eventsNew;
     }
 
-    changeEvents() {
-      if (this.events === this.events1){
-        this.events = this.events2
-      } else {
-        this.events = this.events1
-      }
+    setRooms() {
+      this.events = this.rooms;
+    }
+    setDoctors() {
+      this.events = this.surgeons;
     }
     view = 'month';
 
@@ -85,27 +82,42 @@
     ];
 
     refresh: Subject<any> = new Subject();
-    events1:CalendarEvent[] = [
+    rooms:CalendarEvent[] = [
       {
         start: addHours(startOfDay(new Date()), 3),
         end: addHours(startOfDay(new Date()), 14),
-        title: 'Test',
+        title: 'Sal1',
         color: colors.blue,
+        actions: this.actions,
+      },
+
+      {
+        start: addHours(startOfDay(new Date()), 7),
+        end: addHours(startOfDay(new Date()), 9),
+        title: 'Sal2',
+        color: colors.red,
         actions: this.actions,
       }
     ];
-    events2: CalendarEvent[] = [
+    surgeons: CalendarEvent[] = [
       {
         start: addHours(startOfDay(new Date()), 5),
         end: addHours(startOfDay(new Date()), 17),
-        title: 'A 3 day event',
+        title: 'Dr Björn',
         color: colors.red,
         actions: this.actions,
-        cssClass : 'myclass'
+      },
+
+      {
+        start: addHours(startOfDay(new Date()), 1),
+        end: addHours(startOfDay(new Date()), 10),
+        title: 'Dr Tor',
+        color: colors.yellow,
+        actions: this.actions,
       }
     ];
 
-    events:CalendarEvent[] = this.events1;
+    events:CalendarEvent[] = this.rooms;
 
 
     eventsNew: CalendarEvent[] = []
@@ -115,25 +127,28 @@
       let start2 = event2.start.getHours();
       let end1 = event1.end.getHours();
       let end2 = event2.end.getHours();
+      let title1 = event1.title;
+      let title2 = event2.title;
+      let newTitle = title1 + ' och ' + title2;
 
 
 
       if (start1 < start2){
         if (end1 < end2) {
-          let test: CalendarEvent = {start: addHours(startOfDay(new Date()), start2), end: addHours(startOfDay(new Date()), end1),title: 'TESTEVENT', color: colors.yellow};
+          let test: CalendarEvent = {start: addHours(startOfDay(new Date()), start2), end: addHours(startOfDay(new Date()), end1),title: newTitle, color: colors.yellow};
           return test;
         } else {
-          let test: CalendarEvent = {start: addHours(startOfDay(new Date()), start2), end: addHours(startOfDay(new Date()), end2),title: 'TESTEVENT', color: colors.yellow};
+          let test: CalendarEvent = {start: addHours(startOfDay(new Date()), start2), end: addHours(startOfDay(new Date()), end2),title: newTitle, color: colors.yellow};
           return test;}
       } else {
         if (end1 < end2) {
-        let test: CalendarEvent = {start: addHours(startOfDay(new Date()), start1), end: addHours(startOfDay(new Date()), end1),title: 'TESTEVENT', color: colors.yellow};
+        let test: CalendarEvent = {start: addHours(startOfDay(new Date()), start1), end: addHours(startOfDay(new Date()), end1),title: newTitle, color: colors.yellow};
         return test;
       } else {
           let test: CalendarEvent = {
             start: addHours(startOfDay(new Date()), start1),
             end: addHours(startOfDay(new Date()), end2),
-            title: 'TESTEVENT',
+            title: newTitle,
             color: colors.yellow
           };
           return test;
@@ -145,6 +160,8 @@
     activeDayIsOpen = true;
 
     constructor(private modal: NgbModal) {}
+
+
 
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
       if (isSameMonth(date, this.viewDate)) {
@@ -189,5 +206,18 @@
         }
       });
       this.refresh.next();
+    }
+    setupCombination(events1:CalendarEvent[], events2:CalendarEvent[]) {
+      let eventCopy1:CalendarEvent[] = Object.assign([],events1);
+      let eventCopy2:CalendarEvent[] = Object.assign([], events2);
+      for (let i = eventCopy1.length; i > 0; i--){
+        for (let j = eventCopy2.length;j > 0;j--) {
+          this.eventsNew.push(this.eventOverlap(eventCopy1[i - 1], eventCopy2[j - 1]))
+        }
+      }
+
+    }
+    ngOnInit() {
+      this.setupCombination(this.rooms, this.surgeons)
     }
   }

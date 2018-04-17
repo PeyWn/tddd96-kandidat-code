@@ -75,8 +75,9 @@
   </div>
 </div>
 <br>
-<button (click)="combineEvents()">COMBINE</button>
-<button (click)="changeEvents()">TESTBUTTON</button>
+<button (click)="combineEvents()">Kirurger och salar</button>
+<button (click)="setRooms()">Salar</button>
+<button (click)="setDoctors()">Kirurger</button>
   <div class="row a">
       <div class="col-md col-a">
       <div [ngSwitch]="view">
@@ -99,6 +100,7 @@
           (eventTimesChanged)="eventTimesChanged($event)">
         </mwl-calendar-day-view>
         <mwl-calendar-week-view
+          precision="minutes"
           *ngSwitchCase="'week'"
           [viewDate]="viewDate"
           [events]="events"
