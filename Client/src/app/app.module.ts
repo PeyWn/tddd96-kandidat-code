@@ -31,6 +31,12 @@ import { DecisionsComponent } from './main/sidebar/overview/decisions/decisions.
 import { GetPatientsService} from './main/get-patients.service';
 import {CommonModule} from "@angular/common";
 
+//////////language fix
+import { registerLocaleData } from '@angular/common';
+import localeSv from '@angular/common/locales/sv';
+registerLocaleData(localeSv);
+//////////////
+
 @NgModule({
   declarations: [
     AppComponent,

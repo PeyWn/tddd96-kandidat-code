@@ -20,8 +20,11 @@
   import {
     CalendarEvent,
     CalendarEventAction,
-    CalendarEventTimesChangedEvent
+    CalendarEventTimesChangedEvent,
+    CalendarDateFormatter,
+    DAYS_OF_WEEK
   } from 'angular-calendar';
+  import { CustomDateFormatter } from './custom-date-formatter.provider';
 
     const colors: any = {
       red: {
@@ -41,7 +44,15 @@
   @Component({
     selector: 'app-calender-view',
     templateUrl: './calender-view.component.html',
-    styleUrls: ['./calender-view.component.css']
+    styleUrls: ['./calender-view.component.css'],
+///////////////////////////
+    providers: [
+      {
+        provide: CalendarDateFormatter,
+        useClass: CustomDateFormatter
+      }
+    ]
+////////////////////////////////
   })
   export class CalenderViewComponent{
 
@@ -64,7 +75,11 @@
       action: string;
       event: CalendarEvent;
     };
+//////////////////////language fix
+    locale: string = 'sv';
 
+    weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+////////////////////////////
     actions: CalendarEventAction[] = [
       {
         label: '<i class="fa fa-fw fa-pencil"></i>',
