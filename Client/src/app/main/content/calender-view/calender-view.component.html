@@ -30,13 +30,13 @@
           [view]="view"
           [(viewDate)]="viewDate"
           (viewDateChange)="activeDayIsOpen = false">
-          Previous
+          Tidigare
         </div>
         <div
           class="btn btn-outline-secondary"
           mwlCalendarToday
           [(viewDate)]="viewDate">
-          Today
+          Idag
         </div>
         <div
           class="btn btn-primary"
@@ -44,7 +44,7 @@
           [view]="view"
           [(viewDate)]="viewDate"
           (viewDateChange)="activeDayIsOpen = false">
-          Next
+          Nästa
         </div>
       </div>
     </div>
@@ -57,19 +57,19 @@
           class="btn btn-primary"
           (click)="view = 'month'"
           [class.active]="view === 'month'">
-          Month
+          Månad
         </div>
         <div
           class="btn btn-primary"
           (click)="view = 'week'"
           [class.active]="view === 'week'">
-          Week
+          Vecka
         </div>
         <div
           class="btn btn-primary"
           (click)="view = 'day'"
           [class.active]="view === 'day'">
-          Day
+          Dag
         </div>
       </div>
     </div>
