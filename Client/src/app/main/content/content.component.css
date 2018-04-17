@@ -6,4 +6,5 @@
   padding: 1% 0 1% 0;
   background-color: whitesmoke;
   overflow: hidden;
+  overflow-y: scroll;
 }

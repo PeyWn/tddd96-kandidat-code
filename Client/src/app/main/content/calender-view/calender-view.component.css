@@ -17,11 +17,30 @@ pre {
   float: right;
 }
 .row.a {
-  height: 100%;
   padding: 1% 1% 0 1%;
-  overflow: scroll;
 }
 
 .col-md.col-a {
   padding: 0;
+}
+
+.table {
+  height: 100%;
+  padding: 0 1% 0 1%;
+}
+
+ul {
+  display: flex;
+  overflow-x: auto;
+  margin: 2px;
+  padding: 1em;
+}
+
+li {
+  list-style-type: none;
+  margin: auto 10px;
+}
+
+li > div {
+  text-align: center;
 }
