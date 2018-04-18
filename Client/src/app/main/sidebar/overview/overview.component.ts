@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {DecisionsComponent} from "./decisions/decisions.component";
 @Component({
   selector: 'app-overview',
@@ -24,6 +24,10 @@ export class OverviewComponent implements OnInit {
       case 'timeR': {this.desitions.sortByTimeReverse(); break;}
       default: break;
     }
+  }
+
+  filter($event:string) {
+    this.desitions.filterPatients($event);
   }
 
 }

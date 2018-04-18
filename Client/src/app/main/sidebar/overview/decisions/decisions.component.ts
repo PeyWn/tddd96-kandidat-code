@@ -36,11 +36,15 @@ export class DecisionsComponent implements OnInit {
   }
 
 
+  filterPatients($event) {}
+
+
   iteratePatients($event) {
     this.processList = [];
-    if($event){
+    $event = $event.toLowerCase();
+    if ($event) {
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Namn === $event) {
+        if (this.decisionList[i].Namn.toLowerCase() === $event) {
           this.processList.push(this.decisionList[i]);
         }
       }
@@ -50,12 +54,12 @@ export class DecisionsComponent implements OnInit {
         }
       }
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].ICD10 === $event) {
+        if (this.decisionList[i].ICD10.toLowerCase() === $event) {
           this.processList.push(this.decisionList[i]);
         }
       }
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Operationstyp === $event) {
+        if (this.decisionList[i].Operationstyp.toLowerCase() === $event) {
           this.processList.push(this.decisionList[i]);
         }
       }
