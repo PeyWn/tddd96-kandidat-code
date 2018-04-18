@@ -11,6 +11,7 @@ import {PatientService} from './http-api/patient/patient.service';
 import {MaterialService} from './http-api/material/material.service';
 import {Icd10Service} from './http-api/icd10/icd10.service';
 import {ClinicService} from './http-api/clinic/clinic.service';
+import {BookingService} from './http-api/booking/booking.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {ClinicService} from './http-api/clinic/clinic.service';
     PatientService,
     MaterialService,
     Icd10Service,
-    ClinicService
+    ClinicService,
+    BookingService
   ],
   bootstrap: [AppComponent]
 })
