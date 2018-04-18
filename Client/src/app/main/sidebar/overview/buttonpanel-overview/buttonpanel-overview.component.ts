@@ -25,7 +25,7 @@ export class ButtonpanelOverviewComponent implements OnInit {
   }
 
 
-  filter() {
-    this.filterMessage.emit(this.searchTxt);
+  filter(category:string) {
+    this.filterMessage.emit(category);
   }
 }

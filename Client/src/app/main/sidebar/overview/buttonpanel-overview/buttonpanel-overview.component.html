@@ -39,8 +39,8 @@
 
         <div class="dropdown-menu">
           <a class="dropdown-item" href="#" ><input type="checkbox"/>&nbsp;Alla</a>
-          <a class="dropdown-item" href="#"><input type="checkbox" [checked]="filter('akut')" title="Akut"/>&nbsp;Akut</a>
-          <a class="dropdown-item" href="#"><input type="checkbox" [checked]="filter('elektiv')" title="Elektiv"/>&nbsp;Elektiv</a>
+          <a class="dropdown-item" href="#"><input type="checkbox" (change)="filter('AKUT')" title="Akut"/>&nbsp;Akut</a>
+          <a class="dropdown-item" href="#"><input type="checkbox" (change)="filter('Elektiv')" title="Elektiv"/>&nbsp;Elektiv</a>
         </div>
 
       </div>

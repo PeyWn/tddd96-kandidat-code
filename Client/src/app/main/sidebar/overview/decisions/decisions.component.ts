@@ -11,7 +11,7 @@ import {Patient} from '../../planning/infoheader/Patient';
 
 export class DecisionsComponent implements OnInit {
   decisionList = this.gpService.patients;
-  processList;
+  processList:Patient[];
   setPatient(newPatient) {
     this.gpService.currentPatient = newPatient;
   }
@@ -36,7 +36,16 @@ export class DecisionsComponent implements OnInit {
   }
 
 
-  filterPatients($event) {}
+  filterPatients($event) {
+    let templist = []
+    for (let i = 0; i < this.processList.length;i++ ) {
+      if (this.processList[i].Bradskandegrad  == $event) {
+        templist.push(this.processList[i]);
+      }
+    }
+    this.processList = templist;
+    this.createComponents();
+  }
 
 
   iteratePatients($event) {
