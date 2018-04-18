@@ -49,7 +49,7 @@ module.exports.initAPI = function(APP) {
 
   //Delete specific decision
   APP.delete('/decision/:ID', function(req, res){
-    DB.Decision.destroy(req.body, {where: {ID: req.params.ID}}).then(function(result){
+    DB.Decision.destroy({where: {ID: req.params.ID}}).then(function(result){
       res.end();
     }).catch(function(err){
       console.log(err);
