@@ -15,9 +15,30 @@
     <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#decision_info" style="width: 100%">Beslutsinformation</button>
     <div id="decision_info" class="collapse" style="color: whitesmoke;">
 
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      <h4>Allmän data:</h4>
+      <div class="col-md-12 rowp">Namn: {{patient.Namn}}</div>
+      <div class="col-md-12 rowp">Personnummer: {{patient.Personnummer}}</div>
+      <div class="col-md-12 rowp">ICD10: {{patient.ICD10}}</div>
+      <div class="col-md-12 rowp">KVÅ: {{patient.KVA}}</div>
+
+      <tr class="blank_row">
+        <td colspan="3"></td>
+      </tr>
+
+      <h4>Operation:</h4>
+      <div class="col-md-12 rowp">Sal: {{patient.Sal}}</div>
+      <div class="col-md-12 rowp">Operationstyp: {{patient.Operationstyp}}</div>
+      <div class="col-md-12 rowp">Förberedelsetid: {{patient.Forberedelsetid}}</div>
+      <div class="col-md-12 rowp">Avvecklingstid: {{patient.Avvecklingstid}}</div>
+
+      <tr class="blank_row">
+        <td colspan="3"></td>
+      </tr>
+      
+      <h4>Tid:</h4>
+      <div class="col-md-12 rowp">Tid: {{patient.Tid}}</div>
+      <div class="col-md-12 rowp">Brådskandegrad: {{patient.Bradskandegrad}}</div>
+      <div class="col-md-12 rowp">Operationstid: {{patient.Operationtid}}</div>
 
     </div>
   </div>
