@@ -13,6 +13,7 @@ export class ButtonpanelOverviewComponent implements OnInit {
 
   @Output() listModifiers = new EventEmitter<string>();
   @Output() searchMessage = new EventEmitter<string>();
+  @Output() filterMessage = new EventEmitter<string>();
 
   constructor() { }
 
@@ -21,5 +22,10 @@ export class ButtonpanelOverviewComponent implements OnInit {
 
   search() {
     this.searchMessage.emit(this.searchTxt);
+  }
+
+
+  filter() {
+    this.filterMessage.emit(this.searchTxt);
   }
 }
