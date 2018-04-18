@@ -127,7 +127,7 @@
         start: addHours(startOfDay(new Date()), 1),
         end: addHours(startOfDay(new Date()), 10),
         title: 'Dr Tor',
-        color: colors.yellow,
+        color: colors.blue,
         actions: this.actions,
       }
     ];
