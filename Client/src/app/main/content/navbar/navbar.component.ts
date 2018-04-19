@@ -11,13 +11,13 @@ export class NavbarComponent implements OnInit {
   getView() {
     this.currentview = this.cvService.getCurrentView();
   }
-  setView(newView) {
+  setView(newView: string): void {
     this.cvService.setCurrentView(newView);
   }
   constructor(private cvService: CurrentViewService ) { }
 
   ngOnInit() {
-    this.setView("calendar");
+    this.setView('calendar');
   }
 
 }

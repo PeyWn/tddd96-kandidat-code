@@ -9,15 +9,15 @@ import {Patient} from './infoheader/Patient';
   styleUrls: ['./planning.component.css']
 })
 export class PlanningComponent implements OnInit {
-  @Input() patient:Patient;
+  @Input() patient: Patient;
 
-  constructor(private gpService:GetPatientsService) {
+  constructor(private gpService: GetPatientsService) {
     this.patient = this.getPatient();
   }
   ngOnInit() {
   }
 
-  getPatient() {
+  getPatient(): Patient {
     return this.gpService.currentPatient;
   }
 

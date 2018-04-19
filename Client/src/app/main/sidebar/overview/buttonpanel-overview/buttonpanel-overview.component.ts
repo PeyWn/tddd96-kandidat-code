@@ -7,13 +7,14 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 export class ButtonpanelOverviewComponent implements OnInit {
 
   searchTxt;
-  sort(criterion:string) {
-    this.listModifiers.emit(criterion);
-  }
 
   @Output() listModifiers = new EventEmitter<string>();
   @Output() searchMessage = new EventEmitter<string>();
   @Output() filterMessage = new EventEmitter<string>();
+
+  sort(criterion: string) {
+    this.listModifiers.emit(criterion);
+  }
 
   constructor() { }
 
@@ -24,8 +25,7 @@ export class ButtonpanelOverviewComponent implements OnInit {
     this.searchMessage.emit(this.searchTxt);
   }
 
-
-  filter(category:string) {
+  filter(category: string) {
     this.filterMessage.emit(category);
   }
 }

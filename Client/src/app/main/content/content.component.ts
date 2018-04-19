@@ -8,7 +8,7 @@ import { CurrentViewService } from '../current-view.service';
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
-  getView() : string {
+  getView(): string {
     return this.cvService.getCurrentView();
   }
   constructor(private cvService: CurrentViewService ) { }

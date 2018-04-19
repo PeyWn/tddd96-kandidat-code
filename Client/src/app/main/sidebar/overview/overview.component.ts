@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {DecisionsComponent} from "./decisions/decisions.component";
+import {DecisionsComponent} from './decisions/decisions.component';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
@@ -7,27 +7,27 @@ import {DecisionsComponent} from "./decisions/decisions.component";
 })
 export class OverviewComponent implements OnInit {
 
-  @ViewChild(DecisionsComponent) private desitions;
+  @ViewChild(DecisionsComponent) private decisions;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  filterSearch($event:string) {
-    this.desitions.iteratePatients($event);
+  filterSearch($event: string): void {
+    this.decisions.iteratePatients($event);
   }
 
-  recieveModifiers($event:string) {
-    switch($event){
-      case 'time': {this.desitions.sortByTime(); break;}
-      case 'timeR': {this.desitions.sortByTimeReverse(); break;}
+  recieveModifiers($event: string): void {
+    switch ($event) {
+      case 'time': {this.decisions.sortByTime(); break; }
+      case 'timeR': {this.decisions.sortByTimeReverse(); break; }
       default: break;
     }
   }
 
-  filter($event:string) {
-    this.desitions.filterPatients($event);
+  filter($event: string): void {
+    this.decisions.filterPatients($event);
   }
 
 }

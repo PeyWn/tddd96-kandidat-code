@@ -26,16 +26,15 @@ import { PlanningComponent } from './main/sidebar/planning/planning.component';
 import { OverviewComponent } from './main/sidebar/overview/overview.component';
 import { ButtonpanelOverviewComponent } from './main/sidebar/overview/buttonpanel-overview/buttonpanel-overview.component';
 import { TitlebarViewComponent } from './main/sidebar/overview/titlebar-view/titlebar-view.component';
-import { SidebarPanelService} from "./main/sidebar/sidebar-panel.service";
+import { SidebarPanelService} from './main/sidebar/sidebar-panel.service';
 import { DecisionsComponent } from './main/sidebar/overview/decisions/decisions.component';
 import { GetPatientsService} from './main/get-patients.service';
-import {CommonModule} from "@angular/common";
+import {CommonModule} from '@angular/common';
 
-//////////language fix
+// Language fix
 import { registerLocaleData } from '@angular/common';
 import localeSv from '@angular/common/locales/sv';
 registerLocaleData(localeSv);
-//////////////
 
 @NgModule({
   declarations: [

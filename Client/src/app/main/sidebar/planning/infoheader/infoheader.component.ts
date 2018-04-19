@@ -9,17 +9,17 @@ import {Patient} from './Patient';
   styleUrls: ['./infoheader.component.css']
 })
 export class InfoheaderComponent implements OnInit {
-  @Input() patient:Patient;
-  setPanel(newPanel) {
+  @Input() patient: Patient;
+  setPanel(newPanel: string): void {
     this.spService.setCurrentPanel(newPanel);
   }
-  getPatient() {
+  getPatient(): Patient {
     return this.gpService.currentPatient;
   }
-  setPatient(newPatient){
+  setPatient(newPatient: Patient): void {
     this.gpService.currentPatient = newPatient;
   }
-  constructor(private gpService:GetPatientsService, private spService:SidebarPanelService) {
+  constructor(private gpService: GetPatientsService, private spService: SidebarPanelService) {
     this.patient = this.getPatient();
   }
   ngOnInit() {

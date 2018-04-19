@@ -13,9 +13,8 @@ export class DayViewComponent implements OnInit {
       primary: '#e3bc08',
       secondary: '#fdf1ba'
     },
-    start: new Date(2018,4,16,15)
-
-  }]
+    start: new Date(2018, 4, 16, 15)
+  }];
 
   constructor() { }
 
