@@ -14,8 +14,8 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
   }
 
-  filterSearch($event: string): void {
-    this.decisions.iteratePatients($event);
+  filterSearch($event: Array<any>): void {
+    this.decisions.searchList($event);
   }
 
   recieveModifiers($event: string): void {
@@ -26,8 +26,8 @@ export class OverviewComponent implements OnInit {
     }
   }
 
-  filter($event: string): void {
-    this.decisions.filterPatients($event);
+  filter($event: Array<any>): void {
+    this.decisions.filterList($event);
   }
 
 }

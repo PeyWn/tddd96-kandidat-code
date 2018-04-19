@@ -2,6 +2,7 @@ import { Component, ViewChild, ViewContainerRef, ComponentRef, ComponentFactory,
 import { GetPatientsService} from '../../../get-patients.service';
 import {InfoheaderComponent} from '../../planning/infoheader/infoheader.component';
 import {Patient} from '../../planning/infoheader/Patient';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-decisions',
@@ -10,6 +11,9 @@ import {Patient} from '../../planning/infoheader/Patient';
 })
 
 export class DecisionsComponent implements OnInit {
+  akutFilter:boolean;
+  elektivFilter:boolean;
+  latestSearch:string;
   decisionList = this.gpService.patients;
   processList: Patient[];
   @ViewChild('infoh', { read: ViewContainerRef }) container;
@@ -40,44 +44,85 @@ export class DecisionsComponent implements OnInit {
     this.createComponents();
   }
 
-  filterPatients($event: string) {
-    let tempList = [];
-    for (let i = 0; i < this.processList.length; i++ ) {
-      if (this.processList[i].Bradskandegrad === $event) {
-        tempList.push(this.processList[i]);
-      }
+
+
+  recieveFilters($event) {
+    switch ($event[0]) {
+      case 'AKUT': {this.akutFilter = $event[1]; break;}
+      case 'Elektiv': {this.elektivFilter = $event[1]; break;}
+      default: break;
     }
-    this.processList = tempList;
-    this.createComponents();
   }
 
-  iteratePatients($event: string) {
+  applyAkutFilter(filterObject:Patient):boolean {
+    if (this.akutFilter) {
+      return filterObject.Bradskandegrad === "AKUT";
+    }
+    return true;
+  }
+
+
+  applyElektivFilter(filterObject:Patient):boolean {
+    if (this.elektivFilter) {
+      return filterObject.Bradskandegrad === "Elektiv";
+    }
+    return true;
+  }
+
+
+  iteratePatients($event) {
     this.processList = [];
     $event = $event.toLowerCase();
     if ($event) {
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Namn.toLowerCase() === $event) {
+        if (this.decisionList[i].Namn.toLowerCase() === $event && this.applyAkutFilter(this.decisionList[i]) && this.applyElektivFilter(this.decisionList[i])) {
           this.processList.push(this.decisionList[i]);
         }
       }
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Personnummer === Number($event)) {
+        if (this.decisionList[i].Personnummer === Number($event) && this.applyAkutFilter(this.decisionList[i]) && this.applyElektivFilter(this.decisionList[i])) {
           this.processList.push(this.decisionList[i]);
         }
       }
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].ICD10.toLowerCase() === $event) {
+        if (this.decisionList[i].ICD10.toLowerCase() === $event && this.applyAkutFilter(this.decisionList[i]) && this.applyElektivFilter(this.decisionList[i])) {
           this.processList.push(this.decisionList[i]);
         }
       }
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Operationstyp.toLowerCase() === $event) {
+        if (this.decisionList[i].Operationstyp.toLowerCase() === $event && this.applyAkutFilter(this.decisionList[i]) && this.applyElektivFilter(this.decisionList[i])) {
           this.processList.push(this.decisionList[i]);
         }
       }
       this.createComponents();
     } else {
       this.viewAll();
+    }
+  }
+
+  filterPatients() {
+    this.processList = [];
+      for (let i = 0; i < this.decisionList.length; i++) {
+        if (this.applyAkutFilter(this.decisionList[i]) && this.applyElektivFilter(this.decisionList[i])) {
+          this.processList.push(this.decisionList[i]);
+        }
+      }
+      this.createComponents();
+    }
+
+  searchList($event) {
+    this.latestSearch = $event[2];
+    this.recieveFilters($event);
+    this.iteratePatients(this.latestSearch);
+  }
+
+
+  filterList($event) {
+    this.recieveFilters($event);
+    if (!this.latestSearch) {
+      this.filterPatients();
+    } else {
+      this.iteratePatients(this.latestSearch);
     }
   }
 
@@ -139,3 +184,4 @@ export class DecisionsComponent implements OnInit {
   }
 
 }
+
