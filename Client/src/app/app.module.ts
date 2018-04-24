@@ -34,6 +34,7 @@ import {CommonModule} from '@angular/common';
 // Language fix
 import { registerLocaleData } from '@angular/common';
 import localeSv from '@angular/common/locales/sv';
+import { SummeryCardsComponent } from './main/content/calender-view/summery-cards/summery-cards.component';
 registerLocaleData(localeSv);
 
 @NgModule({
@@ -56,6 +57,7 @@ registerLocaleData(localeSv);
     ButtonpanelOverviewComponent,
     TitlebarViewComponent,
     DecisionsComponent,
+    SummeryCardsComponent,
 
   ],
   imports: [

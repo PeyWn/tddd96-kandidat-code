@@ -57,7 +57,7 @@ export class CalenderViewComponent implements OnInit {
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
-  view: string = 'month';
+  view: string = 'summery';
 
   viewDate: Date = new Date();
   modalData: {
