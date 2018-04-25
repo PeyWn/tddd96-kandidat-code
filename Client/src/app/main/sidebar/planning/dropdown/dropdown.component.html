@@ -1,27 +1,72 @@
-<div class="wrapper">
+<div class="container" style="width: 100%">
+  <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#decision_info" style="width: 100%">Beslutsinformation</button>
+  <div id="decision_info" class="collapse" style="color: whitesmoke;">
 
-  <nav id="sidebar">
-    <!-- Sidebar Header -->
-    <div class="sidebar-header">
-      <h3>Collapsible Sidebar</h3>
+    <h4>Allmän data:</h4>
+    <div class="col-md-12 rowp">Namn: {{patient.Namn}}</div>
+    <div class="col-md-12 rowp">Personnummer: {{patient.Personnummer}}</div>
+    <div class="col-md-12 rowp">ICD10: {{patient.ICD10}}</div>
+    <div class="col-md-12 rowp">KVÅ: {{patient.KVA}}</div>
+
+    <tr class="blank_row">
+      <td colspan="3"></td>
+    </tr>
+
+    <h4>Operation:</h4>
+    <div class="col-md-12 rowp">Sal: {{patient.Sal}}</div>
+    <div class="col-md-12 rowp">Operationstyp: {{patient.Operationstyp}}</div>
+    <div class="col-md-12 rowp">Förberedelsetid: {{patient.Forberedelsetid}}</div>
+    <div class="col-md-12 rowp">Avvecklingstid: {{patient.Avvecklingstid}}</div>
+
+    <tr class="blank_row">
+      <td colspan="3"></td>
+    </tr>
+
+    <h4>Tid:</h4>
+    <div class="col-md-12 rowp">Tid: {{patient.Tid}}</div>
+    <div class="col-md-12 rowp">Brådskandegrad: {{patient.Bradskandegrad}}</div>
+    <div class="col-md-12 rowp">Operationstid: {{patient.Operationtid}}</div>
+
+  </div>
 </div>
 
-<!-- Sidebar Links -->
-<ul class="list-unstyled components">
-  <li class="active"><a href="#">Home</a></li>
-  <li><a href="#">About</a></li>
+<br>
 
-  <li><!-- Link with dropdown items -->
-    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
-    <ul class="collapse list-unstyled" id="homeSubmenu">
-      <li><a href="#">Page</a></li>
-      <li><a href="#">Page</a></li>
-      <li><a href="#">Page</a></li>
-    </ul>
+<div class="container" style="width: 100%">
+  <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#materiel_list" style="width: 100%">Materiellista</button>
+  <div id="materiel_list" class="collapse" style="color: whitesmoke;">
 
-  <li><a href="#">Portfolio</a></li>
-  <li><a href="#">Contact</a></li>
-</ul>
-</nav>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
+  </div>
+</div>
+
+<br>
+
+<div class="container" style="width: 100%">
+  <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#search_parameters" style="width: 100%">Sökparametrar</button>
+  <div id="search_parameters" class="collapse" style="color: whitesmoke;">
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+    <br>
+    <br>
+
+    <div class="container" style="width: 100%">
+      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#search-param" style="width: 100%">Lägg till sökparameter</button>
+      <div id="search-param" class="collapse" style="color: whitesmoke;">
+
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+      </div>
+    </div>
+
+  </div>
 </div>
