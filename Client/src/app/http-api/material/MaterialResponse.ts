@@ -1,6 +1,6 @@
 import {MaterialType} from './MaterialType';
 
-export class Material {
+export class MaterialResponse {
   id: number;
   name: string;
   article_no: string;
