@@ -1,4 +1,4 @@
-import {Clinic} from '../clinic/Clinic';
+import {ClinicResponse} from '../clinic/ClinicResponse';
 import {StaffResponse} from '../staff/StaffResponse';
 
 export class DecisionResponse {
@@ -9,6 +9,6 @@ export class DecisionResponse {
   PatientSsn: string;
   ICD10Code: string;
 
-  Clinic: Clinic;
+  Clinic: ClinicResponse;
   Staff: StaffResponse;
 }
