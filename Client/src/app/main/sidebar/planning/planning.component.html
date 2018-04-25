@@ -9,7 +9,92 @@
 
 
 <!-- Side navigation -->
-<div class="sidenav dark-c"><app-dropdown></app-dropdown></div>
+<div class="sidenav dark-c">
+
+  <div class="container" style="width: 100%">
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#decision_info" style="width: 100%">Beslutsinformation</button>
+    <div id="decision_info" class="collapse" style="color: whitesmoke;">
+
+      <h4>Allmän data:</h4>
+      <div class="col-md-12 rowp">Namn: {{patient.Namn}}</div>
+      <div class="col-md-12 rowp">Personnummer: {{patient.Personnummer}}</div>
+      <div class="col-md-12 rowp">ICD10: {{patient.ICD10}}</div>
+      <div class="col-md-12 rowp">KVÅ: {{patient.KVA}}</div>
+
+      <tr class="blank_row">
+        <td colspan="3"></td>
+      </tr>
+
+      <h4>Operation:</h4>
+      <div class="col-md-12 rowp">Operationstyp: {{patient.Operationstyp}}</div>
+      <div class="col-md-12 rowp">Förberedelsetid: {{patient.Forberedelsetid}}</div>
+      <div class="col-md-12 rowp">Avvecklingstid: {{patient.Avvecklingstid}}</div>
+
+      <tr class="blank_row">
+        <td colspan="3"></td>
+      </tr>
+
+      <h4>Tid:</h4>
+      <div class="col-md-12 rowp">Tid: {{patient.Tid}}</div>
+      <div class="col-md-12 rowp">Brådskandegrad: {{patient.Bradskandegrad}}</div>
+      <div class="col-md-12 rowp">Operationstid: {{patient.Operationtid}}</div>
+
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container" style="width: 100%">
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#materiel_list" style="width: 100%">Materiellista</button>
+    <div id="materiel_list" class="collapse" style="color: whitesmoke;" >
+      <div *ngFor="let materiel of this.material">
+          <div class="card bg-dark text-center mb-3 mt-3">
+            <div class="card-header bg-secondary">
+              {{materiel.name}}
+            </div>
+            <ul class="list-group list-group-flush list-unstyled">
+              <li class="Antal"> Kvantitet: {{materiel.quantity}} st</li>
+              <li class="sterilisering tid">Steriliseringstid: {{materiel.sterilizing_time}} minuter</li>
+              <li class="artikelnum">Artikelnummer: {{materiel.article_no}}</li>
+
+            </ul>
+          </div>
+        </div>
+
+
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container" style="width: 100%">
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#search_parameters" style="width: 100%">Sökparametrar</button>
+    <div id="search_parameters" class="collapse" style="color: whitesmoke;">
+
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+      <br>
+      <br>
+
+      <div class="container" style="width: 100%">
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#search-param" style="width: 100%">Lägg till sökparameter</button>
+        <div id="search-param" class="collapse" style="color: whitesmoke;">
+
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
 
 
 

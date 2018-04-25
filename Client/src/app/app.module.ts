@@ -66,7 +66,6 @@ import {DropdownComponent} from './main/sidebar/planning/dropdown/dropdown.compo
     ButtonpanelOverviewComponent,
     TitlebarViewComponent,
     DecisionsComponent,
-    DropdownComponent,
 
   ],
   imports: [
