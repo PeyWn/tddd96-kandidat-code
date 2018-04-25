@@ -1,0 +1,51 @@
+<div class="container-fluid" style="height: 100%">
+  <div class="row">
+    <div class="col-md-12" style="padding: 2% 5% 2% 5%">
+
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" id="txtSearch" [(ngModel)]="searchTxt"/>
+        <div class="input-group-btn">
+          <button class="btn btn-primary" (click)="search()" type="submit">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-5" style="padding: 2% 5% 2% 5%">
+      <div class="btn-group" style="width: 100%">
+
+        <button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%">
+          Sortera
+        </button>
+
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#" (click)="sort('time')">Tid kvar: kort->lång</a>
+          <a class="dropdown-item" href="#" (click)="sort('timeR')">Tid kvar: lång->kort</a>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-xs-2"></div>
+    <div class="col-md-5" style="padding: 2% 5% 2% 5%">
+      <div class="btn-group pull-right" style="width: 100%">
+
+        <button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%">
+          Filtrera
+        </button>
+
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#"><input type="checkbox" (change)="akutChecked = !akutChecked; filter('AKUT', akutChecked)" title="Akut"/>&nbsp;Akut</a>
+          <a class="dropdown-item" href="#"><input type="checkbox" (change)="elektivChecked = !elektivChecked; filter('Elektiv', elektivChecked)" title="Elektiv"/>&nbsp;Elektiv</a>
+          <a class="dropdown-item" href="#"><input type="checkbox" (change)="bokadChecked = !bokadChecked; filter('bokad', bokadChecked)" title="Bokad"/>&nbsp;Färdigbokade</a>
+          <a class="dropdown-item" href="#"><input type="checkbox" (change)="prebokadChecked = !prebokadChecked; filter('prebokad', prebokadChecked)" title="PreBokad"/>&nbsp;Preliminärbokade</a>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

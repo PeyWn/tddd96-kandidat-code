@@ -1,0 +1,39 @@
+
+/*Titelbar*/
+#titlebar{
+  position: absolute;
+  height: 4%;
+  width: 100%;
+  font-size: x-large;
+  color: whitesmoke;
+  font-weight: bold;
+  text-align: center;
+  padding: 1% 2% 2% 2%;
+  min-width: 40px;
+}
+
+/*Buttons for decisions panel*/
+#buttonpanel{
+  top: 5%;
+  position: absolute;
+  height: 5%;
+  width: 100%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  min-height: 50px;
+}
+
+#infoheader {
+  top: 9%;
+  position: absolute;
+  height: 17%;
+  width: 100%;
+  padding: 5% 0 0 0;
+  min-height: 300px;
+}
+
+.sidenav {
+  top: 30%;
+  height: 70%;
+  min-height: 300px;
+}
