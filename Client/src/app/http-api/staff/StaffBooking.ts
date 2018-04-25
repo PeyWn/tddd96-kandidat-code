@@ -1,4 +1,4 @@
-import {Clinic} from '../clinic/Clinic';
+import {ClinicResponse} from '../clinic/ClinicResponse';
 import {Speciality} from '../speciality/Speciality';
 import {BookedStaff} from './BookedStaff';
 
@@ -7,7 +7,7 @@ export class StaffBooking {
   title: string;
   firstname: string;
   lastname: string;
-  Clinic: Clinic;
+  Clinic: ClinicResponse;
   Speciality: Speciality;
 
   Booked_staff: BookedStaff;

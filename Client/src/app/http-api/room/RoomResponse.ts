@@ -1,6 +1,6 @@
 import {RoomType} from './RoomType';
 
-export class Room {
+export class RoomResponse {
   id: number;
   name: string;
   LocalType: RoomType;

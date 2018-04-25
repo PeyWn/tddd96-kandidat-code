@@ -16,7 +16,7 @@ export class DecisionsComponent implements OnInit {
   bokadFilter: boolean;
   prebokadFilter: boolean;
   latestSearch: string;
-  decisionList = this.gpService.patients;
+  decisionList: Array<Patient>;
   processList: Patient[];
   @ViewChild('infoh', { read: ViewContainerRef }) container;
 
@@ -61,7 +61,7 @@ export class DecisionsComponent implements OnInit {
 
   applyAkutFilter(filterObject: Patient): boolean {
     if (this.akutFilter) {
-      return filterObject.Bradskandegrad === 'AKUT';
+      return filterObject.Bradskandegrad;
     }
     return true;
   }
@@ -69,7 +69,7 @@ export class DecisionsComponent implements OnInit {
 
   applyElektivFilter(filterObject: Patient): boolean {
     if (this.elektivFilter) {
-      return filterObject.Bradskandegrad === 'Elektiv';
+      return !filterObject.Bradskandegrad;
     }
     return true;
   }
@@ -109,7 +109,7 @@ export class DecisionsComponent implements OnInit {
         }
       }
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Personnummer === Number($event) && this.applyFilters(this.decisionList[i])) {
+        if (this.decisionList[i].Personnummer === $event && this.applyFilters(this.decisionList[i])) {
           this.processList.push(this.decisionList[i]);
         }
       }
@@ -205,7 +205,12 @@ export class DecisionsComponent implements OnInit {
   }
 
   constructor(private gpService: GetPatientsService, private resolver: ComponentFactoryResolver) {
+    this.decisionList = this.gpService.patients;
     this.processList = this.decisionList;
+
+    this.gpService.fetchedPatient.subscribe(() => {
+      this.viewAll();
+    });
   }
 
   ngOnInit() {
