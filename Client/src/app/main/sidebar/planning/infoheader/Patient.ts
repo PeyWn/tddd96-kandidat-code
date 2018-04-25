@@ -11,9 +11,10 @@ export class Patient {
   Avvecklingstid:number;
   Kompetens:string;
   Sal:string;
+  Bokad:boolean;
 
 
-  constructor(Namn:string, Personnummer:number, Operationstyp:string, ICD10:string, Bradskandegrad:string, Tid:number, KVA:string, forbtid:number,optid:number,avtid:number,komp:string,sal:string){
+  constructor(Namn:string, Personnummer:number, Operationstyp:string, ICD10:string, Bradskandegrad:string, Tid:number, KVA:string, forbtid:number,optid:number,avtid:number,komp:string,sal:string, bokad:boolean){
 
     this.Namn = Namn;
     this.Personnummer = Personnummer;
@@ -27,5 +28,6 @@ export class Patient {
     this.Avvecklingstid = avtid;
     this.Kompetens = komp;
     this.Sal = sal;
+    this.Bokad = bokad;
   }
 }

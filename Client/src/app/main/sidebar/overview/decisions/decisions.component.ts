@@ -13,6 +13,8 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 export class DecisionsComponent implements OnInit {
   akutFilter:boolean;
   elektivFilter:boolean;
+  bokadFilter:boolean;
+  prebokadFilter:boolean;
   latestSearch:string;
   decisionList = this.gpService.patients;
   processList: Patient[];
@@ -40,6 +42,7 @@ export class DecisionsComponent implements OnInit {
   }
 
   viewAll(): void {
+    this.latestSearch = undefined;
     this.processList = this.decisionList;
     this.createComponents();
   }
@@ -50,6 +53,8 @@ export class DecisionsComponent implements OnInit {
     switch ($event[0]) {
       case 'AKUT': {this.akutFilter = $event[1]; break;}
       case 'Elektiv': {this.elektivFilter = $event[1]; break;}
+      case 'bokad': {this.bokadFilter = $event[1]; break;}
+      case 'prebokad': {this.prebokadFilter = $event[1]; break;}
       default: break;
     }
   }
@@ -70,27 +75,48 @@ export class DecisionsComponent implements OnInit {
   }
 
 
+  applyBokadFilter(filterObject:Patient):boolean {
+    if (this.bokadFilter) {
+      return filterObject.Bokad === true;
+    }
+    return true;
+  }
+
+
+  applyPrebokadFilter(filterObject:Patient):boolean {
+    if (this.prebokadFilter) {
+      return filterObject.Bokad === false;
+    }
+    return true;
+  }
+
+
+  applyFilters(filterObject:Patient) :boolean {
+    return this.applyElektivFilter(filterObject) && this.applyAkutFilter(filterObject) &&this.applyPrebokadFilter(filterObject) && this.applyBokadFilter(filterObject);
+  }
+
+
   iteratePatients($event) {
     this.processList = [];
     $event = $event.toLowerCase();
     if ($event) {
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Namn.toLowerCase() === $event && this.applyAkutFilter(this.decisionList[i]) && this.applyElektivFilter(this.decisionList[i])) {
+        if (this.decisionList[i].Namn.toLowerCase() === $event && this.applyFilters(this.decisionList[i])) {
           this.processList.push(this.decisionList[i]);
         }
       }
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Personnummer === Number($event) && this.applyAkutFilter(this.decisionList[i]) && this.applyElektivFilter(this.decisionList[i])) {
+        if (this.decisionList[i].Personnummer === Number($event) && this.applyFilters(this.decisionList[i])) {
           this.processList.push(this.decisionList[i]);
         }
       }
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].ICD10.toLowerCase() === $event && this.applyAkutFilter(this.decisionList[i]) && this.applyElektivFilter(this.decisionList[i])) {
+        if (this.decisionList[i].ICD10.toLowerCase() === $event && this.applyFilters(this.decisionList[i])) {
           this.processList.push(this.decisionList[i]);
         }
       }
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Operationstyp.toLowerCase() === $event && this.applyAkutFilter(this.decisionList[i]) && this.applyElektivFilter(this.decisionList[i])) {
+        if (this.decisionList[i].Operationstyp.toLowerCase() === $event && this.applyFilters(this.decisionList[i])) {
           this.processList.push(this.decisionList[i]);
         }
       }
@@ -103,7 +129,7 @@ export class DecisionsComponent implements OnInit {
   filterPatients() {
     this.processList = [];
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.applyAkutFilter(this.decisionList[i]) && this.applyElektivFilter(this.decisionList[i])) {
+        if (this.applyFilters(this.decisionList[i])) {
           this.processList.push(this.decisionList[i]);
         }
       }

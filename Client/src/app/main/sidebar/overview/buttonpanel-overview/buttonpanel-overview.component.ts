@@ -7,6 +7,8 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 export class ButtonpanelOverviewComponent implements OnInit {
   akutChecked:boolean = false;
   elektivChecked:boolean = false;
+  bokadChecked:boolean = false;
+  prebokadChecked:boolean = false;
   searchTxt;
 
   filterParams:Array<any> = [this.akutChecked, this.elektivChecked, this.searchTxt];
