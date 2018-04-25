@@ -44,7 +44,6 @@ import {MaterialService} from './http-api/material/material.service';
 import {Icd10Service} from './http-api/icd10/icd10.service';
 import {ClinicService} from './http-api/clinic/clinic.service';
 import {BookingService} from './http-api/booking/booking.service';
-import {DropdownComponent} from './main/sidebar/planning/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
