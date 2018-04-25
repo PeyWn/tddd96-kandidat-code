@@ -16,6 +16,7 @@ module.exports.initAPI = function(APP) {
     DB.Decision.findAll(INCLUDE).then(function(decisions){
       res.send(decisions);
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -25,6 +26,7 @@ module.exports.initAPI = function(APP) {
     DB.Decision.create(req.body).then(function(result){
       res.end();
     }).catch(function(err){
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -34,6 +36,7 @@ module.exports.initAPI = function(APP) {
     DB.Decision.findById(req.params.ID, INCLUDE).then(function(decision){
       res.send(decision);
     }).catch(function(err){
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -43,6 +46,7 @@ module.exports.initAPI = function(APP) {
     DB.Decision.update(req.body, {where: {ID: req.params.ID}}).then(function(result){
       res.end();
     }).catch(function(err){
+      console.log(err);
       res.status(500).send(err);
     });
   });
