@@ -35,6 +35,16 @@ import {CommonModule} from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeSv from '@angular/common/locales/sv';
 registerLocaleData(localeSv);
+import {DecisionService} from './http-api/decision/decision.service';
+import {HttpClientModule} from '@angular/common/http';
+import {StaffService} from './http-api/staff/staff.service';
+import {ProcedureService} from './http-api/procedure/procedure.service';
+import {RoomService} from './http-api/room/room.service';
+import {PatientService} from './http-api/patient/patient.service';
+import {MaterialService} from './http-api/material/material.service';
+import {Icd10Service} from './http-api/icd10/icd10.service';
+import {ClinicService} from './http-api/clinic/clinic.service';
+import {BookingService} from './http-api/booking/booking.service';
 
 @NgModule({
   declarations: [
@@ -74,5 +84,17 @@ registerLocaleData(localeSv);
   ],
   bootstrap: [AppComponent],
   entryComponents: [InfoheaderComponent]
+  providers: [
+    DecisionService,
+    StaffService,
+    ProcedureService,
+    RoomService,
+    PatientService,
+    MaterialService,
+    Icd10Service,
+    ClinicService,
+    BookingService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
