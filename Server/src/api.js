@@ -1,4 +1,6 @@
 const EXPRESS = require('express');
+const PASSPORT = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 const DB = require('./models');
 
 const PATIENT = require('./api/patient');
@@ -17,9 +19,54 @@ DB.sequelize.authenticate().then(function() {
   console.error('Unable to connect to database:', err);
 });
 
+PASSPORT.use(new LocalStrategy(
+  function(username, password, done) {
+    DB.User.findOne({where: {username: username}}).then(function(user) {
+      if (!user) {
+        done(null, false, {message: 'Incorrect username.'});
+        return;
+      }
+      if (user.password !== password) {
+        done(null, false, {message: 'Incorrect password.'});
+      }
+      done(null, user);
+    });
+  }
+));
+
+PASSPORT.serializeUser(function(user, cb) {
+  cb(null, user.id);
+});
+
+PASSPORT.deserializeUser(function(id, cb) {
+  DB.User.findById(id).then(function(user) {
+    cb(null, user);
+  }).catch(function(err) {
+    cb(err);
+  });
+});
+
 module.exports.initAPI = function(APP) {
   APP.use(EXPRESS.json());
+  APP.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
   APP.use(EXPRESS.urlencoded({extended: true}));
+
+  APP.use(PASSPORT.initialize());
+  APP.use(PASSPORT.session());
+
+  APP.post('/login', PASSPORT.authenticate('local'), function(req, res) {
+    res.end();
+  });
+  APP.delete('/login', function(req, res) {
+    req.logout();
+    res.end();
+  });
+  APP.use(function(req, res, next) {
+    if (!req.isAuthenticated()) {
+      res.status(401).end();
+    }
+    next();
+  });
 
   PATIENT.initAPI(APP);
   BOOKING.initAPI(APP);

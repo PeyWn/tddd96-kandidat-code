@@ -12,6 +12,7 @@ import {MaterialService} from './http-api/material/material.service';
 import {Icd10Service} from './http-api/icd10/icd10.service';
 import {ClinicService} from './http-api/clinic/clinic.service';
 import {BookingService} from './http-api/booking/booking.service';
+import {LoginService} from './login/login.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {BookingService} from './http-api/booking/booking.service';
     MaterialService,
     Icd10Service,
     ClinicService,
-    BookingService
+    BookingService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
