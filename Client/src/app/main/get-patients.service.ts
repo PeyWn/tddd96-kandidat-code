@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {Patient} from './sidebar/planning/infoheader/Patient';
 import {DecisionService} from '../http-api/decision/decision.service';
 import {DecisionResponse} from '../http-api/decision/DecisionResponse';
@@ -10,6 +10,8 @@ import {ProcedureResponse} from '../http-api/procedure/ProcedureResponse';
 export class GetPatientsService {
   patients: Array<Patient>;
   currentPatient: Patient;
+
+  @Output() fetchedPatient = new EventEmitter();
 
   constructor(
     private decisionService: DecisionService,
@@ -27,7 +29,7 @@ export class GetPatientsService {
                 mainProcedure = procedures[j];
               }
             }
-            this.patients.push(new Patient(
+            let newPatient: Patient = new Patient(
               patient.firstName + ' ' + patient.lastName,
               patient.ssn,
               mainProcedure.description,
@@ -38,14 +40,12 @@ export class GetPatientsService {
               mainProcedure.preparationTime,
               mainProcedure.operationTime,
               mainProcedure.downTime,
-              false));
+              false);
+            this.patients.push(newPatient);
+            this.fetchedPatient.emit();
           });
         });
       }
     });
-  }
-
-  ngOnInit() {
-    this.currentPatient = this.patients[1];
   }
 }
