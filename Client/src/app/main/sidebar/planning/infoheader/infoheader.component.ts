@@ -34,19 +34,21 @@ export class InfoheaderComponent implements OnInit {
     let startDate = new Date().getTime();
     let endDate = this.patient.Tid.getTime();
     let timeToEnd = endDate - startDate;
-    let days = Math.floor(timeToEnd / (1000 * 3600 * 24));
-    let hours = Math.floor(timeToEnd / (1000 * 3600));
-    let minutes = Math.floor(timeToEnd / (1000 * 60));
-
-    if ( hours <= 2 ) {
-      this.time = 'Minuter: ' + (minutes - days * 24 * 60);
-    } else if (hours <= 48) {
-      this.time = 'Timmar: ' + hours;
+    if (timeToEnd < 0) {
+      this.time = 'Passerat!';
     } else {
+      let days = Math.floor(timeToEnd / (1000 * 3600 * 24));
+      let hours = Math.floor(timeToEnd / (1000 * 3600));
+      let minutes = Math.floor(timeToEnd / (1000 * 60));
+
+      if (hours <= 2) {
+        this.time = 'Minuter: ' + (minutes - days * 24 * 60);
+      } else if (hours <= 48) {
+        this.time = 'Timmar: ' + hours + '\nMinuter: ' + (minutes - hours * 60);
+      } else {
         this.time = 'Dagar: ' + days + '\nTimmar: ' + (hours - days * 24);
       }
-
-    console.log(this.time);
+   }
   }
 
 }
