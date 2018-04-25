@@ -1,8 +1,8 @@
 export class BookingResponse {
   id: number;
   preliminary: boolean;
-  updatedAt: Date;
-  createdAt: Date;
+  updatedAt: string;
+  createdAt: string;
   DecisionId: number;
   UserId: number;
 }

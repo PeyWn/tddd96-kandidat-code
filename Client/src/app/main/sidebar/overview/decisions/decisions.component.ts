@@ -207,10 +207,13 @@ export class DecisionsComponent implements OnInit {
   constructor(private gpService: GetPatientsService, private resolver: ComponentFactoryResolver) {
     this.decisionList = this.gpService.patients;
     this.processList = this.decisionList;
+
+    this.gpService.fetchedPatient.subscribe(() => {
+      this.viewAll();
+    });
   }
 
   ngOnInit() {
-    this.viewAll();
   }
 
 }
