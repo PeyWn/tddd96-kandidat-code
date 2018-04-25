@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
@@ -80,11 +79,7 @@ import {BookingService} from './http-api/booking/booking.service';
   providers: [
     CurrentViewService,
     SidebarPanelService,
-    GetPatientsService
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [InfoheaderComponent]
-  providers: [
+    GetPatientsService,
     DecisionService,
     StaffService,
     ProcedureService,
@@ -95,6 +90,7 @@ import {BookingService} from './http-api/booking/booking.service';
     ClinicService,
     BookingService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [InfoheaderComponent],
 })
 export class AppModule { }

@@ -11,11 +11,11 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 })
 
 export class DecisionsComponent implements OnInit {
-  akutFilter:boolean;
-  elektivFilter:boolean;
-  bokadFilter:boolean;
-  prebokadFilter:boolean;
-  latestSearch:string;
+  akutFilter: boolean;
+  elektivFilter: boolean;
+  bokadFilter: boolean;
+  prebokadFilter: boolean;
+  latestSearch: string;
   decisionList = this.gpService.patients;
   processList: Patient[];
   @ViewChild('infoh', { read: ViewContainerRef }) container;
@@ -51,31 +51,31 @@ export class DecisionsComponent implements OnInit {
 
   recieveFilters($event) {
     switch ($event[0]) {
-      case 'AKUT': {this.akutFilter = $event[1]; break;}
-      case 'Elektiv': {this.elektivFilter = $event[1]; break;}
-      case 'bokad': {this.bokadFilter = $event[1]; break;}
-      case 'prebokad': {this.prebokadFilter = $event[1]; break;}
+      case 'AKUT': {this.akutFilter = $event[1]; break; }
+      case 'Elektiv': {this.elektivFilter = $event[1]; break; }
+      case 'bokad': {this.bokadFilter = $event[1]; break; }
+      case 'prebokad': {this.prebokadFilter = $event[1]; break; }
       default: break;
     }
   }
 
-  applyAkutFilter(filterObject:Patient):boolean {
+  applyAkutFilter(filterObject: Patient): boolean {
     if (this.akutFilter) {
-      return filterObject.Bradskandegrad === "AKUT";
+      return filterObject.Bradskandegrad === 'AKUT';
     }
     return true;
   }
 
 
-  applyElektivFilter(filterObject:Patient):boolean {
+  applyElektivFilter(filterObject: Patient): boolean {
     if (this.elektivFilter) {
-      return filterObject.Bradskandegrad === "Elektiv";
+      return filterObject.Bradskandegrad === 'Elektiv';
     }
     return true;
   }
 
 
-  applyBokadFilter(filterObject:Patient):boolean {
+  applyBokadFilter(filterObject: Patient): boolean {
     if (this.bokadFilter) {
       return filterObject.Bokad === true;
     }
@@ -83,7 +83,7 @@ export class DecisionsComponent implements OnInit {
   }
 
 
-  applyPrebokadFilter(filterObject:Patient):boolean {
+  applyPrebokadFilter(filterObject: Patient): boolean {
     if (this.prebokadFilter) {
       return filterObject.Bokad === false;
     }
@@ -91,8 +91,11 @@ export class DecisionsComponent implements OnInit {
   }
 
 
-  applyFilters(filterObject:Patient) :boolean {
-    return this.applyElektivFilter(filterObject) && this.applyAkutFilter(filterObject) &&this.applyPrebokadFilter(filterObject) && this.applyBokadFilter(filterObject);
+  applyFilters(filterObject: Patient): boolean {
+    return (this.applyElektivFilter(filterObject)
+      && this.applyAkutFilter(filterObject)
+      && this.applyPrebokadFilter(filterObject)
+      && this.applyBokadFilter(filterObject));
   }
 
 

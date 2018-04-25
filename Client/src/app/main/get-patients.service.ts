@@ -13,7 +13,20 @@ export class GetPatientsService {
       new Patient('Kurt', 902110, 'Malaria', 'BE333', 'AKUT', 15, 'ABC123', 33, 24, 3, 'Jätteduktig', 'Sal 3', false),
       new Patient('Bert', 763817, 'Björn', 'DE433', 'AKUT', 10, 'ABC123', 33, 24, 3, 'Jätteduktig', 'Sal 3', false)
     ];
-    this.currentPatient = new Patient('Tor', 902391, 'hickar för mycket', 'BE321', 'AKUT', 20, 'ABC123', 33, 24, 3, 'Jätteduktig', 'Sal 3', false);
+    this.currentPatient = new Patient(
+      'Tor',
+      902391,
+      'hickar för mycket',
+      'BE321',
+      'AKUT',
+      20,
+      'ABC123',
+      33,
+      24,
+      3,
+      'Jätteduktig',
+      'Sal 3',
+      false);
   }
 
 }

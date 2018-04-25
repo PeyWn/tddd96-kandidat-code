@@ -1,11 +1,11 @@
 export class Patient {
-  Personnummer:number;
-  Namn:string;
-  Beslut:string;
-  Beskrivning:string;
+  Personnummer: number;
+  Namn: string;
+  Beslut: string;
+  Beskrivning: string;
 
 
-  constructor(Personnummer:number, Namn:string, Beslut:string, Beskrivning:string){
+  constructor(Personnummer: number, Namn: string, Beslut: string, Beskrivning: string) {
 
   this.Personnummer = Personnummer;
   this.Namn = Namn;

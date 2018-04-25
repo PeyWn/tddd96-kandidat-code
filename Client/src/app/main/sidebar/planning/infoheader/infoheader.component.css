@@ -34,9 +34,8 @@
 
 
 .col-l9 {
+  border: 5px #0d2b37;
   border-right-style: solid;
-  border-color: #0d2b37;
-  border-width: 5px;
 }
 
 .glyphicon{
