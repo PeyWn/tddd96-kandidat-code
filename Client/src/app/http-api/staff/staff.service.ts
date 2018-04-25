@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Staff} from './Staff';
-import {Decision} from '../decision/Decision';
+import {StaffResponse} from './StaffResponse';
+import {DecisionResponse} from '../decision/DecisionResponse';
 import {FreeTime} from '../freeTime/FreeTime';
 
 @Injectable()
@@ -11,16 +11,16 @@ export class StaffService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAllStaff(): Observable<Staff[]> {
-    return this.httpClient.get<Staff[]>('/staff');
+  getAllStaff(): Observable<StaffResponse[]> {
+    return this.httpClient.get<StaffResponse[]>('/staff');
   }
 
-  getStaff(id: number): Observable<Staff> {
-    return this.httpClient.get<Staff>('/staff/' + id);
+  getStaff(id: number): Observable<StaffResponse> {
+    return this.httpClient.get<StaffResponse>('/staff/' + id);
   }
 
-  getDecisionsByStaff(id: number): Observable<Decision[]> {
-    return this.httpClient.get<Decision[]>('/staff/' + id + '/decision');
+  getDecisionsByStaff(id: number): Observable<DecisionResponse[]> {
+    return this.httpClient.get<DecisionResponse[]>('/staff/' + id + '/decision');
   }
 
   getWorkingTimesForStaff(id: number): Observable<FreeTime[]> {

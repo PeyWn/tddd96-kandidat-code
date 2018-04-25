@@ -1,4 +1,4 @@
-export class Booking {
+export class BookingResponse {
   id: number;
   preliminary: boolean;
   updatedAt: Date;

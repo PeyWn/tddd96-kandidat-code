@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Booking} from './Booking';
+import {BookingResponse} from './BookingResponse';
 import { HttpHeaders } from '@angular/common/http';
 import {StaffBooking} from '../staff/StaffBooking';
 import {MaterialBooking} from '../material/MaterialBooking';
@@ -19,16 +19,16 @@ export class BookingService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllBookings(): Observable<Booking[]> {
-    return this.httpClient.get<Booking[]>('/booking');
+  getAllBookings(): Observable<BookingResponse[]> {
+    return this.httpClient.get<BookingResponse[]>('/booking');
   }
 
-  getBooking(id: number): Observable<Booking> {
-    return this.httpClient.get<Booking>('/booking/' + id);
+  getBooking(id: number): Observable<BookingResponse> {
+    return this.httpClient.get<BookingResponse>('/booking/' + id);
   }
 
-  createBooking(decisionId: number, preliminary: boolean): Observable<Booking> {
-    return this.httpClient.post<Booking>('/booking', {preliminary: preliminary, DecisionId: decisionId}, httpOptions);
+  createBooking(decisionId: number, preliminary: boolean): Observable<BookingResponse> {
+    return this.httpClient.post<BookingResponse>('/booking', {preliminary: preliminary, DecisionId: decisionId}, httpOptions);
   }
 
   updateBooking(bookingId: number, preliminary: boolean): Observable<Object> {
