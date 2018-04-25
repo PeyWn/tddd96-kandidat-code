@@ -54,13 +54,13 @@ module.exports.initAPI = function(APP) {
   APP.use(PASSPORT.initialize());
   APP.use(PASSPORT.session());
 
-  APP.get('/login', function(req, res) {
+  APP.get('/api/login', function(req, res) {
     res.send(req.isAuthenticated());
   });
-  APP.post('/login', PASSPORT.authenticate('local'), function(req, res) {
+  APP.post('/api/login', PASSPORT.authenticate('local'), function(req, res) {
     res.end();
   });
-  APP.delete('/login', function(req, res) {
+  APP.delete('/api/login', function(req, res) {
     req.logout();
     res.end();
   });

@@ -9,26 +9,27 @@ const httpOptions = {
 
 @Injectable()
 export class LoginService {
-
+  loggedIn: boolean;
   constructor(private httpClient: HttpClient) {
+    this.loggedIn = false;
   }
 
-  testLoggedIn() {
-    this.httpClient.get('/test').subscribe(function(result2) {
-      console.log('2');
+  checkLoggedIn(): void {
+    this.httpClient.get('/api/login').subscribe((loggedIn: boolean) => {
+      this.loggedIn = loggedIn;
     });
   }
 
-  login() {
-    this.httpClient.post('/login', {username: 'testname', password: 'testpass'},
-      httpOptions).subscribe(function(res) {
-        console.log('logged in');
+  login(username: string, password: string): void {
+    this.httpClient.post('/api/login', {username: username, password: password},
+      httpOptions).subscribe((res) => {
+        this.loggedIn = true;
     });
   }
 
-  logout() {
-    this.httpClient.delete('/login').subscribe(function(res) {
-      console.log('logged out');
+  logout(): void {
+    this.httpClient.delete('/api/login').subscribe((res) => {
+      this.loggedIn = false;
     });
   }
 
