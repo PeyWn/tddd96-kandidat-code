@@ -5,14 +5,16 @@ module.exports.initAPI = function(APP) {
     DB.Patient.findAll().then(function(patients) {
       res.send(patients);
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
   //Add patient
   APP.post('/patient', function(req, res) {
     DB.Patient.create(req.body).then(function(result) {
-      res.end(); // Should be 201?
+      res.end();
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -21,6 +23,7 @@ module.exports.initAPI = function(APP) {
     DB.Patient.findById(req.params.ssn).then(function(patient) {
       res.send(patient);
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -29,6 +32,7 @@ module.exports.initAPI = function(APP) {
     DB.Patient.update(req.body, {where: {ssn: req.params.ssn}}).then(function(result) {
       res.end();
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -37,6 +41,7 @@ module.exports.initAPI = function(APP) {
     DB.Patient.destroy({where: {ssn: req.params.ssn}}).then(function(result) {
       res.end();
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -47,12 +52,14 @@ module.exports.initAPI = function(APP) {
         patient.getDecisions().then(function(decisions) {
           res.send(decisions);
         }).catch(function(err) {
+          console.log(err);
           res.status(500).send(err);
         });
       } else {
         res.status(404).send('Patient not found.');
       }
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });

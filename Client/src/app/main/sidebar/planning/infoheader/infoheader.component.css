@@ -1,0 +1,44 @@
+.row-s {
+  height: auto;
+  margin: 0;
+}
+.rowp {
+  padding: 4px;
+}
+
+.red-bg {
+  background-color: #dd0000;
+}
+
+.blue-bg {
+  background-color: #1e7faa;
+  color: whitesmoke;
+
+}
+
+
+.blue-bg:hover {
+  background-color: #177288;
+  color: whitesmoke;
+
+}
+
+ .row-s:hover{
+  cursor: pointer;
+   background-color: blue;
+ }
+
+.col-md {
+  font-size: medium;
+}
+
+
+.col-l9 {
+  border: 5px #0d2b37;
+  border-right-style: solid;
+}
+
+.glyphicon{
+  font-size: 100%;
+  text-align: right;
+}

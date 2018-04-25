@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   var Patient = sequelize.define('Patient', {
     ssn: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(15),
       allowNull: false,
       primaryKey: true
     },

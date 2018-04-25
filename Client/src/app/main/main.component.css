@@ -1,0 +1,26 @@
+#menubar {
+  position: absolute;
+  top: 0;
+  height: 30px;
+  left: 25%;
+  right: 0;
+  background-color: #0d2b37;
+}
+
+#sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 25%;
+}
+
+#content {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  bottom: 0;
+  left: 25%;
+
+  background-color: white;
+}
