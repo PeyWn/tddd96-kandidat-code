@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Patient} from './sidebar/planning/infoheader/Patient';
 import {DecisionService} from '../http-api/decision/decision.service';
 import {DecisionResponse} from '../http-api/decision/DecisionResponse';
@@ -43,5 +43,9 @@ export class GetPatientsService {
         });
       }
     });
+  }
+
+  ngOnInit() {
+    this.currentPatient = this.patients[1];
   }
 }

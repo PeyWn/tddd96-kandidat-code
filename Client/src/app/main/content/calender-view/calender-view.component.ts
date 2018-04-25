@@ -1,7 +1,6 @@
 
 import {
   Component,
-  ChangeDetectionStrategy,
   ViewChild,
   TemplateRef, ViewEncapsulation, OnInit
 } from '@angular/core';
@@ -22,9 +21,14 @@ import {
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
   CalendarDateFormatter,
-  DAYS_OF_WEEK
+  DAYS_OF_WEEK,
+  CalendarMonthViewDay
+
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
+import  {GetPatientsService} from '../../get-patients.service';
+import { SidebarPanelService} from '../../sidebar/sidebar-panel.service';
+import {Patient} from '../../sidebar/planning/infoheader/Patient';
 
 const colors: any = {
   red: {
@@ -45,12 +49,20 @@ const colors: any = {
   selector: 'app-calender-view',
   templateUrl: './calender-view.component.html',
   styleUrls: ['./calender-view.component.css'],
+  encapsulation: ViewEncapsulation.None,
 
   providers: [
     {
       provide: CalendarDateFormatter,
       useClass: CustomDateFormatter
     }
+  ],
+  styles: [
+    `
+   .odd-cell {
+      background-color: pink !important;
+    }
+  `
   ]
 })
 export class CalenderViewComponent implements OnInit {
@@ -124,7 +136,19 @@ export class CalenderViewComponent implements OnInit {
 
   activeDayIsOpen = true;
 
+  beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
+    if (this.currentPatient)  {
+    body.forEach(day => {
+      if (day.date.getMonth() > this.currentPatient.Tid.getMonth()  || (day.date.getDate() > this.currentPatient.Tid.getDate() && day.date.getMonth() === this.currentPatient.Tid.getMonth())) {
+        day.cssClass = 'odd-cell';
+      }
+    });
+    }
+  }
+
   combineEvents() {
+    this.getPatient();
+    console.log(this.currentPatient.Tid.getHours());
     this.events = this.eventsNew;
   }
   setRooms() {
@@ -182,7 +206,13 @@ export class CalenderViewComponent implements OnInit {
     }
   }
 
-  constructor(private modal: NgbModal) {}
+  currentPatient: Patient = this.gpService.currentPatient;
+
+  getPatient() {
+    this.currentPatient = this.gpService.currentPatient;
+  }
+
+  constructor(private modal: NgbModal, private gpService: GetPatientsService, private spService: SidebarPanelService) {}
 
   close() {}
 
@@ -237,5 +267,6 @@ export class CalenderViewComponent implements OnInit {
   }
   ngOnInit() {
     this.setupCombination(this.rooms, this.surgeons);
+    this.getPatient();
   }
 }
