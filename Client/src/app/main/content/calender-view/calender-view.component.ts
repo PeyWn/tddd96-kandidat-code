@@ -3,7 +3,7 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
-  TemplateRef, ViewEncapsulation, OnInit
+  TemplateRef, ViewEncapsulation, OnInit, ViewContainerRef, ComponentFactory, ComponentRef, ComponentFactoryResolver
 } from '@angular/core';
 import {
   startOfDay,
@@ -25,6 +25,7 @@ import {
   DAYS_OF_WEEK
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
+import {DayViewComponent} from '../day-view/day-view.component';
 
 const colors: any = {
   red: {
@@ -56,6 +57,8 @@ const colors: any = {
 export class CalenderViewComponent implements OnInit {
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
+
+  @ViewChild('dayView', { read: ViewContainerRef}) container;
 
   view: string = 'month';
 
@@ -134,6 +137,12 @@ export class CalenderViewComponent implements OnInit {
     this.events = this.surgeons;
   }
 
+  createDay() {
+    console.log("test create view");
+    const factory: ComponentFactory<DayViewComponent> = this.resolver.resolveComponentFactory(DayViewComponent);
+    const componentRef: ComponentRef<DayViewComponent> = this.container.createComponent(factory);
+  }
+
   eventOverlap(event1: CalendarEvent, event2: CalendarEvent): CalendarEvent {
     let start1 = event1.start.getHours();
     let start2 = event2.start.getHours();
@@ -182,7 +191,8 @@ export class CalenderViewComponent implements OnInit {
     }
   }
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal, private resolver: ComponentFactoryResolver) {}
+
 
   close() {}
 

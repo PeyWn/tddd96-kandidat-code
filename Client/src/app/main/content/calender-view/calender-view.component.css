@@ -34,11 +34,12 @@ ul {
   overflow-x: auto;
   margin: 2px;
   padding: 1em;
+  list-style-type: none;
 }
 
 li {
-  list-style-type: none;
   margin: auto 10px;
+  min-width: 400px;
 }
 
 li > div {

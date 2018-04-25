@@ -91,6 +91,9 @@ import {BookingService} from './http-api/booking/booking.service';
     BookingService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [InfoheaderComponent],
+  entryComponents: [
+    InfoheaderComponent,
+    DayViewComponent
+  ],
 })
 export class AppModule { }
