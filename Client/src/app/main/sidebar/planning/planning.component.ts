@@ -14,9 +14,9 @@ export class PlanningComponent implements OnInit {
   @Input() patient: Patient;
   material: Array<MaterialResponse> = [];
 
-  getProcedureMaterial(KVA:string)  {
+  getProcedureMaterial(KVA: string)  {
     this.procService.getMaterialForProcedure(KVA).subscribe( (procedureMaterial: MaterialResponse[]) => {
-      for(let i =0; i < procedureMaterial.length; i++) {
+      for (let i = 0; i < procedureMaterial.length; i++) {
         this.material.push(procedureMaterial[i]);
       }
     });
