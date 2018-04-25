@@ -147,8 +147,6 @@ export class CalenderViewComponent implements OnInit {
   }
 
   combineEvents() {
-    this.getPatient();
-    console.log(this.currentPatient.Tid.getHours());
     this.events = this.eventsNew;
   }
   setRooms() {
@@ -206,13 +204,17 @@ export class CalenderViewComponent implements OnInit {
     }
   }
 
-  currentPatient: Patient = this.gpService.currentPatient;
+  currentPatient: Patient;
 
   getPatient() {
     this.currentPatient = this.gpService.currentPatient;
   }
 
-  constructor(private modal: NgbModal, private gpService: GetPatientsService, private spService: SidebarPanelService) {}
+
+
+  constructor(private modal: NgbModal, private gpService: GetPatientsService, private spService: SidebarPanelService) {
+    this.gpService.changedPatient.subscribe( () => {this.getPatient(); console.log('HEJ')} );
+  }
 
   close() {}
 
