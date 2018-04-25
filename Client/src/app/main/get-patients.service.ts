@@ -35,7 +35,7 @@ export class GetPatientsService {
               mainProcedure.description,
               decisions[i].ICD10Code,
               decisions[i].urgent,
-              decisions[i].latestDate,
+              new Date(decisions[i].latestDate),
               mainProcedure.kvåCode,
               mainProcedure.preparationTime,
               mainProcedure.operationTime,
