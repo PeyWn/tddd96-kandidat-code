@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loginService.previousError = '';
     this.loginService.checkLoggedIn();
   }
 

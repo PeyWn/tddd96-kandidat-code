@@ -23,13 +23,12 @@ PASSPORT.use(new LocalStrategy(
   function(username, password, done) {
     DB.User.findOne({where: {username: username}}).then(function(user) {
       if (!user) {
-        done(null, false, {message: 'Incorrect username.'});
-        return;
+        return done(null, false);
       }
       if (user.password !== password) {
-        done(null, false, {message: 'Incorrect password.'});
+        return done(null, false);
       }
-      done(null, user);
+      return done(null, user);
     });
   }
 ));
@@ -57,8 +56,21 @@ module.exports.initAPI = function(APP) {
   APP.get('/api/login', function(req, res) {
     res.send(req.isAuthenticated());
   });
-  APP.post('/api/login', PASSPORT.authenticate('local'), function(req, res) {
-    res.end();
+  APP.post('/api/login', function(req, res, next) {
+    PASSPORT.authenticate('local', function(err, user, info) {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.send({ success : false, message : 'Incorrect login details' });
+      }
+      req.login(user, loginErr => {
+        if (loginErr) {
+          return next(loginErr);
+        }
+        return res.send({ success : true, message : 'Successful login' });
+      });
+    })(req, res, next);
   });
   APP.delete('/api/login', function(req, res) {
     req.logout();

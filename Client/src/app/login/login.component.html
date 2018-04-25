@@ -1,3 +1,4 @@
 Användarnamn: <input #username type="text">
 Lösenord: <input #password type="password">
-<button (click)="login(username.value, password.value)">Logga in</button>
+<button (click)="login(username.value, password.value)">Logga in</button><br>
+<div id="errormessage" *ngIf="loginService.previousError != ''">{{loginService.previousError}}</div>

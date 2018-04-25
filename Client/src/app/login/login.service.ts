@@ -10,6 +10,7 @@ const httpOptions = {
 @Injectable()
 export class LoginService {
   loggedIn: boolean;
+  previousError: string;
   constructor(private httpClient: HttpClient) {
     this.loggedIn = false;
   }
@@ -22,8 +23,12 @@ export class LoginService {
 
   login(username: string, password: string): void {
     this.httpClient.post('/api/login', {username: username, password: password},
-      httpOptions).subscribe((res) => {
-        this.loggedIn = true;
+      httpOptions).subscribe((res: any) => {
+        if (res.success === true) {
+          this.loggedIn = true;
+        } else {
+          this.previousError = res.message;
+        }
     });
   }
 
