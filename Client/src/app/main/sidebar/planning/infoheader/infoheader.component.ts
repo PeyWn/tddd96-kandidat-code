@@ -10,6 +10,7 @@ import {Patient} from './Patient';
 })
 export class InfoheaderComponent implements OnInit {
   @Input() patient: Patient;
+  urgency: string;
   setPanel(newPanel: string): void {
     this.spService.setCurrentPanel(newPanel);
   }
@@ -23,6 +24,13 @@ export class InfoheaderComponent implements OnInit {
     this.patient = this.getPatient();
   }
   ngOnInit() {
+    if (this.patient.Bradskandegrad) {
+      this.urgency = 'AKUT';
+    } else {
+      this.urgency = 'ELEKTIV';
+    }
+
+
   }
 
 }
