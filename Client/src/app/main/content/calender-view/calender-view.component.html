@@ -113,7 +113,9 @@
         [locale]="locale"
         [weekStartsOn]="weekStartsOn"
         (eventClicked)="handleEvent('Clicked', $event.event)"
-        (eventTimesChanged)="eventTimesChanged($event)">
+        (eventTimesChanged)="eventTimesChanged($event)"
+
+        (beforeViewRender) = "beforeWeekViewRender($event)">
       </mwl-calendar-week-view>
 
       <ul>

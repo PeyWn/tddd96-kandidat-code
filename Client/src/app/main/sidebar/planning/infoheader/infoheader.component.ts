@@ -19,7 +19,7 @@ export class InfoheaderComponent implements OnInit {
     return this.gpService.currentPatient;
   }
   setPatient(newPatient: Patient): void {
-    this.gpService.currentPatient = newPatient;
+    this.gpService.setPatient(newPatient);
 
   }
   constructor(private gpService: GetPatientsService, private spService: SidebarPanelService) {

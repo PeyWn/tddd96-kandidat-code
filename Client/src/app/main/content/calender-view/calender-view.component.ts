@@ -22,7 +22,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarDateFormatter,
   DAYS_OF_WEEK,
-  CalendarMonthViewDay
+  CalendarMonthViewDay, CalendarWeekViewEventRow, CalendarWeekViewEvent
 
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
@@ -146,6 +146,14 @@ export class CalenderViewComponent implements OnInit {
     }
   }
 
+  refreshView() {
+    this.refresh.next();
+  }
+
+
+
+
+
   combineEvents() {
     this.events = this.eventsNew;
   }
@@ -213,7 +221,7 @@ export class CalenderViewComponent implements OnInit {
 
 
   constructor(private modal: NgbModal, private gpService: GetPatientsService, private spService: SidebarPanelService) {
-    this.gpService.changedPatient.subscribe( () => {this.getPatient(); console.log('HEJ')} );
+    this.gpService.changedPatient.subscribe( () => {this.getPatient(); this.refreshView();})
   }
 
   close() {}
@@ -269,6 +277,5 @@ export class CalenderViewComponent implements OnInit {
   }
   ngOnInit() {
     this.setupCombination(this.rooms, this.surgeons);
-    this.getPatient();
   }
 }
