@@ -18,6 +18,7 @@ module.exports.initAPI = function(APP) {
     DB.Staff.findAll(INCLUDE).then(function(staff) {
       res.send(staff);
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -26,6 +27,7 @@ module.exports.initAPI = function(APP) {
     DB.Staff.create(req.body).then(function(result) {
       res.end();
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -34,6 +36,7 @@ module.exports.initAPI = function(APP) {
     DB.Staff.findById(req.params.id, INCLUDE).then(function(staff) {
       res.send(staff);
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -42,6 +45,7 @@ module.exports.initAPI = function(APP) {
     DB.Staff.update(req.body, {where: {id: req.params.id}}).then(function(result) {
       res.end();
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -50,6 +54,7 @@ module.exports.initAPI = function(APP) {
     DB.Staff.destroy({where: {id: req.params.id}}).then(function(result) {
       res.end();
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -60,12 +65,14 @@ module.exports.initAPI = function(APP) {
         staff.getFree_times(FREE_TIMES.INCLUDE).then(function(free_times) {
           res.send(free_times);
         }).catch(function(err) {
+          console.log(err);
           res.status(500).send(err);
         });
       } else {
         res.status(404).send('Staff not found.');
       }
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -76,12 +83,14 @@ module.exports.initAPI = function(APP) {
         staff.getBookings().then(function(bookings) {
           res.send(bookings);
         }).catch(function(err) {
+          console.log(err);
           res.status(500).send(err);
         });
       } else {
         res.status(404).send('Staff not found.');
       }
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -92,12 +101,14 @@ module.exports.initAPI = function(APP) {
         staff.getDecisions(DECISION.INCLUDE).then(function(decisions) {
           res.send(decisions);
         }).catch(function(err) {
+          console.log(err);
           res.status(500).send(err);
         });
       } else {
         res.status(404).send('Staff not found.');
       }
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });

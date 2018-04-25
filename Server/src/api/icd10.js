@@ -5,6 +5,7 @@ module.exports.initAPI = function(APP) {
     DB.ICD10.findAll().then(function(icd10){
       res.send(icd10);
     }).catch(function(err) {
+      console.log(err);
       res.status(500).send(err);
     });
   });
@@ -14,6 +15,7 @@ module.exports.initAPI = function(APP) {
     DB.ICD10.create(req.body).then(function(result){
       res.end();
     }).catch(function(err){
+      console.log(err);
       res.status(500).send(err);
     });
   });
