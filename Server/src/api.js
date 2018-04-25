@@ -54,6 +54,9 @@ module.exports.initAPI = function(APP) {
   APP.use(PASSPORT.initialize());
   APP.use(PASSPORT.session());
 
+  APP.get('/login', function(req, res) {
+    res.send(req.isAuthenticated());
+  });
   APP.post('/login', PASSPORT.authenticate('local'), function(req, res) {
     res.end();
   });
