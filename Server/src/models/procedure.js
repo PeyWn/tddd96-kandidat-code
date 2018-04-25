@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     kvåCode: {
       primaryKey: true,
       allowNull: false,
-      type: DataTypes.STRING
+      type: DataTypes.STRING(10)
     },
     description: {
       allowNull: false,

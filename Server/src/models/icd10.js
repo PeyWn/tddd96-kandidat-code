@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   var ICD10 = sequelize.define('ICD10', {
     code: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(10),
       allowNull: false,
       primaryKey: true
     },
