@@ -3,6 +3,7 @@ import {GetPatientsService} from "../../../get-patients.service";
 import {Patient} from "../../../sidebar/planning/infoheader/Patient";
 import {ProcedureService} from "../../../../http-api/procedure/procedure.service";
 import {MaterialResponse} from "../../../../http-api/material/MaterialResponse";
+import {BookingService} from "../../../../http-api/booking/booking.service";
 import {
   startOfDay,
   endOfDay,
@@ -13,13 +14,6 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
-import { Subject } from 'rxjs/Subject';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent
-} from 'angular-calendar';
 
 @Component({
   selector: 'app-summery-cards',
@@ -31,8 +25,14 @@ export class SummeryCardsComponent implements OnInit {
   material: Array<MaterialResponse> = [];
   materialList = true;
   urgency: string;
+  preliminary = false;
+  room;
+  dr: string;
+  title: string;
+  startDate: Date;
+  endDate: Date;
 
-  constructor(private gpService: GetPatientsService, private procService: ProcedureService) {
+  constructor(private gpService: GetPatientsService, private procService: ProcedureService, private eventService: BookingService) {
     this.patient = this.getPatient();
   }
 
@@ -43,6 +43,8 @@ export class SummeryCardsComponent implements OnInit {
     } else {
       this.urgency = 'Elektiv';
     }
+
+    this.title = 'Åtgärd (TODO) \n' + this.patient.Namn + ' \n Doktor';
   }
 
   getPatient(): Patient {
@@ -54,5 +56,10 @@ export class SummeryCardsComponent implements OnInit {
         this.material.push(procedureMaterial[i]);
       }
     });
+  }
+
+  createEvent () {
+    this.eventService.createBooking(1, this.preliminary);
+    this.eventService.addRoomToBooking(1, this.room, this.startDate, this.endDate);
   }
 }

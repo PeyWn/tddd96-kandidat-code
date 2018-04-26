@@ -55,7 +55,7 @@
 
       <div class="d-flex flex-row">
         <div class="d-flex flex column">
-          <div class="container-fluid"[hidden]="materialList">
+          <div class="container-fluid" style="width: 903px" [hidden]="materialList">
 
             <h2>Matrial</h2>
             <table class="table" style = "table-layout: fixed">
@@ -91,17 +91,32 @@
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title" style="font-size: large; font-weight: bold;">SoonToBeTheMighty------>BokingsRutan</h5>
-        <button class="btn btn-primary"> Add new</button>
+        <div class="input-group mb-3">
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="eventTitle">Titel: </span>
+            <input type="text" class="form-control" aria-describedby="eventTitle" [(ngModel)]="title"/>
+          </div>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="eventStartDate">Start: </span>
+            <input type="date" class="form-control" aria-describedby="eventStartDate" [(ngModel)]="startDate"/>
+            <input type="time" placeholder="" class="form-control" aria-describedby="eventStartDate" [(ngModel)]="startDate"/>
+          </div>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="eventEndDate">Slut: </span>
+            <input type="date" class="form-control" aria-describedby="eventEndDate" [(ngModel)]="startDate"/>
+        </div>
+
+
+
       </div>
 
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Titel: </li>
-        <li class="list-group-item">Start: </li>
-        <li class="list-group-item">Slut:  </li>
-        <li class="list-group-item">Ta bort bokning:  </li>
-      </ul>
       <div class="card-footer">
-        <button class="btn btn-primary">Boka</button>
+        <button class="btn btn-primary" (click)="preliminary = false">Boka</button>
+        <button class="btn btn-primary" (click)="preliminary = true">Preliminärboka</button>
+
       </div>
     </div>
 
