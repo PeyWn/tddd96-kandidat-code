@@ -23,7 +23,7 @@ export class LoginService {
 
   login(username: string, password: string): void {
     this.httpClient.post('/api/login', {username: username, password: password},
-      httpOptions).subscribe((res: any) => {
+      httpOptions).subscribe((res: {success: boolean, message: string}) => {
         if (res.success === true) {
           this.loggedIn = true;
         } else {
@@ -33,7 +33,7 @@ export class LoginService {
   }
 
   logout(): void {
-    this.httpClient.delete('/api/login').subscribe((res) => {
+    this.httpClient.delete('/api/login').subscribe(() => {
       this.loggedIn = false;
     });
   }
