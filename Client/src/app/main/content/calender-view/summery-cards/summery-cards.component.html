@@ -69,7 +69,7 @@
 
   <div class="d-flex">
 
-    <div class="card mb-3" style="width: 100%">
+    <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title" style="font-size: large; font-weight: bold;">SoonToBeTheMighty------>BokingsRutan</h5>
         <button class="btn btn-primary"> Add new</button>
@@ -77,7 +77,23 @@
 
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Titel: </li>
-        <li class="list-group-item">Start: </li>
+        <li class="list-group-item">
+
+          <form class="form-inline">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                       name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                    <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+        </li>
         <li class="list-group-item">Slut:  </li>
         <li class="list-group-item">Ta bort bokning:  </li>
       </ul>
@@ -85,4 +101,5 @@
         <button class="btn btn-primary">Boka</button>
       </div>
     </div>
+
   </div>

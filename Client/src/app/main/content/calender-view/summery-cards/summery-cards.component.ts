@@ -3,6 +3,23 @@ import {GetPatientsService} from "../../../get-patients.service";
 import {Patient} from "../../../sidebar/planning/infoheader/Patient";
 import {ProcedureService} from "../../../../http-api/procedure/procedure.service";
 import {MaterialResponse} from "../../../../http-api/material/MaterialResponse";
+import {
+  startOfDay,
+  endOfDay,
+  subDays,
+  addDays,
+  endOfMonth,
+  isSameDay,
+  isSameMonth,
+  addHours
+} from 'date-fns';
+import { Subject } from 'rxjs/Subject';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  CalendarEvent,
+  CalendarEventAction,
+  CalendarEventTimesChangedEvent
+} from 'angular-calendar';
 
 @Component({
   selector: 'app-summery-cards',
