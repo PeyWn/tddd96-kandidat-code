@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {MaterialResponse} from './MaterialResponse';
 import {Observable} from 'rxjs/Observable';
 import {ProcedureResponse} from '../procedure/ProcedureResponse';
+import {MaterialBooking} from './MaterialBooking';
 
 @Injectable()
 export class MaterialService {
@@ -23,5 +24,9 @@ export class MaterialService {
 
   getProceduresUsingMaterial(id: number): Observable<ProcedureResponse[]> {
     return this.httpClient.get<ProcedureResponse[]>('/material/' + id + '/procedures');
+  }
+
+  getBookingsForMaterial(id: number): Observable<MaterialBooking[]> {
+    return this.httpClient.get<MaterialBooking[]>('/material/' + id + '/booked');
   }
 }

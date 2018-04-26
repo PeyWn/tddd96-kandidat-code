@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {RoomResponse} from './RoomResponse';
 import {HttpClient} from '@angular/common/http';
 import {FreeTime} from '../freeTime/FreeTime';
+import {RoomBooking} from './RoomBooking';
 
 @Injectable()
 export class RoomService {
@@ -23,5 +24,9 @@ export class RoomService {
 
   getOpenTimesForRoom(id: number): Observable<FreeTime[]> {
     return this.httpClient.get<FreeTime[]>('/room/' + id + '/avaliable');
+  }
+
+  getBookingsForRoom(id: number): Observable<RoomBooking[]> {
+    return this.httpClient.get<RoomBooking[]>('/room/' + id + '/booked');
   }
 }
