@@ -33,7 +33,7 @@ module.exports.initAPI = function(APP) {
   APP.use(PASSPORT.session());
 
   APP.get('/api/login', function(req, res) {
-    res.send(req.isAuthenticated());
+    res.send({loggedIn: req.isAuthenticated(), username: req.user.username});
   });
 
   APP.post('/api/login', function(req, res, next) {
