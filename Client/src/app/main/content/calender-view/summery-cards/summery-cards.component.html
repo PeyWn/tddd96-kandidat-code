@@ -44,7 +44,7 @@
 
               <ul class="list-group list-group-flush">
                 <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Tid: {{patient.Tid}}</li>
-                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Brådskandegrad: {{patient.Bradskandegrad}}</li>
+                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Brådskandegrad: {{urgency}}</li>
                 <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationstid: {{patient.Operationtid}}</li>
               </ul>
             </div>

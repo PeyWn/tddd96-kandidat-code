@@ -23,6 +23,8 @@ export class SummeryCardsComponent implements OnInit {
     this.getProcedureMaterial(this.getPatient().KVA);
     if (this.patient.Bradskandegrad) {
       this.urgency = 'AKUT';
+    } else {
+      this.urgency = 'Elektiv';
     }
   }
 
