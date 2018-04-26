@@ -1,13 +1,12 @@
-import {MaterialType} from './MaterialType';
 import {BookedMaterial} from './BookedMaterial';
 
 export class MaterialBooking {
   id: number;
-  name: string;
-  article_no: string;
-  quantity: number;
-  sterilizing_time: number;
-  Material_type: MaterialType;
+  preliminary: boolean;
+  updatedAt: string;
+  createdAt: string;
+  DecisionId: number;
+  UserId: number;
 
   Booked_material: BookedMaterial;
 }

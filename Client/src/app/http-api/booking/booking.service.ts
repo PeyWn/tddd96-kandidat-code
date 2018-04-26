@@ -3,9 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {BookingResponse} from './BookingResponse';
 import { HttpHeaders } from '@angular/common/http';
-import {StaffBooking} from '../staff/StaffBooking';
-import {MaterialBooking} from '../material/MaterialBooking';
-import {RoomBooking} from '../room/RoomBooking';
+import {BookingMaterial} from './BookingMaterial';
+import {BookingRoom} from './BookingRoom';
+import {BookingStaff} from './BookingStaff';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -38,8 +38,8 @@ export class BookingService {
     return this.httpClient.delete('/booking/' + bookingId, httpOptions);
   }
 
-  getBookedStaff(bookingId: number): Observable<StaffBooking[]> {
-    return this.httpClient.get<StaffBooking[]>('/booking/' + bookingId + '/staff');
+  getBookedStaff(bookingId: number): Observable<BookingStaff[]> {
+    return this.httpClient.get<BookingStaff[]>('/booking/' + bookingId + '/staff');
   }
 
   addStaffToBooking(bookingId: number, staffId: number, startDate: Date, endDate: Date): Observable<Object> {
@@ -51,8 +51,8 @@ export class BookingService {
     return this.httpClient.delete('/booking/' + bookingId + '/staff/' + staffId, httpOptions);
   }
 
-  getBookedMaterial(bookingId: number): Observable<MaterialBooking[]> {
-    return this.httpClient.get<MaterialBooking[]>('/booking/' + bookingId + 'material');
+  getBookedMaterial(bookingId: number): Observable<BookingMaterial[]> {
+    return this.httpClient.get<BookingMaterial[]>('/booking/' + bookingId + 'material');
   }
 
   addMaterialToBooking(bookingId: number, materialId: number, startDate: Date, endDate: Date): Observable<Object> {
@@ -64,8 +64,8 @@ export class BookingService {
     return this.httpClient.delete('/booking/' + bookingId + '/material/' + materialId);
   }
 
-  getBookedRooms(bookingId: number): Observable<RoomBooking[]> {
-    return this.httpClient.get<RoomBooking[]>('/booking/' + bookingId + '/room');
+  getBookedRooms(bookingId: number): Observable<BookingRoom[]> {
+    return this.httpClient.get<BookingRoom[]>('/booking/' + bookingId + '/room');
   }
 
   addRoomToBooking(bookingId: number, roomId: number, startDate: Date, endDate: Date): Observable<Object> {
