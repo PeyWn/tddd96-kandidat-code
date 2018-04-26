@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Decision} from './Decision';
+import {DecisionResponse} from './DecisionResponse';
 import {Observable} from 'rxjs/Observable';
-import {Procedure} from '../procedure/Procedure';
+import {ProcedureResponse} from '../procedure/ProcedureResponse';
 
 
 @Injectable()
@@ -11,15 +11,15 @@ export class DecisionService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAllDecisions(): Observable<Decision[]> {
-    return this.httpClient.get<Decision[]>('/decision');
+  getAllDecisions(): Observable<DecisionResponse[]> {
+    return this.httpClient.get<DecisionResponse[]>('/decision');
   }
 
-  getDecision(id: number): Observable<Decision> {
-    return this.httpClient.get<Decision>('/decision/' + id);
+  getDecision(id: number): Observable<DecisionResponse> {
+    return this.httpClient.get<DecisionResponse>('/decision/' + id);
   }
 
-  getProceduresForDecision(decisionId: number): Observable<Procedure[]> {
-    return this.httpClient.get<Procedure[]>('/decision/' + decisionId + '/procedures');
+  getProceduresForDecision(decisionId: number): Observable<ProcedureResponse[]> {
+    return this.httpClient.get<ProcedureResponse[]>('/decision/' + decisionId + '/procedures');
   }
 }

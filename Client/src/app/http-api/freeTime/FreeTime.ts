@@ -1,6 +1,6 @@
 export class FreeTime {
   id: number;
-  start_time: Date;
-  end_time: Date;
+  start_time: string;
+  end_time: string;
   weekday: string; // mån, tis, ons, tor, fre, lör, sön
 }

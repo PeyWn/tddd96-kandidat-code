@@ -1,10 +1,12 @@
-import {RoomType} from './RoomType';
 import {BookedRoom} from './BookedRoom';
 
 export class RoomBooking {
   id: number;
-  name: string;
-  LocalType: RoomType;
+  preliminary: boolean;
+  updatedAt: string;
+  createdAt: string;
+  DecisionId: number;
+  UserId: number;
 
   Booked_room: BookedRoom;
 }
