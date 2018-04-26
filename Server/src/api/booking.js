@@ -171,7 +171,7 @@ module.exports.initAPI = function(APP) {
   });
 
   //Get rooms in booking
-  APP.get('booking/:ID/room', function(req, res) {
+  APP.get('/booking/:ID/room', function(req, res) {
     DB.Booking.findById(req.params.ID).then(function(booking) {
       if(booking) {
         booking.getLocals(ROOM.INCLUDE).then(function(room) {
