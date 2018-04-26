@@ -12,7 +12,7 @@ import {MaterialResponse} from "../../../../http-api/material/MaterialResponse";
 export class SummeryCardsComponent implements OnInit {
   @Input() patient: Patient;
   material: Array<MaterialResponse> = [];
-  materialList = false;
+  materialList = true;
   urgency: string;
 
   constructor(private gpService: GetPatientsService, private procService: ProcedureService) {

@@ -26,17 +26,20 @@
               </div>
 
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"> Sal: {{patient.Sal}}  </li>
                 <li class="list-group-item">Operationstyp: {{patient.Operationstyp}}</li>
                 <li class="list-group-item">Förberedelsetid: {{patient.Forberedelsetid}}</li>
                 <li class="list-group-item">Avvecklingstid: {{patient.Avvecklingstid}}</li>
               </ul>
 
+              <div class="card-footer  text-center">
+                <button type="button" class="btn btn-primary" (click)="materialList = !materialList">Materiellista</button>
+              </div>
+
             </div>
 
             <div class="card mb-3" [ngClass]="urgency == 'AKUT' ? 'red-primary' : ''">
               <div class="card-body">
-                <h5 class="card-title">Hejsan {{urgency}}</h5>
+                <h5 class="card-title" style="font-size: large; font-weight: bold;">Hejsan {{urgency}}</h5>
               </div>
 
               <ul class="list-group list-group-flush">
@@ -52,21 +55,8 @@
 
       <div class="d-flex flex-row">
         <div class="d-flex flex-column">
-
-          <div class="card-deck">
-
-            <div *ngFor="let materiel of this.material">
-              <div class="card text-center mb-3" [hidden]="materialList">
-                <div class="card-header">
-                  {{materiel.name}}
-                </div>
-                <ul class="list-group list-group-flush list-unstyled">
-                  <li class="Antal"> Kvantitet: {{materiel.quantity}} st</li>
-                  <li class="sterilisering tid">Steriliseringstid: {{materiel.sterilizing_time}} minuter</li>
-                  <li class="artikelnum">Artikelnummer: {{materiel.article_no}}</li>
-                </ul>
-              </div>
-            </div>
+          <div class="container-fluid"[hidden]="materialList">
+            <h4>Tor skriv skit här</h4>
           </div>
         </div>
       </div>
@@ -77,7 +67,6 @@
     </div>
   </div>
 
-  <button type="button" class="btn btn-primary" (click)="materialList = !materialList" style="width: 100%">Materiellista</button>
   <div class="d-flex"> <h2>Insert event modifier</h2> </div>
 
   <br><br>
