@@ -14,3 +14,12 @@
 .container-fluid {
   padding: 0;
 }
+
+.red-primary {
+  background-color: #ae0000;
+  color: whitesmoke;
+}
+
+.red-secondary {
+  background-color: whitesmoke;
+}

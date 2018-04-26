@@ -47,3 +47,13 @@ button {
   font-size: large;
 }
 
+
+.red-bg {
+  background-color: #dd0000;
+}
+
+.blue-bg {
+  background-color: #1e7faa;
+  color: whitesmoke;
+
+}
