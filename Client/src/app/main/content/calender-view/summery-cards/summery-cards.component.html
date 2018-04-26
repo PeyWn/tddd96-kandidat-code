@@ -52,31 +52,36 @@
         </div>
 
       </div>
-          <div class="container"[hidden]="materialList">
 
-              <h2>Matrial</h2>
-              <table class="table" style = "table-layout: fixed;">
-                <thead class = "thead-dark">
-                <tr>
-                  <th>Namn</th>
-                  <th>Typ</th>
-                  <th>Kvant</th>
-                  <th>Steril.tid</th>
-                </tr>
-                </thead>
-                <tbody *ngFor="let materiel of this.material">
-                  <tr class="table-primary" [ngClass]="materiel.Material_type.name == 'Container' ? 'table-warning' : materiel.Material_type.name == 'Extrainstrument' ? 'table-dark' : ''">
-                    <td>{{materiel.name}}</td>
-                    <td>{{materiel.Material_type.name}}</td>
-                    <td>{{materiel.quantity}}</td>
-                    <td>{{materiel.sterilizing_time}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+      <div class="d-flex flex-row">
+        <div class="d-flex flex column">
+          <div class="container-fluid"[hidden]="materialList">
+
+            <h2>Matrial</h2>
+            <table class="table" style = "table-layout: fixed">
+              <thead class = "thead-dark">
+              <tr>
+                <th>Namn</th>
+                <th>Typ</th>
+                <th>Kvant</th>
+                <th>Steril.tid</th>
+              </tr>
+              </thead>
+              <tbody *ngFor="let materiel of this.material">
+              <tr class="table-primary" [ngClass]="materiel.Material_type.name == 'Container' ? 'table-warning' : materiel.Material_type.name == 'Extrainstrument' ? 'table-dark' : ''">
+                <td>{{materiel.name}}</td>
+                <td>{{materiel.Material_type.name}}</td>
+                <td>{{materiel.quantity}}</td>
+                <td>{{materiel.sterilizing_time}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
+    </div>
 
-    <div class="d-flex flex-column" style="width: 40%; min-width: 600px">
+    <div class="d-flex flex-column" style="width: 40%; min-width: 400px">
       <h5>This is for spår</h5>
     </div>
   </div>
@@ -91,23 +96,7 @@
 
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Titel: </li>
-        <li class="list-group-item">
-
-          <form class="form-inline">
-            <div class="form-group">
-              <div class="input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd"
-                       name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
-                    <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
-
-        </li>
+        <li class="list-group-item">Start: </li>
         <li class="list-group-item">Slut:  </li>
         <li class="list-group-item">Ta bort bokning:  </li>
       </ul>
