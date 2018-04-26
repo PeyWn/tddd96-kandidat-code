@@ -26,7 +26,7 @@ import {
 
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
-import  {GetPatientsService} from '../../get-patients.service';
+import {GetPatientsService} from '../../get-patients.service';
 import { SidebarPanelService} from '../../sidebar/sidebar-panel.service';
 import {Patient} from '../../sidebar/planning/infoheader/Patient';
 
@@ -62,7 +62,9 @@ export class CalenderViewComponent implements OnInit {
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
-  view: string = 'day';
+  view: string = 'month';
+
+  currentPatient: Patient;
 
   viewDate: Date = new Date();
   modalData: {
@@ -210,8 +212,6 @@ export class CalenderViewComponent implements OnInit {
     }
   }
 
-  currentPatient: Patient;
-
   getPatient() {
     this.currentPatient = this.gpService.currentPatient;
   }
@@ -219,7 +219,13 @@ export class CalenderViewComponent implements OnInit {
 
 
   constructor(private modal: NgbModal, private gpService: GetPatientsService, private spService: SidebarPanelService) {
-    this.gpService.changedPatient.subscribe( () => {this.getPatient(); this.refreshView();})
+    this.gpService.changedPatient.subscribe(() => {
+      this.getPatient();
+      if (!this.currentPatient) {
+        this.view = 'month';
+      }
+      this.refreshView();
+    });
   }
 
   close() {}
