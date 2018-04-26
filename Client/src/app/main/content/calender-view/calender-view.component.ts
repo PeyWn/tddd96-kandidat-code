@@ -26,6 +26,7 @@ import {
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import {DayViewComponent} from '../day-view/day-view.component';
+import * as events from 'events';
 
 const colors: any = {
   red: {
@@ -57,7 +58,6 @@ const colors: any = {
 export class CalenderViewComponent implements OnInit {
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
-
   @ViewChild('dayView', { read: ViewContainerRef}) container;
 
   view: string = 'month';
@@ -72,6 +72,8 @@ export class CalenderViewComponent implements OnInit {
   locale: string = 'sv';
 
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+
+
 
   actions: CalendarEventAction[] = [
     {
@@ -122,6 +124,24 @@ export class CalenderViewComponent implements OnInit {
     }
   ];
 
+  //Mock data for resources
+  roomEvents: Array<CalendarEvent[]>=[[
+    {
+      start: addHours(startOfDay(new Date()), 3),
+      end: addHours(startOfDay(new Date()), 14),
+      title: 'Sal1',
+      color: colors.blue,
+      actions: this.actions
+    }
+  ],[
+    {
+      start: addHours(startOfDay(new Date()), 7),
+      end: addHours(startOfDay(new Date()), 9),
+      title: 'Sal2',
+      color: colors.red,
+      actions: this.actions,
+    }
+  ]];
   events: CalendarEvent[] = this.rooms;
   eventsNew: CalendarEvent[] = [];
 
@@ -138,10 +158,24 @@ export class CalenderViewComponent implements OnInit {
   }
 
   createDay() {
-    console.log("test create view");
+    //const factory: ComponentFactory<DayViewComponent> = this.resolver.resolveComponentFactory(DayViewComponent);
+    //const componentRef: ComponentRef<DayViewComponent> = this.container.createComponent(factory);
+    //componentRef.instance.events = this.roomEvents[0];
+    this.listRoomEvents();
+  }
+
+  createResourceTrack(events: CalendarEvent[]) {
     const factory: ComponentFactory<DayViewComponent> = this.resolver.resolveComponentFactory(DayViewComponent);
     const componentRef: ComponentRef<DayViewComponent> = this.container.createComponent(factory);
+    componentRef.instance.events = events;
   }
+
+  listRoomEvents() {
+    for(let i = 0; i < this.roomEvents.length; i++) {
+      this.createResourceTrack(this.roomEvents[i]);
+    }
+  }
+
 
   eventOverlap(event1: CalendarEvent, event2: CalendarEvent): CalendarEvent {
     let start1 = event1.start.getHours();

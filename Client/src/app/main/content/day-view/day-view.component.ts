@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, OnInit} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-day-view',
@@ -7,8 +7,9 @@ import {Component, ComponentFactoryResolver, OnInit} from '@angular/core';
 })
 export class DayViewComponent implements OnInit {
   viewDate = new Date();
-  events = [];
+  @Input() events;
   constructor() {}
+
 
   ngOnInit() {
   }
