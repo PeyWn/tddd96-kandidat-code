@@ -118,7 +118,7 @@ export class DecisionsComponent implements OnInit {
         }
       }
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].procedures[0].kvåCode.toLowerCase() === $event && this.applyFilters(this.decisionList[i])) {
+        if (this.decisionList[i].procedures[0].description.toLowerCase() === $event && this.applyFilters(this.decisionList[i])) {
           this.processList.push(this.decisionList[i]);
         }
       }
