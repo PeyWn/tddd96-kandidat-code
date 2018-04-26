@@ -71,7 +71,7 @@
         [class.active]="view === 'day'">
         Dag
       </div>
-      <div
+      <div *ngIf="currentPatient"
         class="btn btn-primary"
         (click)="view = 'summery'"
         [class.active]="view === 'summery'">
