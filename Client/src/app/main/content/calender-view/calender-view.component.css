@@ -20,6 +20,10 @@ pre {
   padding: 1% 1% 0 1%;
 }
 
+.odd-cell {
+  background-color: pink !important;
+}
+
 .col-md.col-a {
   padding: 0;
 }

@@ -22,7 +22,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarDateFormatter,
   DAYS_OF_WEEK,
-  CalendarMonthViewDay, CalendarWeekViewEventRow, CalendarWeekViewEvent
+  CalendarMonthViewDay
 
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
@@ -56,13 +56,6 @@ const colors: any = {
       provide: CalendarDateFormatter,
       useClass: CustomDateFormatter
     }
-  ],
-  styles: [
-    `
-   .odd-cell {
-      background-color: pink !important;
-    }
-  `
   ]
 })
 export class CalenderViewComponent implements OnInit {
