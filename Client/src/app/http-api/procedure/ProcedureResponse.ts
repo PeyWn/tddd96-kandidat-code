@@ -1,6 +1,6 @@
 import {DecisionProcedure} from './DecisionProcedure';
 
-export class Procedure {
+export class ProcedureResponse {
   kvåCode: string;
   description: string;
   preparationTime: number;

@@ -1,31 +1,27 @@
 export class Patient {
   Namn: string;
-  Personnummer: number;
+  Personnummer: string;
   Operationstyp: string;
   ICD10: string;
-  Bradskandegrad: string;
-  Tid: number;
+  Bradskandegrad: boolean;
+  Tid: Date;
   KVA: string;
   Forberedelsetid: number;
   Operationtid: number;
   Avvecklingstid: number;
-  Kompetens: string;
-  Sal: string;
   Bokad: boolean;
 
 
   constructor(Namn: string,
-              Personnummer: number,
+              Personnummer: string,
               Operationstyp: string,
               ICD10: string,
-              Bradskandegrad: string,
-              Tid: number,
+              Bradskandegrad: boolean,
+              Tid: Date,
               KVA: string,
               forbtid: number,
               optid: number,
               avtid: number,
-              komp: string,
-              sal: string,
               bokad: boolean) {
 
     this.Namn = Namn;
@@ -38,8 +34,6 @@ export class Patient {
     this.Forberedelsetid = forbtid;
     this.Operationtid = optid;
     this.Avvecklingstid = avtid;
-    this.Kompetens = komp;
-    this.Sal = sal;
     this.Bokad = bokad;
   }
 }

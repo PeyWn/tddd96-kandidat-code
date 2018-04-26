@@ -1,11 +1,11 @@
-import {Clinic} from '../clinic/Clinic';
+import {ClinicResponse} from '../clinic/ClinicResponse';
 import {Speciality} from '../speciality/Speciality';
 
-export class Staff {
+export class StaffResponse {
   id: number;
   title: string;
   firstname: string;
   lastname: string;
-  Clinic: Clinic;
+  Clinic: ClinicResponse;
   Speciality: Speciality;
 }
