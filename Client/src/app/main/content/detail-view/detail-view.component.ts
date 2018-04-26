@@ -9,13 +9,13 @@ import {Patient} from './Patient';
 })
 export class DetailViewComponent implements OnInit {
 
-  patient:Array<Patient>;
+  patient: Array<Patient>;
 
   constructor() {
     this.patient = [
-      new Patient(901008, "Tor", "Hicka", "hickar för mycket"),
-      new Patient(991099, "Björn", "Magont", "har ont i magen")
-  ]
+      new Patient(901008, 'Tor', 'Hicka', 'hickar för mycket'),
+      new Patient(991099, 'Björn', 'Magont', 'har ont i magen')
+  ];
   }
   ngOnInit() {
   }

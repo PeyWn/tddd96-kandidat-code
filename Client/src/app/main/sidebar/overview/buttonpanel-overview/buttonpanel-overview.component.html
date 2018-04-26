@@ -40,6 +40,9 @@
         <div class="dropdown-menu">
           <a class="dropdown-item" href="#"><input type="checkbox" (change)="akutChecked = !akutChecked; filter('AKUT', akutChecked)" title="Akut"/>&nbsp;Akut</a>
           <a class="dropdown-item" href="#"><input type="checkbox" (change)="elektivChecked = !elektivChecked; filter('Elektiv', elektivChecked)" title="Elektiv"/>&nbsp;Elektiv</a>
+          <a class="dropdown-item" href="#"><input type="checkbox" (change)="bokadChecked = !bokadChecked; filter('bokad', bokadChecked)" title="Bokad"/>&nbsp;Färdigbokade</a>
+          <a class="dropdown-item" href="#"><input type="checkbox" (change)="prebokadChecked = !prebokadChecked; filter('prebokad', prebokadChecked)" title="PreBokad"/>&nbsp;Preliminärbokade</a>
+
         </div>
 
       </div>

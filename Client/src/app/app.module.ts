@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
@@ -36,6 +35,16 @@ import { registerLocaleData } from '@angular/common';
 import localeSv from '@angular/common/locales/sv';
 import { SummeryCardsComponent } from './main/content/calender-view/summery-cards/summery-cards.component';
 registerLocaleData(localeSv);
+import {DecisionService} from './http-api/decision/decision.service';
+import {HttpClientModule} from '@angular/common/http';
+import {StaffService} from './http-api/staff/staff.service';
+import {ProcedureService} from './http-api/procedure/procedure.service';
+import {RoomService} from './http-api/room/room.service';
+import {PatientService} from './http-api/patient/patient.service';
+import {MaterialService} from './http-api/material/material.service';
+import {Icd10Service} from './http-api/icd10/icd10.service';
+import {ClinicService} from './http-api/clinic/clinic.service';
+import {BookingService} from './http-api/booking/booking.service';
 
 @NgModule({
   declarations: [
@@ -72,9 +81,18 @@ registerLocaleData(localeSv);
   providers: [
     CurrentViewService,
     SidebarPanelService,
-    GetPatientsService
+    GetPatientsService,
+    DecisionService,
+    StaffService,
+    ProcedureService,
+    RoomService,
+    PatientService,
+    MaterialService,
+    Icd10Service,
+    ClinicService,
+    BookingService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [InfoheaderComponent]
+  entryComponents: [InfoheaderComponent],
 })
 export class AppModule { }
