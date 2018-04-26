@@ -52,15 +52,29 @@
         </div>
 
       </div>
+          <div class="container"[hidden]="materialList">
 
-      <div class="d-flex flex-row">
-        <div class="d-flex flex-column">
-          <div class="container-fluid"[hidden]="materialList">
-            <h4>Tor skriv skit här</h4>
-          </div>
+              <h2>Matrial</h2>
+              <table class="table" style = "table-layout: fixed;">
+                <thead class = "thead-dark">
+                <tr>
+                  <th>Namn</th>
+                  <th>Typ</th>
+                  <th>Kvant</th>
+                  <th>Steril.tid</th>
+                </tr>
+                </thead>
+                <tbody *ngFor="let materiel of this.material">
+                  <tr class="table-primary" [ngClass]="materiel.Material_type.name == 'Container' ? 'table-warning' : materiel.Material_type.name == 'Extrainstrument' ? 'table-dark' : ''">
+                    <td>{{materiel.name}}</td>
+                    <td>{{materiel.Material_type.name}}</td>
+                    <td>{{materiel.quantity}}</td>
+                    <td>{{materiel.sterilizing_time}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
         </div>
-      </div>
-    </div>
 
     <div class="d-flex flex-column" style="width: 40%; min-width: 600px">
       <h5>This is for spår</h5>
