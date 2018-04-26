@@ -19,26 +19,35 @@
       <div class="col-md-12 rowp">Namn: {{patient.Namn}}</div>
       <div class="col-md-12 rowp">Personnummer: {{patient.Personnummer}}</div>
       <div class="col-md-12 rowp">ICD10: {{patient.ICD10}}</div>
-      <div class="col-md-12 rowp">KVÅ: {{patient.KVA}}</div>
-
-      <tr class="blank_row">
-        <td colspan="3"></td>
-      </tr>
-
-      <h4>Operation:</h4>
-      <div class="col-md-12 rowp">Operationstyp: {{patient.Operationstyp}}</div>
-      <div class="col-md-12 rowp">Förberedelsetid: {{patient.Forberedelsetid}}</div>
-      <div class="col-md-12 rowp">Avvecklingstid: {{patient.Avvecklingstid}}</div>
 
       <tr class="blank_row">
         <td colspan="3"></td>
       </tr>
 
       <h4>Tid:</h4>
-      <div class="col-md-12 rowp">Tid: {{patient.Tid}}</div>
-      <div class="col-md-12 rowp">Brådskandegrad: {{patient.Bradskandegrad}}</div>
-      <div class="col-md-12 rowp">Operationstid: {{patient.Operationtid}}</div>
+      <div class="col-md-12 rowp">Sista datum: {{patient.Tid}}</div>
+      <div class="col-md-12 rowp">Brådskandegrad: {{patient.Bradskandegrad === true ? 'Akut' : 'Elektiv'}}</div>
+      <div class="col-md-12 rowp">Total operationstid: {{patient.totalOperationTime}} minuter</div>
 
+      <tr class="blank_row">
+        <td colspan="3"></td>
+      </tr>
+
+      <div *ngFor="let procedure of patient.procedures; let first = first; let i = index">
+        <h4 *ngIf="first">Huvudåtgärd</h4>
+        <div>
+          <tr class="blank_row">
+            <td colspan="3"></td>
+          </tr>
+          <h4 *ngIf="!first">Åtgärd {{i+1}}</h4>
+        </div>
+        <div class="col-md-12 rowp">Kvåkod: {{procedure['kvåCode']}}</div>
+        <div class="col-md-12 rowp">Beskrivning: {{procedure.description}}</div>
+        <div class="col-md-12 rowp">Förberedelsetid: {{procedure.preparationTime}} minuter</div>
+        <div class="col-md-12 rowp">Operationstid: {{procedure.operationTime}} minuter</div>
+        <div class="col-md-12 rowp">Avvecklingstid: {{procedure.dismantlingTime}} minuter</div>
+        <div class="col-md-12 rowp">Postoperativ tid: {{procedure.postOperationalTime}} minuter</div>
+      </div>
     </div>
   </div>
 

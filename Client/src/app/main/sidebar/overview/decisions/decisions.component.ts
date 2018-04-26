@@ -2,7 +2,6 @@ import { Component, ViewChild, ViewContainerRef, ComponentRef, ComponentFactory,
 import { GetPatientsService} from '../../../get-patients.service';
 import {InfoheaderComponent} from '../../planning/infoheader/infoheader.component';
 import {Patient} from '../../planning/infoheader/Patient';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-decisions',
@@ -77,7 +76,7 @@ export class DecisionsComponent implements OnInit {
 
   applyBokadFilter(filterObject: Patient): boolean {
     if (this.bokadFilter) {
-      return filterObject.Bokad === true;
+      return filterObject.booking !== null;
     }
     return true;
   }
@@ -85,7 +84,7 @@ export class DecisionsComponent implements OnInit {
 
   applyPrebokadFilter(filterObject: Patient): boolean {
     if (this.prebokadFilter) {
-      return filterObject.Bokad === false;
+      return filterObject.booking === null;
     }
     return true;
   }
@@ -119,7 +118,7 @@ export class DecisionsComponent implements OnInit {
         }
       }
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Operationstyp.toLowerCase() === $event && this.applyFilters(this.decisionList[i])) {
+        if (this.decisionList[i].procedures[0].kvåCode.toLowerCase() === $event && this.applyFilters(this.decisionList[i])) {
           this.processList.push(this.decisionList[i]);
         }
       }
