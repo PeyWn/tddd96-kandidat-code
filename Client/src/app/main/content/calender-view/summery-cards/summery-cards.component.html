@@ -1,0 +1,94 @@
+
+<div class="d-flex flex-row">
+
+  <div class="d-flex flex-column">
+
+    <div class="card-deck">
+
+      <div class="card mb-3" >
+        <div class="card-body">
+          <h5 class="card-title">Patient Information</h5>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"> Namn: {{patient.Namn}} </li>
+          <li class="list-group-item"> Personnummer: {{patient.Personnummer}} </li>
+          <li class="list-group-item"> ICD10: {{patient.ICD10}} </li>
+          <li class="list-group-item"> KVÅ: {{patient.KVA}} </li>
+        </ul>
+      </div>
+
+
+      <div class="card mb-3" >
+        <div class="card-body">
+          <h5 class="card-title">Operation</h5>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"> Sal: {{patient.Sal}}  </li>
+          <li class="list-group-item">Operationstyp: {{patient.Operationstyp}}</li>
+          <li class="list-group-item">Förberedelsetid: {{patient.Forberedelsetid}}</li>
+          <li class="list-group-item">Avvecklingstid: {{patient.Avvecklingstid}}</li>
+        </ul>
+
+      </div>
+
+      <div class="card mb-3" >
+        <div class="card-body">
+          <h5 class="card-title">Hejsan</h5>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Tid: {{patient.Tid}}</li>
+          <li class="list-group-item">Brådskandegrad: {{patient.Bradskandegrad}}</li>
+          <li class="list-group-item">Operationstid: {{patient.Operationtid}}</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="d-flex"> <h2>Insert event modifier</h2> </div>
+
+  </div>
+
+  <div class="container" style="max-width: 40%">
+
+    <div class="card mb-3" >
+      <div class="card-body">
+        <h5 class="card-title">Card 1</h5>
+      </div>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"> Namn: {{patient.Namn}} </li>
+        <li class="list-group-item"> Personnummer: {{patient.Personnummer}} </li>
+        <li class="list-group-item"> ICD10: {{patient.ICD10}} </li>
+        <li class="list-group-item"> KVÅ: {{patient.KVA}} </li>
+      </ul>
+    </div>
+
+
+    <div class="card mb-3" >
+      <div class="card-body">
+        <h5 class="card-title">Card 2</h5>
+      </div>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"> Sal: {{patient.Sal}}  </li>
+        <li class="list-group-item">Operationstyp: {{patient.Operationstyp}}</li>
+        <li class="list-group-item">Förberedelsetid: {{patient.Forberedelsetid}}</li>
+        <li class="list-group-item">Avvecklingstid: {{patient.Avvecklingstid}}</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>
+
+<br><br>
+
+<div class="d-flex flex-row">
+  <button class="btn btn-primary"> Boka </button>
+</div>
+

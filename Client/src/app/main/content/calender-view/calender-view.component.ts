@@ -175,7 +175,12 @@ export class CalenderViewComponent implements OnInit {
           start: addHours(startOfDay(new Date()), start1),
           end: addHours(startOfDay(new Date()), end2),
           title: newTitle,
-          color: colors.yellow
+          color: colors.yellow,
+          draggable: true,
+          resizable: {
+            beforeStart: true,
+            afterEnd: true
+          }
         };
         return test;
       }

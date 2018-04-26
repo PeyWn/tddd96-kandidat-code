@@ -1,0 +1,16 @@
+.card {
+  background-color: whitesmoke;
+  min-width: 300px;
+}
+
+.card > .card-footer {
+  background-color: whitesmoke;
+}
+
+.card > .list-group{
+  margin: 0;
+}
+
+.container-fluid {
+  padding: 0;
+}
