@@ -1,7 +1,6 @@
 
 import {
   Component,
-  ChangeDetectionStrategy,
   ViewChild,
   TemplateRef, ViewEncapsulation, OnInit, ViewContainerRef, ComponentFactory, ComponentRef, ComponentFactoryResolver
 } from '@angular/core';
@@ -22,14 +21,18 @@ import {
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
   CalendarDateFormatter,
-  DAYS_OF_WEEK
+  DAYS_OF_WEEK,
+  CalendarMonthViewDay, CalendarWeekViewEventRow, CalendarWeekViewEvent
+
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import {DayViewComponent} from '../day-view/day-view.component';
-import * as events from 'events';
 import {RoomService} from '../../../http-api/room/room.service';
 import {RoomResponse} from '../../../http-api/room/RoomResponse';
 import {RoomBooking} from '../../../http-api/room/RoomBooking';
+import {GetPatientsService} from '../../get-patients.service';
+import { SidebarPanelService} from '../../sidebar/sidebar-panel.service';
+import {Patient} from '../../sidebar/planning/infoheader/Patient';
 
 const colors: any = {
   red: {
@@ -50,12 +53,20 @@ const colors: any = {
   selector: 'app-calender-view',
   templateUrl: './calender-view.component.html',
   styleUrls: ['./calender-view.component.css'],
+  encapsulation: ViewEncapsulation.None,
 
   providers: [
     {
       provide: CalendarDateFormatter,
       useClass: CustomDateFormatter
     }
+  ],
+  styles: [
+    `
+   .odd-cell {
+      background-color: pink !important;
+    }
+  `
   ]
 })
 export class CalenderViewComponent implements OnInit {
@@ -117,13 +128,34 @@ export class CalenderViewComponent implements OnInit {
 
   activeDayIsOpen = true;
 
-
   createResourceTrack(events: CalendarEvent[], title: string) {
     const factory: ComponentFactory<DayViewComponent> = this.resolver.resolveComponentFactory(DayViewComponent);
     const componentRef: ComponentRef<DayViewComponent> = this.container.createComponent(factory);
     componentRef.instance.events = events;
     componentRef.instance.title = title;
     componentRef.instance.viewDate = this.viewDate;
+  }
+
+  beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
+    if (this.currentPatient)  {
+    body.forEach(day => {
+      if (day.date.getMonth() > this.currentPatient.Tid.getMonth()  || (day.date.getDate() > this.currentPatient.Tid.getDate() && day.date.getMonth() === this.currentPatient.Tid.getMonth())) {
+        day.cssClass = 'odd-cell';
+      }
+    });
+    }
+  }
+
+  refreshView() {
+    this.refresh.next();
+  }
+
+
+
+
+
+  combineEvents() {
+    this.events = this.eventsNew;
   }
 
   updateRooms($event, room: RoomResponse) {
@@ -206,8 +238,18 @@ export class CalenderViewComponent implements OnInit {
     }
   }
 
-  constructor(private modal: NgbModal, private resolver: ComponentFactoryResolver, private roomService: RoomService) {}
 
+  currentPatient: Patient;
+
+  getPatient() {
+    this.currentPatient = this.gpService.currentPatient;
+  }
+
+
+
+  constructor(private modal: NgbModal, private gpService: GetPatientsService, private spService: SidebarPanelService, private resolver: ComponentFactoryResolver, private roomService: RoomService) {
+    this.gpService.changedPatient.subscribe( () => {this.getPatient(); this.refreshView();})
+  }
 
   close() {}
 
