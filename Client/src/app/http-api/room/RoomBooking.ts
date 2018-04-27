@@ -8,5 +8,5 @@ export class RoomBooking {
   DecisionId: number;
   UserId: number;
 
-  Booked_room: BookedRoom;
+  Booked_local: BookedRoom;
 }
