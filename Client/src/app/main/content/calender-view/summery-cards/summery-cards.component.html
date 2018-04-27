@@ -95,13 +95,18 @@
             <div class="input-group">
 
               <div class="input-group-prepend">
-                <span class="input-group-text" id="eventTitle">Titel: </span>
+                <span class="input-group-text">Titel:</span>
                 <input type="text" class="form-control" aria-describedby="eventTitle" [(ngModel)]="title"/>
               </div>
 
-              <div class="input-group-append">
-                <span class="input-group-text btn glyphicon glyphicon-calendar"> Start Tid:</span>
-                <input type="datetime-local" class="form-control" [value]="startDate" [(ngModel)]="startDate"/>
+              <div class="input-group-prepend">
+                <span class="input-group-text">Start Tid:</span>
+                <input type="datetime-local" class="form-control" [value]="startDate.getDate()" [(ngModel)]="startDate"/>
+              </div>
+
+              <div class="input-group-prepend">
+                <span class="input-group-text">Slut Tid:</span>
+                <input type="datetime-local" class="form-control" [value]="startDate.getDate()" [(ngModel)]="endDate"/>
               </div>
             </div>
           </div>

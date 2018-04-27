@@ -35,6 +35,7 @@ export class SummeryCardsComponent implements OnInit {
   dr: string;
   title: string;
   startDate: Date;
+  endDate: Date;
 
   constructor(private gpService: GetPatientsService, private procService: ProcedureService, private eventService: BookingService) {
     this.patient = this.getPatient();
