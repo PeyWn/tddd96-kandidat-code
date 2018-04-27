@@ -26,7 +26,7 @@ export class PlanningComponent implements OnInit {
     this.patient = this.getPatient();
   }
   ngOnInit() {
-    this.getProcedureMaterial(this.getPatient().KVA);
+    this.getProcedureMaterial(this.getPatient().procedures[0].kvåCode); // TODO There can be multiple procedures
   }
 
   getPatient(): Patient {

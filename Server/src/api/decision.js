@@ -77,4 +77,19 @@ module.exports.initAPI = function(APP) {
       }
     });
   });
+
+  APP.get('/decision/:id/booking', function (req, res) {
+    DB.Decision.findById(req.params.id).then(function(decision) {
+      if (decision) {
+        decision.getBooking().then(function(booking) {
+          res.send(booking);
+        }).catch(function(err) {
+          console.log(err);
+          res.status(500).send(err);
+        });
+      } else {
+        res.status(404).send('Decision not found');
+      }
+    });
+  });
 };
