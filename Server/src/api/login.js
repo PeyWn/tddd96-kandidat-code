@@ -46,13 +46,13 @@ module.exports.initAPI = function(APP) {
         return next(err);
       }
       if (!user) {
-        return res.send({ success : false, message : 'Incorrect login details' });
+        return res.send({ success : false, message : 'Felaktigt användarnamn eller lösenord' });
       }
       req.login(user, loginErr => {
         if (loginErr) {
           return next(loginErr);
         }
-        return res.send({ success : true, message : 'Successful login' });
+        return res.send({ success : true, message : '' });
       });
     })(req, res, next);
   });

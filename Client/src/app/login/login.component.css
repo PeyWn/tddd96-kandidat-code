@@ -1,8 +1,10 @@
 #errormessage {
-  color:red;
+  color: red;
+  height: 1em;
+  text-align: center;
 }
 
-#logincaption {
+.caption {
   color: whitesmoke;
 }
 

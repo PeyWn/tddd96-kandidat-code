@@ -1,12 +1,14 @@
 <div class="container-fluid bordercomponent">
 
-  <h2 id="logincaption" class="text-center">Inlogging</h2>
+  <h1 class="text-center caption">Aeon</h1><br>
 
   <div class="form-group">
+    <span class="caption">Användarnamn:</span>
     <input #username type="text" class="form-control" placeholder="Användarnamn">
   </div>
 
   <div class="form-group">
+    <span class="caption">Lösenord:</span>
     <input #password type="password" class="form-control" placeholder="Lösenord">
   </div>
 
@@ -15,6 +17,6 @@
   </div>
 
   <div class="form-group">
-    <div id="errormessage" *ngIf="loginService.previousError != ''">Felaktigt användarnamn eller lösenord</div>
+    <div id="errormessage">{{this.loginService.previousError}}</div>
   </div>
 </div>
