@@ -6,8 +6,9 @@ import {Component, ComponentFactoryResolver, OnInit, Input} from '@angular/core'
   styleUrls: ['./day-view.component.css']
 })
 export class DayViewComponent implements OnInit {
-  viewDate = new Date();
+  @Input() viewDate = new Date();
   @Input() events;
+  @Input() title;
   constructor() {}
 
 

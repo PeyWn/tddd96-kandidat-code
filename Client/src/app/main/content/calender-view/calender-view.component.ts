@@ -27,6 +27,9 @@ import {
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import {DayViewComponent} from '../day-view/day-view.component';
 import * as events from 'events';
+import {RoomService} from '../../../http-api/room/room.service';
+import {RoomResponse} from '../../../http-api/room/RoomResponse';
+import {RoomBooking} from '../../../http-api/room/RoomBooking';
 
 const colors: any = {
   red: {
@@ -56,7 +59,8 @@ const colors: any = {
   ]
 })
 export class CalenderViewComponent implements OnInit {
-
+  roomEvents: {[index: string]: CalendarEvent[]} = {};
+  rooms: RoomResponse[];
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
   @ViewChild('dayView', { read: ViewContainerRef}) container;
 
@@ -91,22 +95,6 @@ export class CalenderViewComponent implements OnInit {
     }
   ];
   refresh: Subject<any> = new Subject();
-  rooms: CalendarEvent[] = [
-    {
-      start: addHours(startOfDay(new Date()), 3),
-      end: addHours(startOfDay(new Date()), 14),
-      title: 'Sal1',
-      color: colors.blue,
-      actions: this.actions,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 7),
-      end: addHours(startOfDay(new Date()), 9),
-      title: 'Sal2',
-      color: colors.red,
-      actions: this.actions,
-    }
-  ];
   surgeons: CalendarEvent[] = [
     {
       start: addHours(startOfDay(new Date()), 5),
@@ -124,56 +112,49 @@ export class CalenderViewComponent implements OnInit {
     }
   ];
 
-  //Mock data for resources
-  roomEvents: Array<CalendarEvent[]>=[[
-    {
-      start: addHours(startOfDay(new Date()), 3),
-      end: addHours(startOfDay(new Date()), 14),
-      title: 'Sal1',
-      color: colors.blue,
-      actions: this.actions
-    }
-  ],[
-    {
-      start: addHours(startOfDay(new Date()), 7),
-      end: addHours(startOfDay(new Date()), 9),
-      title: 'Sal2',
-      color: colors.red,
-      actions: this.actions,
-    }
-  ]];
-  events: CalendarEvent[] = this.rooms;
+  events: CalendarEvent[];
   eventsNew: CalendarEvent[] = [];
 
   activeDayIsOpen = true;
 
-  combineEvents() {
-    this.events = this.eventsNew;
-  }
-  setRooms() {
-    this.events = this.rooms;
-  }
-  setDoctors() {
-    this.events = this.surgeons;
-  }
 
-  createDay() {
-    //const factory: ComponentFactory<DayViewComponent> = this.resolver.resolveComponentFactory(DayViewComponent);
-    //const componentRef: ComponentRef<DayViewComponent> = this.container.createComponent(factory);
-    //componentRef.instance.events = this.roomEvents[0];
-    this.listRoomEvents();
-  }
-
-  createResourceTrack(events: CalendarEvent[]) {
+  createResourceTrack(events: CalendarEvent[], title: string) {
     const factory: ComponentFactory<DayViewComponent> = this.resolver.resolveComponentFactory(DayViewComponent);
     const componentRef: ComponentRef<DayViewComponent> = this.container.createComponent(factory);
     componentRef.instance.events = events;
+    componentRef.instance.title = title;
+    componentRef.instance.viewDate = this.viewDate;
+  }
+
+  updateRooms($event, room: RoomResponse) {
+    if($event.target.checked){
+      this.roomEvents[room.name] = [];
+      this.roomService.getBookingsForRoom(room.id).subscribe((bookings: RoomBooking[])=> {
+        for(let i = 0; i < bookings.length; i++) {
+          console.log(bookings[i].Booked_local);
+          console.log(this.roomEvents);
+          this.roomEvents[room.name] = [{start: new Date(bookings[i].Booked_local.start_time),
+            end: new Date(bookings[i].Booked_local.end_time),
+            title: 'hej',
+            color: colors.blue,
+            actions: this.actions}];
+        }
+        this.listRoomEvents();
+      });
+    } else {
+      delete this.roomEvents[room.name];
+      this.listRoomEvents();
+    }
   }
 
   listRoomEvents() {
-    for(let i = 0; i < this.roomEvents.length; i++) {
-      this.createResourceTrack(this.roomEvents[i]);
+    this.container.clear();
+    for(let key in this.roomEvents){
+      this.createResourceTrack(this.roomEvents[key], key);
     }
+    // for(let i = 0; i < this.roomEvents.length; i++) {
+    //   this.createResourceTrack(this.roomEvents[i]);
+    // }
   }
 
 
@@ -225,7 +206,7 @@ export class CalenderViewComponent implements OnInit {
     }
   }
 
-  constructor(private modal: NgbModal, private resolver: ComponentFactoryResolver) {}
+  constructor(private modal: NgbModal, private resolver: ComponentFactoryResolver, private roomService: RoomService) {}
 
 
   close() {}
@@ -280,6 +261,9 @@ export class CalenderViewComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.setupCombination(this.rooms, this.surgeons);
+    //this.setupCombination(this.rooms, this.surgeons);
+    this.roomService.getRoomsByType(1).subscribe((rooms: RoomResponse[])=>{
+      this.rooms = rooms;
+    })
   }
 }
