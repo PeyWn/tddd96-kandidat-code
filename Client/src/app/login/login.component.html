@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<div class="container-fluid bordercomponent">
 
-  <h2 class="text-center">Inlogging</h2>
+  <h2 id="logincaption" class="text-center">Inlogging</h2>
 
   <div class="form-group">
     <input #username type="text" class="form-control" placeholder="Användarnamn">
@@ -17,19 +17,4 @@
   <div class="form-group">
     <div id="errormessage" *ngIf="loginService.previousError != ''">Felaktigt användarnamn eller lösenord</div>
   </div>
-
-  <div class="clearfix">
-    <label class="pull-left checkbox-inline"><input type="checkbox">Kom ihåg mig</label>
-    <a href="#" class="pull-right">Glömt lösenord?</a>
-  </div>
-
-
 </div>
-
-
-
-<!--Användarnamn: <input #username type="text">
-Lösenord: <input #password type="password">
-<button (click)="login(username.value, password.value)">Logga in</button><br>
-<div id="errormessage" *ngIf="loginService.previousError != ''">{{loginService.previousError}}</div>
---->
