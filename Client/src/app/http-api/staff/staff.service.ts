@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {StaffResponse} from './StaffResponse';
 import {DecisionResponse} from '../decision/DecisionResponse';
 import {FreeTime} from '../freeTime/FreeTime';
+import {StaffBooking} from './StaffBooking';
 
 @Injectable()
 export class StaffService {
@@ -24,6 +25,10 @@ export class StaffService {
   }
 
   getWorkingTimesForStaff(id: number): Observable<FreeTime[]> {
-    return this.httpClient.get<FreeTime[]>('/staff/' + id + '/available/');
+    return this.httpClient.get<FreeTime[]>('/staff/' + id + '/available');
+  }
+
+  getBookingsForStaff(id: number): Observable<StaffBooking[]> {
+    return this.httpClient.get<StaffBooking[]>('/staff/' + id + '/booked');
   }
 }

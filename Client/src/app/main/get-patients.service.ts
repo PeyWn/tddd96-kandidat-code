@@ -11,6 +11,14 @@ export class GetPatientsService {
   patients: Array<Patient>;
   currentPatient: Patient;
 
+  setPatient(newPatient:Patient) {
+    this.currentPatient = newPatient;
+    this.changedPatient.emit();
+
+  }
+
+  @Output() changedPatient = new EventEmitter();
+
   @Output() fetchedPatient = new EventEmitter();
 
   constructor(
