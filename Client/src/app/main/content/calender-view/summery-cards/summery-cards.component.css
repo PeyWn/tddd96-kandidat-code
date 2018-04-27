@@ -25,3 +25,10 @@
   background-color: whitesmoke;
   color: #333333;
 }
+
+span{
+  width: 45%;
+  padding: 2px;
+  margin: 0;
+  font-size: small;
+}
