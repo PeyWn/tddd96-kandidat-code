@@ -91,32 +91,20 @@
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title" style="font-size: large; font-weight: bold;">SoonToBeTheMighty------>BokingsRutan</h5>
-        <div class="input-group mb-3">
+         <div class="form-group">
+            <div class="input-group">
 
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="eventTitle">Titel: </span>
-            <input type="text" class="form-control" aria-describedby="eventTitle" [(ngModel)]="title"/>
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="eventTitle">Titel: </span>
+                <input type="text" class="form-control" aria-describedby="eventTitle" [(ngModel)]="title"/>
+              </div>
+
+              <div class="input-group-append">
+                <span class="input-group-text btn glyphicon glyphicon-calendar"> Start Tid:</span>
+                <input type="datetime-local" class="form-control" [value]="startDate" [(ngModel)]="startDate"/>
+              </div>
+            </div>
           </div>
-
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="eventStartDate">Start: </span>
-            <input type="date" class="form-control" aria-describedby="eventStartDate" [(ngModel)]="startDate"/>
-            <input type="time" placeholder="" class="form-control" aria-describedby="eventStartDate" [(ngModel)]="startDate"/>
-          </div>
-
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="eventEndDate">Slut: </span>
-            <input type="date" class="form-control" aria-describedby="eventEndDate" [(ngModel)]="startDate"/>
-        </div>
-
-
-
-      </div>
-
-      <div class="card-footer">
-        <button class="btn btn-primary" (click)="preliminary = false">Boka</button>
-        <button class="btn btn-primary" (click)="preliminary = true">Preliminärboka</button>
-
       </div>
     </div>
 

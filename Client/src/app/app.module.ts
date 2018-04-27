@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -66,7 +66,7 @@ import {BookingService} from './http-api/booking/booking.service';
     ButtonpanelOverviewComponent,
     TitlebarViewComponent,
     DecisionsComponent,
-    SummeryCardsComponent,
+    SummeryCardsComponent
 
   ],
   imports: [
@@ -77,6 +77,7 @@ import {BookingService} from './http-api/booking/booking.service';
     CalendarModule.forRoot(),
     CommonModule,
     NgbModalModule.forRoot(),
+    NgbModule.forRoot()
   ],
   providers: [
     CurrentViewService,
