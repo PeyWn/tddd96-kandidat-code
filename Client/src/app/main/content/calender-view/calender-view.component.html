@@ -29,13 +29,16 @@
         mwlCalendarPreviousView
         [view]="view"
         [(viewDate)]="viewDate"
-        (viewDateChange)="activeDayIsOpen = false">
+        (viewDateChange)="activeDayIsOpen = false"
+        (click)="refreshView()">
         Tidigare
       </div>
       <div
         class="btn btn-outline-secondary"
         mwlCalendarToday
-        [(viewDate)]="viewDate">
+        [(viewDate)]="viewDate"
+        (click)="refreshView()">
+        Tidigare
         Idag
       </div>
       <div
@@ -43,7 +46,8 @@
         mwlCalendarNextView
         [view]="view"
         [(viewDate)]="viewDate"
-        (viewDateChange)="activeDayIsOpen = false">
+        (viewDateChange)="activeDayIsOpen = false"
+        (click)="refreshView()">
         Nästa
       </div>
     </div>
@@ -78,10 +82,6 @@
 
 <div class="row text-center">
   <div class="col-md">
-    <button class="btn btn-primary" (click)="combineEvents()">Kirurger och salar</button>
-    <button class="btn btn-primary" (click)="setRooms()">Salar</button>
-    <button class="btn btn-primary" (click)="setDoctors()">Kirurger</button>
-    <button class="btn btn-primary" (click)="createDay()">Skapa dagsvy</button>
     <div class="btn-group pull-right">
 
       <button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -130,9 +130,9 @@
         (beforeViewRender) = "beforeWeekViewRender($event)">
       </mwl-calendar-week-view>
 
-      <ul *ngSwitchCase="'day'">
+      <div class="tracks-day-view">
           <template #dayView></template>
-      </ul>
+      </div>
     </div>
 
   </div>

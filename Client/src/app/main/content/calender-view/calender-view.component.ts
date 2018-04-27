@@ -248,7 +248,14 @@ export class CalenderViewComponent implements OnInit {
 
 
   constructor(private modal: NgbModal, private gpService: GetPatientsService, private spService: SidebarPanelService, private resolver: ComponentFactoryResolver, private roomService: RoomService) {
-    this.gpService.changedPatient.subscribe( () => {this.getPatient(); this.refreshView();})
+    this.gpService.changedPatient.subscribe( () => {this.getPatient(); this.refreshView()});
+    this.refresh.subscribe(() => {
+      console.log('Could this be a beautiful day?');
+      if(this.view === 'day'){
+        console.log('it is a beautiful day!');
+        this.listRoomEvents();
+      }
+    });
   }
 
   close() {}

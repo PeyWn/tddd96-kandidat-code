@@ -1,6 +1,6 @@
 <!--<div *ngSwitchCase="'day'">{{ viewDate | calendarDate:(view + 'ViewTitle'):'sv' }}</div>-->
-<li>
-  <label>{{title}}</label>
+<div class="track-day">
+  <h1>{{title}}</h1>
   <mwl-calendar-day-view
     [viewDate]="viewDate"
     [events]="events"
@@ -10,4 +10,4 @@
     (eventTimesChanged)="eventTimesChanged($event)"
     class="day-view-track">
   </mwl-calendar-day-view>
-</li>
+</div>
