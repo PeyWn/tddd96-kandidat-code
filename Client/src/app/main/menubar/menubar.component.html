@@ -1,5 +1,5 @@
 <div class="container-fluid">
   <div *ngIf="updatePanel() == 'planning'" style="float: left; color: whitesmoke">Namn: {{patient.Namn}}  Personnummer: {{patient.Personnummer}}</div>
-  <input type="button" value="Logga ut" style="float: right;" (click)="loginService.logout()">
+  <input type="button" class="btn-xs btn-primary" value="Logga ut" style="float: right;" (click)="loginService.logout()">
   <div id="loggedinas">Inloggad som: {{loginService.username}}</div>
 </div>
