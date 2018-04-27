@@ -4,7 +4,6 @@ import {Patient} from "../../../sidebar/planning/infoheader/Patient";
 import {ProcedureService} from "../../../../http-api/procedure/procedure.service";
 import {MaterialResponse} from "../../../../http-api/material/MaterialResponse";
 import {BookingService} from "../../../../http-api/booking/booking.service";
-import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 
 import {
 startOfDay,
@@ -16,6 +15,8 @@ isSameDay,
 isSameMonth,
 addHours
 } from 'date-fns';
+import {RoomResponse} from "../../../../http-api/room/RoomResponse";
+import {RoomService} from "../../../../http-api/room/room.service";
 
 
 
@@ -28,6 +29,8 @@ export class SummeryCardsComponent implements OnInit {
 
   @Input() patient: Patient;
   material: Array<MaterialResponse> = [];
+  rooms: RoomResponse[];
+  currentRoom;
   materialList = true;
   urgency: string;
   preliminary = false;
@@ -37,7 +40,8 @@ export class SummeryCardsComponent implements OnInit {
   startDate: Date;
   endDate: Date;
 
-  constructor(private gpService: GetPatientsService, private procService: ProcedureService, private eventService: BookingService) {
+  constructor(private gpService: GetPatientsService, private procService: ProcedureService, private eventService: BookingService, private roomService: RoomService
+  ) {
     this.patient = this.getPatient();
   }
 
@@ -51,7 +55,17 @@ export class SummeryCardsComponent implements OnInit {
 
     this.startDate = new Date();
     this.title = 'Åtgärd (TODO) \n' + this.patient.Namn + '\n Doktor';
-  }
+
+    this.roomService.getRoomsByType(1).subscribe((rooms: RoomResponse[])=>{
+      this.rooms = rooms;
+      if (this.rooms) {this.currentRoom = this.rooms[0]; }
+
+    });
+    }
+    setCurrentRoom(roomNum: string ) {
+       for (let i = 0; i < this.rooms.length; i++) {
+         if (this.rooms[i].name === roomNum) {
+            this.currentRoom = this.rooms[i]; } }}
 
   getPatient(): Patient {
     return this.gpService.currentPatient;
@@ -66,6 +80,6 @@ export class SummeryCardsComponent implements OnInit {
 
   onFormSubmit () {
     //this.eventService.createBooking(1, this.preliminary);
-    //this.eventService.addRoomToBooking(1, this.room, this.startDate, this.endDate);
+    //this.eventService.addRoomToBooking(1, this.currentRoom, this.startDate, this.endDate);
   }
 }

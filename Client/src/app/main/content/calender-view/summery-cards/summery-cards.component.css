@@ -26,6 +26,10 @@
   color: #333333;
 }
 
+select.form-control:not([size]):not([multiple]) {
+  height: auto;
+}
+
 span{
   width: 45%;
   padding: 2px;

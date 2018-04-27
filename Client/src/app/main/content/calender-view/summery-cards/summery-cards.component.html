@@ -108,9 +108,18 @@
                 <span class="input-group-text">Slut Tid:</span>
                 <input type="datetime-local" class="form-control" [value]="startDate.getDate()" [(ngModel)]="endDate"/>
               </div>
+
+
+              <div class="input-group-prepend">
+                <span class="input-group-text">Operationssal:</span>
+                <select #selectedRoom class="form-control" (change)="setCurrentRoom(selectedRoom.value)">
+                  <option *ngFor="let room of rooms">{{room.name}}</option>
+                </select>
+              </div>
             </div>
           </div>
       </div>
     </div>
 
   </div>
+<div>{{currentRoom.name}}</div>
