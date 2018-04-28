@@ -130,7 +130,7 @@
         (beforeViewRender) = "beforeWeekViewRender($event)">
       </mwl-calendar-week-view>
 
-      <div class="tracks-day-view">
+      <div class="tracks-day-view" *ngSwitchCase="'day'">
           <template #dayView></template>
       </div>
     </div>
