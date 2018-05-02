@@ -21,7 +21,7 @@
   </div>
 </ng-template>
 
-<div class="row text-center">
+<div class="row text-center" style="margin: 0">
   <div class="col-md-4">
     <div class="btn-group">
       <div
@@ -71,12 +71,19 @@
         [class.active]="view === 'day'">
         Dag
       </div>
+      <div *ngIf="currentPatient"
+        class="btn btn-primary"
+        (click)="view = 'summery'"
+        [class.active]="view === 'summery'">
+        Sammanfattning
+      </div>
+
     </div>
   </div>
 </div>
 <br>
 
-<div class="row text-center">
+<div class="row text-center" style="margin: 0">
   <div class="col-md">
     <button class="btn btn-primary" (click)="combineEvents()">Kirurger och salar</button>
     <button class="btn btn-primary" (click)="setRooms()">Salar</button>
@@ -85,9 +92,11 @@
 </div>
 <br>
 
-<div class="row a">
+<div class="row a" style="margin: 0">
   <div class="col col-a">
     <div [ngSwitch]="view">
+
+      <div id ="summery-cards" *ngSwitchCase="'summery'"><app-summery-cards></app-summery-cards></div>
 
       <mwl-calendar-month-view
         *ngSwitchCase="'month'"

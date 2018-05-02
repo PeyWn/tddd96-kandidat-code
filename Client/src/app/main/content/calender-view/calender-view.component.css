@@ -1,46 +1,4 @@
-h3 {
-  margin: 0 0 10px;
+.odd-cell {
+  background-color: pink !important;
 }
 
-pre {
-  background-color: #f5f5f5;
-  padding: 15px;
-}
-
-.row {
-  margin: 0;
-}
-
-.myclass a {
-  color: purple !important;
-  background-color: mediumseagreen !important;
-  float: right;
-}
-.row.a {
-  padding: 1% 1% 0 1%;
-}
-
-.col-md.col-a {
-  padding: 0;
-}
-
-.table {
-  height: 100%;
-  padding: 0 1% 0 1%;
-}
-
-ul {
-  display: flex;
-  overflow-x: auto;
-  margin: 2px;
-  padding: 1em;
-}
-
-li {
-  list-style-type: none;
-  margin: auto 10px;
-}
-
-li > div {
-  text-align: center;
-}

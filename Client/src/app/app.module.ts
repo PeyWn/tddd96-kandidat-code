@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -33,6 +33,7 @@ import {CommonModule} from '@angular/common';
 // Language fix
 import { registerLocaleData } from '@angular/common';
 import localeSv from '@angular/common/locales/sv';
+import { SummeryCardsComponent } from './main/content/calender-view/summery-cards/summery-cards.component';
 registerLocaleData(localeSv);
 import {DecisionService} from './http-api/decision/decision.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -67,7 +68,8 @@ import { LoginComponent } from './login/login.component';
     ButtonpanelOverviewComponent,
     TitlebarViewComponent,
     DecisionsComponent,
-    LoginComponent,
+    SummeryCardsComponent,
+    LoginComponent
 
   ],
   imports: [
@@ -78,6 +80,7 @@ import { LoginComponent } from './login/login.component';
     CalendarModule.forRoot(),
     CommonModule,
     NgbModalModule.forRoot(),
+    NgbModule.forRoot()
   ],
   providers: [
     CurrentViewService,

@@ -6,16 +6,6 @@
   padding: 4px;
 }
 
-.red-bg {
-  background-color: #dd0000;
-}
-
-.blue-bg {
-  background-color: #1e7faa;
-  color: whitesmoke;
-
-}
-
 
 .blue-bg:hover {
   background-color: #177288;
