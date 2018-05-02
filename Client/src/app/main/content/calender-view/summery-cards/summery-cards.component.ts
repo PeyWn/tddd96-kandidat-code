@@ -46,7 +46,7 @@ export class SummeryCardsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProcedureMaterial(this.getPatient().KVA);
+    this.getProcedureMaterial(this.getPatient().procedures[0].kvåCode); //TODO: There can be multiple procedures
     if (this.patient.Bradskandegrad) {
       this.urgency = 'AKUT';
     } else {
