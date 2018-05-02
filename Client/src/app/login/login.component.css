@@ -1,0 +1,23 @@
+#errormessage {
+  color: red;
+  height: 1em;
+  text-align: center;
+}
+
+.caption {
+  color: whitesmoke;
+}
+
+.container-fluid {
+  width: 340px;
+  margin: auto;
+  background-color: #0d2b37;
+  padding: 30px;
+}
+
+.btn {
+  min-height: 38px;
+  border-radius: 2px;
+  font-size: 15px;
+  font-weight: bold;
+}
