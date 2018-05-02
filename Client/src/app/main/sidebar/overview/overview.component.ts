@@ -14,8 +14,8 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
   }
 
-  filterSearch($event: Array<any>): void {
-    this.decisions.searchList($event);
+  filterSearch(searchTerm: string): void {
+    this.decisions.searchList(searchTerm);
   }
 
   recieveModifiers($event: string): void {
