@@ -125,13 +125,19 @@
         [locale]="locale"
         [weekStartsOn]="weekStartsOn"
         (eventClicked)="handleEvent('Clicked', $event.event)"
-        (eventTimesChanged)="eventTimesChanged($event)"
-
-        (beforeViewRender) = "beforeWeekViewRender($event)">
+        (eventTimesChanged)="eventTimesChanged($event)">
       </mwl-calendar-week-view>
 
       <div class="tracks-day-view" *ngSwitchCase="'day'">
-          <template #dayView></template>
+          <!--<template #dayView></template>-->
+        <app-day-track-view
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        [locale]="locale"
+        (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventTimesChnaged)="eventTimesChanged($event)">
+        </app-day-track-view>
       </div>
     </div>
 

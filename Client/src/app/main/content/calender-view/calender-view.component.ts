@@ -123,7 +123,7 @@ export class CalenderViewComponent implements OnInit {
     }
   ];
 
-  events: CalendarEvent[];
+  events: CalendarEvent[] = this.surgeons;
   eventsNew: CalendarEvent[] = [];
 
   activeDayIsOpen = true;
@@ -134,6 +134,7 @@ export class CalenderViewComponent implements OnInit {
     componentRef.instance.events = events;
     componentRef.instance.title = title;
     componentRef.instance.viewDate = this.viewDate;
+    componentRef.instance.refresh = this.refresh;
   }
 
   beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
@@ -149,9 +150,6 @@ export class CalenderViewComponent implements OnInit {
   refreshView() {
     this.refresh.next();
   }
-
-
-
 
 
   combineEvents() {
@@ -181,12 +179,10 @@ export class CalenderViewComponent implements OnInit {
 
   listRoomEvents() {
     this.container.clear();
+    if(this.view === 'day')
     for(let key in this.roomEvents){
       this.createResourceTrack(this.roomEvents[key], key);
     }
-    // for(let i = 0; i < this.roomEvents.length; i++) {
-    //   this.createResourceTrack(this.roomEvents[i]);
-    // }
   }
 
 
@@ -247,15 +243,19 @@ export class CalenderViewComponent implements OnInit {
 
 
 
-  constructor(private modal: NgbModal, private gpService: GetPatientsService, private spService: SidebarPanelService, private resolver: ComponentFactoryResolver, private roomService: RoomService) {
-    this.gpService.changedPatient.subscribe( () => {this.getPatient(); this.refreshView()});
-    this.refresh.subscribe(() => {
-      console.log('Could this be a beautiful day?');
-      if(this.view === 'day'){
-        console.log('it is a beautiful day!');
-        this.listRoomEvents();
-      }
-    });
+  constructor(private modal: NgbModal,
+              private gpService: GetPatientsService,
+              private spService: SidebarPanelService,
+              private resolver: ComponentFactoryResolver,
+              private roomService: RoomService) {
+    this.gpService.changedPatient.subscribe( () => {this.getPatient(); this.refreshView();});
+    // this.refresh.subscribe(() => {
+    //   if(this.view === 'day'){
+    //     this.listRoomEvents();
+    //   } else {
+    //    this.container.clear();
+    //   }
+    //     });
   }
 
   close() {}

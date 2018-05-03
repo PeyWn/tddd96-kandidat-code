@@ -1,18 +1,12 @@
-import {Component, ComponentFactoryResolver, OnInit, Input} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit, Input, ChangeDetectorRef} from '@angular/core';
+import {Subject} from 'rxjs/Subject';
+import {CalendarDayViewComponent, CalendarUtils} from 'angular-calendar';
 
 @Component({
-  selector: 'app-day-view',
+  selector: 'app-day-track-view',
   templateUrl: './day-view.component.html',
   styleUrls: ['./day-view.component.css']
 })
-export class DayViewComponent implements OnInit {
-  @Input() viewDate = new Date();
-  @Input() events;
+export class DayViewComponent extends CalendarDayViewComponent {
   @Input() title;
-  constructor() {}
-
-
-  ngOnInit() {
-  }
-
 }
