@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {DecisionResponse} from './DecisionResponse';
 import {Observable} from 'rxjs/Observable';
 import {ProcedureResponse} from '../procedure/ProcedureResponse';
+import {BookingResponse} from '../booking/BookingResponse';
 
 
 @Injectable()
@@ -21,5 +22,9 @@ export class DecisionService {
 
   getProceduresForDecision(decisionId: number): Observable<ProcedureResponse[]> {
     return this.httpClient.get<ProcedureResponse[]>('/decision/' + decisionId + '/procedures');
+  }
+
+  getBookingForDecision(decisionId: number): Observable<BookingResponse> {
+    return this.httpClient.get<BookingResponse>('/decision/' + decisionId + '/booking');
   }
 }
