@@ -38,7 +38,6 @@
         mwlCalendarToday
         [(viewDate)]="viewDate"
         (click)="refreshView()">
-        Tidigare
         Idag
       </div>
       <div
@@ -133,6 +132,7 @@
         <app-day-track-view
         [viewDate]="viewDate"
         [events]="events"
+        [resourceSchedules]="roomEvents"
         [refresh]="refresh"
         [locale]="locale"
         (eventClicked)="handleEvent('Clicked', $event.event)"

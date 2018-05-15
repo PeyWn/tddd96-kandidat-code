@@ -75,7 +75,7 @@ export class CalenderViewComponent implements OnInit {
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
   @ViewChild('dayView', { read: ViewContainerRef}) container;
 
-  view: string = 'month';
+  view: string = 'day';
 
   viewDate: Date = new Date();
   modalData: {
@@ -123,6 +123,7 @@ export class CalenderViewComponent implements OnInit {
     }
   ];
 
+
   events: CalendarEvent[] = this.surgeons;
   eventsNew: CalendarEvent[] = [];
 
@@ -159,6 +160,7 @@ export class CalenderViewComponent implements OnInit {
   updateRooms($event, room: RoomResponse) {
     if($event.target.checked){
       this.roomEvents[room.name] = [];
+      this.events = [];
       this.roomService.getBookingsForRoom(room.id).subscribe((bookings: RoomBooking[])=> {
         for(let i = 0; i < bookings.length; i++) {
           console.log(bookings[i].Booked_local);
@@ -168,6 +170,11 @@ export class CalenderViewComponent implements OnInit {
             title: 'hej',
             color: colors.blue,
             actions: this.actions}];
+          this.events.push({start: new Date(bookings[i].Booked_local.start_time),
+            end: new Date(bookings[i].Booked_local.end_time),
+            title: 'hej',
+            color: colors.blue,
+            actions: this.actions})
         }
         this.listRoomEvents();
       });
@@ -175,14 +182,15 @@ export class CalenderViewComponent implements OnInit {
       delete this.roomEvents[room.name];
       this.listRoomEvents();
     }
+    this.refresh;
   }
 
   listRoomEvents() {
-    this.container.clear();
-    if(this.view === 'day')
-    for(let key in this.roomEvents){
-      this.createResourceTrack(this.roomEvents[key], key);
-    }
+    // this.container.clear();
+    // if(this.view === 'day')
+    // for(let key in this.roomEvents){
+    //   this.createResourceTrack(this.roomEvents[key], key);
+    // }
   }
 
 
@@ -256,6 +264,7 @@ export class CalenderViewComponent implements OnInit {
     //    this.container.clear();
     //   }
     //     });
+    this.roomEvents["hej"] = this.surgeons;
   }
 
   close() {}
