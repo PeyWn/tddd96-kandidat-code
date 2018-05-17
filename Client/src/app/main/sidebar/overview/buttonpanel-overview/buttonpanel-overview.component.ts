@@ -26,9 +26,8 @@ export class ButtonpanelOverviewComponent implements OnInit {
   ngOnInit() {
   }
 
-  search(category: string, filterType: boolean) {
-    let filterArray = [category, filterType, this.searchTxt];
-    this.searchMessage.emit(filterArray);
+  search() {
+    this.searchMessage.emit(this.searchTxt);
   }
 
 
