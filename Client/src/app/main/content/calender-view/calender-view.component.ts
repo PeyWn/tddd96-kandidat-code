@@ -22,7 +22,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarDateFormatter,
   DAYS_OF_WEEK,
-  CalendarMonthViewDay, CalendarWeekViewEventRow, CalendarWeekViewEvent
+  CalendarMonthViewDay
 
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';

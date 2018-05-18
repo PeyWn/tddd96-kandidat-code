@@ -1,0 +1,38 @@
+.card {
+  background-color: whitesmoke;
+  min-width: 300px;
+}
+
+.card > .card-footer {
+  background-color: whitesmoke;
+}
+
+.card > .list-group{
+  padding: 0 5px 5px 5px;
+  margin: 0;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.red-primary {
+  background-color: #ae0000;
+  color: whitesmoke;
+}
+
+.red-secondary {
+  background-color: whitesmoke;
+  color: #333333;
+}
+
+select.form-control:not([size]):not([multiple]) {
+  height: auto;
+}
+
+span{
+  width: 45%;
+  padding: 2px;
+  margin: 0;
+  font-size: small;
+}
