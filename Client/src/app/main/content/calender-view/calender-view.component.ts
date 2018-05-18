@@ -2,7 +2,7 @@
 import {
   Component,
   ViewChild,
-  TemplateRef, ViewEncapsulation, OnInit
+  TemplateRef, ViewEncapsulation, OnInit, ViewContainerRef, ComponentFactory, ComponentRef, ComponentFactoryResolver
 } from '@angular/core';
 import {
   startOfDay,
@@ -26,9 +26,17 @@ import {
 
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
-import  {GetPatientsService} from '../../get-patients.service';
+import {DayViewComponent} from '../day-view/day-view.component';
+import {RoomService} from '../../../http-api/room/room.service';
+import {RoomResponse} from '../../../http-api/room/RoomResponse';
+import {RoomBooking} from '../../../http-api/room/RoomBooking';
+import {GetPatientsService} from '../../get-patients.service';
 import { SidebarPanelService} from '../../sidebar/sidebar-panel.service';
 import {Patient} from '../../sidebar/planning/infoheader/Patient';
+import {ProcedureService} from '../../../http-api/procedure/procedure.service';
+import {forEach} from '@angular/router/src/utils/collection';
+import {DecisionService} from '../../../http-api/decision/decision.service';
+import {DecisionResponse} from '../../../http-api/decision/DecisionResponse';
 
 const colors: any = {
   red: {
@@ -66,9 +74,14 @@ const colors: any = {
   ]
 })
 export class CalenderViewComponent implements OnInit {
+  // Set upp for room selection list and track
+  roomEvents: {[index: string]: CalendarEvent[]} = {};
+  rooms: {[index: string]: RoomResponse} = {};
+  roomMap: {[index: string]: boolean} = {};
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
+  // What view is default
   view: string = 'month';
 
   viewDate: Date = new Date();
@@ -81,6 +94,8 @@ export class CalenderViewComponent implements OnInit {
   locale: string = 'sv';
 
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+
+  currentPatient: Patient;
 
   actions: CalendarEventAction[] = [
     {
@@ -98,48 +113,20 @@ export class CalenderViewComponent implements OnInit {
     }
   ];
   refresh: Subject<any> = new Subject();
-  rooms: CalendarEvent[] = [
-    {
-      start: addHours(startOfDay(new Date()), 3),
-      end: addHours(startOfDay(new Date()), 14),
-      title: 'Sal1',
-      color: colors.blue,
-      actions: this.actions,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 7),
-      end: addHours(startOfDay(new Date()), 9),
-      title: 'Sal2',
-      color: colors.red,
-      actions: this.actions,
-    }
-  ];
-  surgeons: CalendarEvent[] = [
-    {
-      start: addHours(startOfDay(new Date()), 5),
-      end: addHours(startOfDay(new Date()), 17),
-      title: 'Dr Björn',
-      color: colors.red,
-      actions: this.actions,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 1),
-      end: addHours(startOfDay(new Date()), 10),
-      title: 'Dr Tor',
-      color: colors.yellow,
-      actions: this.actions,
-    }
-  ];
 
-  events: CalendarEvent[] = this.rooms;
+  // Events, not used for track view but all other views
+  events: CalendarEvent[] = [];
   eventsNew: CalendarEvent[] = [];
 
-  activeDayIsOpen = true;
+  activeDayIsOpen = false;
 
+  // Hamdles the rendering of last day
   beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
     if (this.currentPatient)  {
     body.forEach(day => {
-      if (day.date.getMonth() > this.currentPatient.Tid.getMonth()  || (day.date.getDate() > this.currentPatient.Tid.getDate() && day.date.getMonth() === this.currentPatient.Tid.getMonth())) {
+      if (day.date.getMonth() > this.currentPatient.Tid.getMonth() ||
+         (day.date.getDate() > this.currentPatient.Tid.getDate() &&
+          day.date.getMonth() === this.currentPatient.Tid.getMonth())) {
         day.cssClass = 'odd-cell';
       }
     });
@@ -151,18 +138,23 @@ export class CalenderViewComponent implements OnInit {
   }
 
 
-
-
-
   combineEvents() {
     this.events = this.eventsNew;
   }
-  setRooms() {
-    this.events = this.rooms;
+
+  // Called when room selection is changed
+  updateRooms($event, room: string): void {
+    if (!this.roomMap[room]) {
+      this.roomMap[room] = true;
+      this.roomEvents[room] = [];
+      this.getTrack(this.rooms[room]);
+    } else {
+      this.roomMap[room] = false;
+      delete this.roomEvents[room];
+    }
+    this.refresh;
   }
-  setDoctors() {
-    this.events = this.surgeons;
-  }
+
 
   eventOverlap(event1: CalendarEvent, event2: CalendarEvent): CalendarEvent {
     let start1 = event1.start.getHours();
@@ -212,32 +204,37 @@ export class CalenderViewComponent implements OnInit {
     }
   }
 
-  currentPatient: Patient;
-
   getPatient() {
     this.currentPatient = this.gpService.currentPatient;
   }
 
 
+  constructor(private modal: NgbModal,
+              private gpService: GetPatientsService,
+              private spService: SidebarPanelService,
+              private resolver: ComponentFactoryResolver,
+              private roomService: RoomService,
+              private procedureService: ProcedureService,
+              private decisionService: DecisionService) {
+    this.gpService.changedPatient.subscribe( () => {
+      this.getPatient();
+      this.refreshView();
 
-  constructor(private modal: NgbModal, private gpService: GetPatientsService, private spService: SidebarPanelService) {
-    this.gpService.changedPatient.subscribe( () => {this.getPatient(); this.refreshView();})
+      // Load rooms
+      if (this.currentPatient != null) {
+        this.getRoomsByKva(this.currentPatient.procedures[0].kvåCode);
+      } else {
+        this.getAllRooms();
+      }
+
+    });
   }
 
   close() {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-        this.viewDate = date;
-      }
-    }
+    this.viewDate = date;
+    this.view = 'day';
   }
 
   eventTimesChanged({event, newStart, newEnd}: CalendarEventTimesChangedEvent): void {
@@ -275,7 +272,54 @@ export class CalenderViewComponent implements OnInit {
       }
     }
   }
-  ngOnInit() {
-    this.setupCombination(this.rooms, this.surgeons);
+
+  private getAllRooms(): void {
+    this.roomService.getRoomsByType(1).subscribe((rooms: RoomResponse[]) => {
+      this.roomEvents = {};
+      this.rooms = {};
+      this.roomMap = {};
+      for (let room of rooms) {
+        this.roomMap[room.name] = false;
+        this.rooms[room.name] = room;
+      }
+    });
   }
+
+  private getRoomsByKva(kva: string): void {
+    this.procedureService.getRoomsWithProcedure(kva).subscribe((rooms: RoomResponse[]) => {
+      this.roomEvents = {};
+      this.rooms = {};
+      this.roomMap = {};
+      for (let room of rooms) {
+        console.log('skapar track ' + room.name);
+        this.roomMap[room.name] = true;
+        this.rooms[room.name] = room;
+        this.getTrack(room);
+      }
+    });
+  }
+
+  private getTrack(room: RoomResponse): void {
+    console.log('getTrack ' + room.name);
+    this.roomService.getBookingsForRoom(room.id).subscribe((bookings: RoomBooking[]) => {
+      this.roomEvents[room.name] = [];
+        for (let i = 0; i < bookings.length; i++) {
+          console.log(bookings[i].Booked_local);
+          console.log(this.roomEvents);
+          this.decisionService.getDecision(bookings[i].DecisionId).subscribe((decision: DecisionResponse) => {
+            this.roomEvents[room.name].push({start: new Date(bookings[i].Booked_local.start_time),
+              end: new Date(bookings[i].Booked_local.end_time),
+              title: decision.PatientSsn,
+              color: colors.blue,
+              actions: this.actions});
+          });
+        }
+    });
+  }
+
+  ngOnInit() {
+    // this.setupCombination(this.rooms, this.surgeons);
+    this.getAllRooms();
+  }
+
 }

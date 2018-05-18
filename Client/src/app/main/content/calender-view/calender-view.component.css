@@ -30,17 +30,10 @@ pre {
 }
 
 ul {
-  display: flex;
+  display: inline-flex;
   overflow-x: auto;
   margin: 2px;
   padding: 1em;
-}
-
-li {
   list-style-type: none;
-  margin: auto 10px;
 }
 
-li > div {
-  text-align: center;
-}

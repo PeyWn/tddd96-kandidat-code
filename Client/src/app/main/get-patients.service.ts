@@ -12,7 +12,7 @@ export class GetPatientsService {
   patients: Array<Patient>;
   currentPatient: Patient;
 
-  setPatient(newPatient:Patient) {
+  setPatient(newPatient: Patient) {
     this.currentPatient = newPatient;
     this.changedPatient.emit();
 

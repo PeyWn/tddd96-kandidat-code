@@ -1,24 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit, Input, ChangeDetectorRef, Pipe, PipeTransform} from '@angular/core';
+import {Subject} from 'rxjs/Subject';
+import {CalendarDayViewComponent, CalendarUtils, CalendarEvent} from 'angular-calendar';
+import {validate} from 'codelyzer/walkerFactory/walkerFn';
 
 @Component({
-  selector: 'app-day-view',
+  selector: 'app-day-track-view',
   templateUrl: './day-view.component.html',
   styleUrls: ['./day-view.component.css']
 })
-export class DayViewComponent implements OnInit {
-  viewDate = new Date();
-  events = [{
-    title: 'TEST',
-    color: {
-      primary: '#e3bc08',
-      secondary: '#fdf1ba'
-    },
-    start: new Date(2018, 4, 16, 15)
-  }];
+export class DayViewComponent extends CalendarDayViewComponent {
+  @Input() title;
+  @Input() resourceSchedules: {[index: string]: CalendarEvent[]} = {};
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnChanges(changes: any): void {
+    if (changes.resourceSchedules) {
+      // validate(this.resourceSchedules);
+      this.refresh.next();
+    }
+    super.ngOnChanges(changes);
   }
 
 }

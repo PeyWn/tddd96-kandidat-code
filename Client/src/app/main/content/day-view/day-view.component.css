@@ -8,3 +8,12 @@
   height: 100%;
   margin: 0;
 }
+
+.track-day {
+  float: left;
+  min-width: 250px;
+}
+
+.track-day>h1{
+  text-align: center;
+}
