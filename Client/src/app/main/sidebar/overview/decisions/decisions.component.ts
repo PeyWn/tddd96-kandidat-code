@@ -97,29 +97,35 @@ export class DecisionsComponent implements OnInit {
       && this.applyBokadFilter(filterObject));
   }
 
+  strMatches(str1: string, str2: string): boolean {
+    return str1.indexOf(str2) !== -1 || str2.indexOf(str1) !== -1;
+  }
 
-  iteratePatients($event) {
+  iteratePatients(searchTerm: string): void {
     this.processList = [];
-    $event = $event.toLowerCase();
-    if ($event) {
+    if (searchTerm) {
+      searchTerm = searchTerm.toLowerCase();
+      outerloop:
       for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Namn.toLowerCase() === $event && this.applyFilters(this.decisionList[i])) {
-          this.processList.push(this.decisionList[i]);
+        let decision: Patient = this.decisionList[i];
+        if (!this.applyFilters(decision)) {
+          continue;
         }
-      }
-      for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].Personnummer === $event && this.applyFilters(this.decisionList[i])) {
-          this.processList.push(this.decisionList[i]);
+        for (let j = 0; j < decision.procedures.length; ++j) {
+          if (this.strMatches(decision.procedures[j].description.toLowerCase(), searchTerm) ||
+              this.strMatches(decision.procedures[j].kvåCode.toLowerCase(), searchTerm) || (
+                decision.procedures[j].DecisionProcedure.side !== null &&
+                this.strMatches(decision.procedures[j].DecisionProcedure.side.toLowerCase(), searchTerm)
+              )) {
+            this.processList.push(decision);
+            continue outerloop;
+          }
         }
-      }
-      for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].ICD10.toLowerCase() === $event && this.applyFilters(this.decisionList[i])) {
-          this.processList.push(this.decisionList[i]);
-        }
-      }
-      for (let i = 0; i < this.decisionList.length; i++) {
-        if (this.decisionList[i].procedures[0].description.toLowerCase() === $event && this.applyFilters(this.decisionList[i])) {
-          this.processList.push(this.decisionList[i]);
+        if (this.strMatches(decision.Bradskandegrad === true ? 'akut' : 'elektiv', searchTerm) ||
+            this.strMatches(decision.ICD10.toLowerCase(), searchTerm) ||
+            this.strMatches(decision.Namn.toLowerCase(), searchTerm) ||
+            this.strMatches(decision.Personnummer, searchTerm)) {
+          this.processList.push(decision);
         }
       }
       this.createComponents();
@@ -138,9 +144,8 @@ export class DecisionsComponent implements OnInit {
       this.createComponents();
     }
 
-  searchList($event) {
-    this.latestSearch = $event[2];
-    this.recieveFilters($event);
+  searchList(searchTerm: string): void {
+    this.latestSearch = searchTerm;
     this.iteratePatients(this.latestSearch);
   }
 

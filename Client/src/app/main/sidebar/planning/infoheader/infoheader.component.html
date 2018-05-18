@@ -5,8 +5,8 @@
 
       <div class="row">
         <div class="col-md">Namn: {{patient.Namn}}</div>
-        <div class="col-md-2" *ngIf="patient.Bokad"><span class="glyphicon glyphicon-ok text-right" style="color: limegreen; float: right; padding-right: 5px" data-toggle="tooltip" data-placement="top" title="Bokad"></span></div>
-        <div class="col-md-2" *ngIf="!patient.Bokad"><span class="glyphicon glyphicon-warning-sign text-right" style="color: orange; float: right; padding-right: 5px" data-toggle="tooltip" data-placement="top" title="Obokad"></span></div>
+        <div class="col-md-2" *ngIf="patient.booking !== null"><span class="glyphicon glyphicon-ok text-right" style="color: limegreen; float: right; padding-right: 5px"></span> </div>
+        <div class="col-md-2" *ngIf="patient.booking === null"><span class="glyphicon glyphicon-warning-sign text-right" style="color: orange; float: right; padding-right: 5px"></span> </div>
 
 
       </div>

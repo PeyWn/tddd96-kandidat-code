@@ -28,7 +28,8 @@ import { TitlebarViewComponent } from './main/sidebar/overview/titlebar-view/tit
 import { SidebarPanelService} from './main/sidebar/sidebar-panel.service';
 import { DecisionsComponent } from './main/sidebar/overview/decisions/decisions.component';
 import { GetPatientsService} from './main/get-patients.service';
-import {CommonModule} from '@angular/common';
+import { KeysPipe} from './keyPipe';
+import { CommonModule } from '@angular/common';
 
 // Language fix
 import { registerLocaleData } from '@angular/common';
@@ -68,9 +69,9 @@ import { LoginComponent } from './login/login.component';
     ButtonpanelOverviewComponent,
     TitlebarViewComponent,
     DecisionsComponent,
-    SummeryCardsComponent,
-    LoginComponent
-
+    LoginComponent,
+    KeysPipe,
+    SummeryCardsComponent
   ],
   imports: [
     BrowserModule,
@@ -98,6 +99,9 @@ import { LoginComponent } from './login/login.component';
     LoginService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [InfoheaderComponent],
+  entryComponents: [
+    InfoheaderComponent,
+    DayViewComponent
+  ],
 })
 export class AppModule { }

@@ -1,19 +1,14 @@
-
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col a" style="padding: 0; min-width: 300px">
-      <mwl-calendar-day-view
-        [viewDate]="viewDate"
-        [events]="events">
-      </mwl-calendar-day-view>
-    </div>
-    <div class="col a">
-      <mwl-calendar-day-view
-        [viewDate]="viewDate"
-        [events]="events">
-      </mwl-calendar-day-view>
-    </div>
-
-  </div>
+<!--<div *ngSwitchCase="'day'">{{ viewDate | calendarDate:(view + 'ViewTitle'):'sv' }}</div>-->
+<div class="track-day" *ngFor="let resource of resourceSchedules | keys">
+  <h1>{{resource.key}}</h1>
+  <mwl-calendar-day-view
+    [viewDate]="viewDate"
+    [events]="resource.value"
+    [refresh]="refresh"
+    [locale]="locale"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+    class="day-view-track">
+  </mwl-calendar-day-view>
 </div>
+
