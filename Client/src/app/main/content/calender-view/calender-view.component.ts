@@ -82,7 +82,7 @@ export class CalenderViewComponent implements OnInit {
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
   //What view is default
-  view: string = 'day';
+  view: string = 'month';
 
   viewDate: Date = new Date();
   modalData: {
@@ -95,7 +95,7 @@ export class CalenderViewComponent implements OnInit {
 
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
 
-
+  currentPatient: Patient;
 
   actions: CalendarEventAction[] = [
     {
@@ -118,13 +118,15 @@ export class CalenderViewComponent implements OnInit {
   events: CalendarEvent[] = [];
   eventsNew: CalendarEvent[] = [];
 
-  activeDayIsOpen = true;
+  activeDayIsOpen = false;
 
   // Hamdles the rendering of last day
   beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
     if (this.currentPatient)  {
     body.forEach(day => {
-      if (day.date.getMonth() > this.currentPatient.Tid.getMonth()  || (day.date.getDate() > this.currentPatient.Tid.getDate() && day.date.getMonth() === this.currentPatient.Tid.getMonth())) {
+      if (day.date.getMonth() > this.currentPatient.Tid.getMonth() ||
+         (day.date.getDate() > this.currentPatient.Tid.getDate() &&
+          day.date.getMonth() === this.currentPatient.Tid.getMonth())) {
         day.cssClass = 'odd-cell';
       }
     });
@@ -202,9 +204,6 @@ export class CalenderViewComponent implements OnInit {
     }
   }
 
-
-  currentPatient: Patient;
-
   getPatient() {
     this.currentPatient = this.gpService.currentPatient;
   }
@@ -234,17 +233,8 @@ export class CalenderViewComponent implements OnInit {
   close() {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-        this.viewDate = date;
-      }
-    }
+    this.viewDate = date;
+    this.view = 'day';
   }
 
   eventTimesChanged({event, newStart, newEnd}: CalendarEventTimesChangedEvent): void {
