@@ -88,7 +88,10 @@
       </button>
 
       <div class="dropdown-menu">
-          <div *ngFor="let room of rooms" class="dropdown-item"><input type="checkbox" value="{{room.id}}" (change)="updateRooms($event, room)"/> {{room.name}}</div>
+        <div *ngFor="let room of roomMap | keys" class="dropdown-item">
+          <input type="checkbox" value="{{room.value.id}}" (change)="updateRooms($event, room.key)" *ngIf="room.value" checked/>
+          <input type="checkbox" value="{{room.value.id}}" (change)="updateRooms($event, room.key)" *ngIf="room.value == false"/>
+          {{room.key}}</div>
       </div>
 
     </div>

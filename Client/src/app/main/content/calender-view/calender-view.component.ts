@@ -33,6 +33,10 @@ import {RoomBooking} from '../../../http-api/room/RoomBooking';
 import {GetPatientsService} from '../../get-patients.service';
 import { SidebarPanelService} from '../../sidebar/sidebar-panel.service';
 import {Patient} from '../../sidebar/planning/infoheader/Patient';
+import {ProcedureService} from '../../../http-api/procedure/procedure.service';
+import {forEach} from '@angular/router/src/utils/collection';
+import {DecisionService} from '../../../http-api/decision/decision.service';
+import {DecisionResponse} from '../../../http-api/decision/DecisionResponse';
 
 const colors: any = {
   red: {
@@ -70,11 +74,14 @@ const colors: any = {
   ]
 })
 export class CalenderViewComponent implements OnInit {
+  //Set upp for room selection list and track
   roomEvents: {[index: string]: CalendarEvent[]} = {};
-  rooms: RoomResponse[];
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
-  @ViewChild('dayView', { read: ViewContainerRef}) container;
+  rooms: {[index: string]: RoomResponse} = {};
+  roomMap: {[index: string]: boolean} = {};
 
+  @ViewChild('modalContent') modalContent: TemplateRef<any>;
+
+  //What view is default
   view: string = 'day';
 
   viewDate: Date = new Date();
@@ -106,38 +113,14 @@ export class CalenderViewComponent implements OnInit {
     }
   ];
   refresh: Subject<any> = new Subject();
-  surgeons: CalendarEvent[] = [
-    {
-      start: addHours(startOfDay(new Date()), 5),
-      end: addHours(startOfDay(new Date()), 17),
-      title: 'Dr Björn',
-      color: colors.red,
-      actions: this.actions,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 1),
-      end: addHours(startOfDay(new Date()), 10),
-      title: 'Dr Tor',
-      color: colors.yellow,
-      actions: this.actions,
-    }
-  ];
 
-
-  events: CalendarEvent[] = this.surgeons;
+  // Events, not used for track view but all other views
+  events: CalendarEvent[] = [];
   eventsNew: CalendarEvent[] = [];
 
   activeDayIsOpen = true;
 
-  createResourceTrack(events: CalendarEvent[], title: string) {
-    const factory: ComponentFactory<DayViewComponent> = this.resolver.resolveComponentFactory(DayViewComponent);
-    const componentRef: ComponentRef<DayViewComponent> = this.container.createComponent(factory);
-    componentRef.instance.events = events;
-    componentRef.instance.title = title;
-    componentRef.instance.viewDate = this.viewDate;
-    componentRef.instance.refresh = this.refresh;
-  }
-
+  // Hamdles the rendering of last day
   beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
     if (this.currentPatient)  {
     body.forEach(day => {
@@ -157,40 +140,17 @@ export class CalenderViewComponent implements OnInit {
     this.events = this.eventsNew;
   }
 
-  updateRooms($event, room: RoomResponse) {
-    if($event.target.checked){
-      this.roomEvents[room.name] = [];
-      this.events = [];
-      this.roomService.getBookingsForRoom(room.id).subscribe((bookings: RoomBooking[])=> {
-        for(let i = 0; i < bookings.length; i++) {
-          console.log(bookings[i].Booked_local);
-          console.log(this.roomEvents);
-          this.roomEvents[room.name] = [{start: new Date(bookings[i].Booked_local.start_time),
-            end: new Date(bookings[i].Booked_local.end_time),
-            title: 'hej',
-            color: colors.blue,
-            actions: this.actions}];
-          this.events.push({start: new Date(bookings[i].Booked_local.start_time),
-            end: new Date(bookings[i].Booked_local.end_time),
-            title: 'hej',
-            color: colors.blue,
-            actions: this.actions})
-        }
-        this.listRoomEvents();
-      });
+  // Called when room selection is changed
+  updateRooms($event, room: string): void {
+    if(!this.roomMap[room]){
+      this.roomMap[room] = true;
+      this.roomEvents[room] = [];
+      this.getTrack(this.rooms[room]);
     } else {
-      delete this.roomEvents[room.name];
-      this.listRoomEvents();
+      this.roomMap[room] = false;
+      delete this.roomEvents[room];
     }
     this.refresh;
-  }
-
-  listRoomEvents() {
-    // this.container.clear();
-    // if(this.view === 'day')
-    // for(let key in this.roomEvents){
-    //   this.createResourceTrack(this.roomEvents[key], key);
-    // }
   }
 
 
@@ -250,21 +210,25 @@ export class CalenderViewComponent implements OnInit {
   }
 
 
-
   constructor(private modal: NgbModal,
               private gpService: GetPatientsService,
               private spService: SidebarPanelService,
               private resolver: ComponentFactoryResolver,
-              private roomService: RoomService) {
-    this.gpService.changedPatient.subscribe( () => {this.getPatient(); this.refreshView();});
-    // this.refresh.subscribe(() => {
-    //   if(this.view === 'day'){
-    //     this.listRoomEvents();
-    //   } else {
-    //    this.container.clear();
-    //   }
-    //     });
-    this.roomEvents["hej"] = this.surgeons;
+              private roomService: RoomService,
+              private procedureService: ProcedureService,
+              private decisionService: DecisionService) {
+    this.gpService.changedPatient.subscribe( () => {
+      this.getPatient();
+      this.refreshView();
+
+      // Load rooms
+      if(this.currentPatient != null){
+        this.getRoomsByKva(this.currentPatient.procedures[0].kvåCode);
+      } else {
+        this.getAllRooms();
+      }
+
+    });
   }
 
   close() {}
@@ -318,10 +282,54 @@ export class CalenderViewComponent implements OnInit {
       }
     }
   }
+
+  private getAllRooms(): void {
+    this.roomService.getRoomsByType(1).subscribe((rooms: RoomResponse[])=>{
+      this.roomEvents = {};
+      this.rooms = {};
+      this.roomMap = {};
+      for(let room of rooms) {
+        this.roomMap[room.name] = false;
+        this.rooms[room.name] = room;
+      }
+    });
+  }
+
+  private getRoomsByKva(kva: string): void {
+    this.procedureService.getRoomsWithProcedure(kva).subscribe((rooms: RoomResponse[])=>{
+      this.roomEvents = {};
+      this.rooms = {};
+      this.roomMap = {};
+      for(let room of rooms){
+        console.log("skapar track " + room.name);
+        this.roomMap[room.name] = true;
+        this.rooms[room.name] = room;
+        this.getTrack(room);
+      }
+    });
+  }
+
+  private getTrack(room: RoomResponse): void {
+    console.log("getTrack " + room.name);
+    this.roomService.getBookingsForRoom(room.id).subscribe((bookings: RoomBooking[])=> {
+      this.roomEvents[room.name] = [];
+        for(let i = 0; i < bookings.length; i++) {
+          console.log(bookings[i].Booked_local);
+          console.log(this.roomEvents);
+          this.decisionService.getDecision(bookings[i].DecisionId).subscribe((decision: DecisionResponse)=>{
+            this.roomEvents[room.name].push({start: new Date(bookings[i].Booked_local.start_time),
+              end: new Date(bookings[i].Booked_local.end_time),
+              title: decision.PatientSsn,
+              color: colors.blue,
+              actions: this.actions});
+          });
+        }
+    });
+  }
+
   ngOnInit() {
     //this.setupCombination(this.rooms, this.surgeons);
-    this.roomService.getRoomsByType(1).subscribe((rooms: RoomResponse[])=>{
-      this.rooms = rooms;
-    })
+    this.getAllRooms();
   }
+
 }
