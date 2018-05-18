@@ -18,7 +18,7 @@ export class MenubarComponent implements OnInit {
   constructor(
     private gpService: GetPatientsService,
     private spService: SidebarPanelService,
-    private loginService: LoginService) {
+    public loginService: LoginService) {
   this.patient = this.gpService.currentPatient;
   }
 
