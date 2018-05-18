@@ -62,12 +62,12 @@
         [class.active]="view === 'month'">
         Månad
       </div>
-      <div
+      <!--<div
         class="btn btn-primary"
         (click)="view = 'week'"
         [class.active]="view === 'week'">
         Vecka
-      </div>
+      </div>-->
       <div
         class="btn btn-primary"
         (click)="view = 'day'"
@@ -79,7 +79,7 @@
 </div>
 <br>
 
-<div class="row text-center">
+<div *ngIf="this.view ==='day' && this.currentPatient != null" class="row text-center">
   <div class="col-md">
     <div class="btn-group pull-right">
 

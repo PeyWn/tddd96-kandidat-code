@@ -75,7 +75,7 @@ export class CalenderViewComponent implements OnInit {
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
   @ViewChild('dayView', { read: ViewContainerRef}) container;
 
-  view: string = 'day';
+  view: string = 'month';
 
   viewDate: Date = new Date();
   modalData: {
@@ -88,7 +88,7 @@ export class CalenderViewComponent implements OnInit {
 
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
 
-
+  currentPatient: Patient;
 
   actions: CalendarEventAction[] = [
     {
@@ -127,7 +127,7 @@ export class CalenderViewComponent implements OnInit {
   events: CalendarEvent[] = this.surgeons;
   eventsNew: CalendarEvent[] = [];
 
-  activeDayIsOpen = true;
+  activeDayIsOpen = false;
 
   createResourceTrack(events: CalendarEvent[], title: string) {
     const factory: ComponentFactory<DayViewComponent> = this.resolver.resolveComponentFactory(DayViewComponent);
@@ -141,7 +141,9 @@ export class CalenderViewComponent implements OnInit {
   beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
     if (this.currentPatient)  {
     body.forEach(day => {
-      if (day.date.getMonth() > this.currentPatient.Tid.getMonth()  || (day.date.getDate() > this.currentPatient.Tid.getDate() && day.date.getMonth() === this.currentPatient.Tid.getMonth())) {
+      if (day.date.getMonth() > this.currentPatient.Tid.getMonth() ||
+         (day.date.getDate() > this.currentPatient.Tid.getDate() &&
+          day.date.getMonth() === this.currentPatient.Tid.getMonth())) {
         day.cssClass = 'odd-cell';
       }
     });
@@ -158,11 +160,11 @@ export class CalenderViewComponent implements OnInit {
   }
 
   updateRooms($event, room: RoomResponse) {
-    if($event.target.checked){
+    if ($event.target.checked) {
       this.roomEvents[room.name] = [];
       this.events = [];
-      this.roomService.getBookingsForRoom(room.id).subscribe((bookings: RoomBooking[])=> {
-        for(let i = 0; i < bookings.length; i++) {
+      this.roomService.getBookingsForRoom(room.id).subscribe((bookings: RoomBooking[]) => {
+        for (let i = 0; i < bookings.length; i++) {
           console.log(bookings[i].Booked_local);
           console.log(this.roomEvents);
           this.roomEvents[room.name] = [{start: new Date(bookings[i].Booked_local.start_time),
@@ -174,7 +176,7 @@ export class CalenderViewComponent implements OnInit {
             end: new Date(bookings[i].Booked_local.end_time),
             title: 'hej',
             color: colors.blue,
-            actions: this.actions})
+            actions: this.actions});
         }
         this.listRoomEvents();
       });
@@ -242,21 +244,16 @@ export class CalenderViewComponent implements OnInit {
     }
   }
 
-
-  currentPatient: Patient;
-
   getPatient() {
     this.currentPatient = this.gpService.currentPatient;
   }
-
-
 
   constructor(private modal: NgbModal,
               private gpService: GetPatientsService,
               private spService: SidebarPanelService,
               private resolver: ComponentFactoryResolver,
               private roomService: RoomService) {
-    this.gpService.changedPatient.subscribe( () => {this.getPatient(); this.refreshView();});
+    this.gpService.changedPatient.subscribe( () => { this.getPatient(); this.refreshView(); });
     // this.refresh.subscribe(() => {
     //   if(this.view === 'day'){
     //     this.listRoomEvents();
@@ -264,13 +261,15 @@ export class CalenderViewComponent implements OnInit {
     //    this.container.clear();
     //   }
     //     });
-    this.roomEvents["hej"] = this.surgeons;
+    this.roomEvents['hej'] = this.surgeons;
   }
 
   close() {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
+    this.viewDate = date;
+    this.view = 'day';
+    /*if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
         events.length === 0
@@ -280,7 +279,7 @@ export class CalenderViewComponent implements OnInit {
         this.activeDayIsOpen = true;
         this.viewDate = date;
       }
-    }
+    }*/
   }
 
   eventTimesChanged({event, newStart, newEnd}: CalendarEventTimesChangedEvent): void {
@@ -319,9 +318,9 @@ export class CalenderViewComponent implements OnInit {
     }
   }
   ngOnInit() {
-    //this.setupCombination(this.rooms, this.surgeons);
-    this.roomService.getRoomsByType(1).subscribe((rooms: RoomResponse[])=>{
+    // this.setupCombination(this.rooms, this.surgeons);
+    this.roomService.getRoomsByType(1).subscribe((rooms: RoomResponse[]) => {
       this.rooms = rooms;
-    })
+    });
   }
 }
