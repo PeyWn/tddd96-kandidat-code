@@ -15,7 +15,7 @@
                 <li class="list-group-item"> Namn: {{patient.Namn}} </li>
                 <li class="list-group-item"> Personnummer: {{patient.Personnummer}} </li>
                 <li class="list-group-item"> ICD10: {{patient.ICD10}} </li>
-                <li class="list-group-item"> KVÅ: {{patient.KVA}} </li>
+                <li class="list-group-item"> KVÅ: {{patient.procedures[0]['kvåCode']}} </li>
               </ul>
             </div>
 
@@ -26,9 +26,9 @@
               </div>
 
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Operationstyp: {{patient.Operationstyp}}</li>
-                <li class="list-group-item">Förberedelsetid: {{patient.Forberedelsetid}}</li>
-                <li class="list-group-item">Avvecklingstid: {{patient.Avvecklingstid}}</li>
+                <li class="list-group-item">Operationstyp: {{patient.procedures[0].description}}</li>
+                <li class="list-group-item">Förberedelsetid: {{patient.procedures[0].preparationTime}} minuter</li>
+                <li class="list-group-item">Avvecklingstid: {{patient.procedures[0].dismantlingTime}} minuter</li>
               </ul>
 
               <div class="card-footer  text-center">
@@ -45,7 +45,7 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Tid: {{patient.Tid}}</li>
                 <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Brådskandegrad: {{urgency}}</li>
-                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationstid: {{patient.Operationtid}}</li>
+                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationstid: {{patient.procedures[0].operationTime}} minuter</li>
               </ul>
             </div>
           </div>
@@ -122,4 +122,5 @@
     </div>
 
   </div>
-<div>{{currentRoom.name}}</div>
+<button (click)="onFormSubmit()">Boka Operation</button>
+<button *ngIf="this.patient.booking" (click)="unbook()">Avboka Operation</button>

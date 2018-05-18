@@ -218,6 +218,9 @@ export class CalenderViewComponent implements OnInit {
               private decisionService: DecisionService) {
     this.gpService.changedPatient.subscribe( () => {
       this.getPatient();
+      if (!this.currentPatient){
+        this.view = 'month';
+      }
       this.refreshView();
 
       // Load rooms

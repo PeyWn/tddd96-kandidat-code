@@ -17,6 +17,9 @@ addHours
 } from 'date-fns';
 import {RoomResponse} from "../../../../http-api/room/RoomResponse";
 import {RoomService} from "../../../../http-api/room/room.service";
+import {BookingResponse} from '../../../../http-api/booking/BookingResponse';
+import {forEach} from '@angular/router/src/utils/collection';
+import {DecisionService} from '../../../../http-api/decision/decision.service';
 
 
 
@@ -40,7 +43,7 @@ export class SummeryCardsComponent implements OnInit {
   startDate: Date;
   endDate: Date;
 
-  constructor(private gpService: GetPatientsService, private procService: ProcedureService, private eventService: BookingService, private roomService: RoomService
+  constructor(private gpService: GetPatientsService, private procService: ProcedureService, private bookService: BookingService, private roomService: RoomService, private desService: DecisionService
   ) {
     this.patient = this.getPatient();
   }
@@ -79,7 +82,16 @@ export class SummeryCardsComponent implements OnInit {
   }
 
   onFormSubmit () {
-    //this.eventService.createBooking(1, this.preliminary);
-    //this.eventService.addRoomToBooking(1, this.currentRoom, this.startDate, this.endDate);
+    this.bookService.createBooking(this.gpService.currentPatient.id, this.preliminary).subscribe((response: BookingResponse) =>{
+      this.bookService.addRoomToBooking(response.id, 2, this.startDate, this.endDate).subscribe();
+      for(let i = 0; i < this.material.length; i++){
+        this.bookService.addMaterialToBooking(response.id, this.material[i].id, this.startDate, this.endDate).subscribe();
+      }
+      this.bookService.addStaffToBooking(response.id, 1, this.startDate, this.endDate).subscribe();
+    });
+  }
+  unbook () {
+    this.bookService.deleteBooking(this.patient.booking.id).subscribe()
   }
 }
+
