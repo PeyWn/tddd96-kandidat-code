@@ -74,14 +74,14 @@ const colors: any = {
   ]
 })
 export class CalenderViewComponent implements OnInit {
-  //Set upp for room selection list and track
+  // Set upp for room selection list and track
   roomEvents: {[index: string]: CalendarEvent[]} = {};
   rooms: {[index: string]: RoomResponse} = {};
   roomMap: {[index: string]: boolean} = {};
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
-  //What view is default
+  // What view is default
   view: string = 'month';
 
   viewDate: Date = new Date();
@@ -144,7 +144,7 @@ export class CalenderViewComponent implements OnInit {
 
   // Called when room selection is changed
   updateRooms($event, room: string): void {
-    if(!this.roomMap[room]){
+    if (!this.roomMap[room]) {
       this.roomMap[room] = true;
       this.roomEvents[room] = [];
       this.getTrack(this.rooms[room]);
@@ -221,7 +221,7 @@ export class CalenderViewComponent implements OnInit {
       this.refreshView();
 
       // Load rooms
-      if(this.currentPatient != null){
+      if (this.currentPatient != null) {
         this.getRoomsByKva(this.currentPatient.procedures[0].kvåCode);
       } else {
         this.getAllRooms();
@@ -274,11 +274,11 @@ export class CalenderViewComponent implements OnInit {
   }
 
   private getAllRooms(): void {
-    this.roomService.getRoomsByType(1).subscribe((rooms: RoomResponse[])=>{
+    this.roomService.getRoomsByType(1).subscribe((rooms: RoomResponse[]) => {
       this.roomEvents = {};
       this.rooms = {};
       this.roomMap = {};
-      for(let room of rooms) {
+      for (let room of rooms) {
         this.roomMap[room.name] = false;
         this.rooms[room.name] = room;
       }
@@ -286,12 +286,12 @@ export class CalenderViewComponent implements OnInit {
   }
 
   private getRoomsByKva(kva: string): void {
-    this.procedureService.getRoomsWithProcedure(kva).subscribe((rooms: RoomResponse[])=>{
+    this.procedureService.getRoomsWithProcedure(kva).subscribe((rooms: RoomResponse[]) => {
       this.roomEvents = {};
       this.rooms = {};
       this.roomMap = {};
-      for(let room of rooms){
-        console.log("skapar track " + room.name);
+      for (let room of rooms) {
+        console.log('skapar track ' + room.name);
         this.roomMap[room.name] = true;
         this.rooms[room.name] = room;
         this.getTrack(room);
@@ -300,13 +300,13 @@ export class CalenderViewComponent implements OnInit {
   }
 
   private getTrack(room: RoomResponse): void {
-    console.log("getTrack " + room.name);
-    this.roomService.getBookingsForRoom(room.id).subscribe((bookings: RoomBooking[])=> {
+    console.log('getTrack ' + room.name);
+    this.roomService.getBookingsForRoom(room.id).subscribe((bookings: RoomBooking[]) => {
       this.roomEvents[room.name] = [];
-        for(let i = 0; i < bookings.length; i++) {
+        for (let i = 0; i < bookings.length; i++) {
           console.log(bookings[i].Booked_local);
           console.log(this.roomEvents);
-          this.decisionService.getDecision(bookings[i].DecisionId).subscribe((decision: DecisionResponse)=>{
+          this.decisionService.getDecision(bookings[i].DecisionId).subscribe((decision: DecisionResponse) => {
             this.roomEvents[room.name].push({start: new Date(bookings[i].Booked_local.start_time),
               end: new Date(bookings[i].Booked_local.end_time),
               title: decision.PatientSsn,
@@ -318,7 +318,7 @@ export class CalenderViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.setupCombination(this.rooms, this.surgeons);
+    // this.setupCombination(this.rooms, this.surgeons);
     this.getAllRooms();
   }
 

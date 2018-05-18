@@ -13,7 +13,7 @@ export class DayViewComponent extends CalendarDayViewComponent {
   @Input() resourceSchedules: {[index: string]: CalendarEvent[]} = {};
 
   ngOnChanges(changes: any): void {
-    if(changes.resourceSchedules) {
+    if (changes.resourceSchedules) {
       // validate(this.resourceSchedules);
       this.refresh.next();
     }
