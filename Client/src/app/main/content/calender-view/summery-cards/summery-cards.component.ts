@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {GetPatientsService} from "../../../get-patients.service";
 import {Patient} from "../../../sidebar/planning/infoheader/Patient";
 import {ProcedureService} from "../../../../http-api/procedure/procedure.service";
@@ -29,7 +29,6 @@ import {DecisionService} from '../../../../http-api/decision/decision.service';
   styleUrls: ['./summery-cards.component.css']
 })
 export class SummeryCardsComponent implements OnInit {
-
   @Input() patient: Patient;
   material: Array<MaterialResponse> = [];
   rooms: RoomResponse[];
@@ -88,10 +87,14 @@ export class SummeryCardsComponent implements OnInit {
         this.bookService.addMaterialToBooking(response.id, this.material[i].id, this.startDate, this.endDate).subscribe();
       }
       this.bookService.addStaffToBooking(response.id, 1, this.startDate, this.endDate).subscribe();
+      this.gpService.updateDecision(this.patient.id)
     });
   }
   unbook () {
-    this.bookService.deleteBooking(this.patient.booking.id).subscribe()
+    this.bookService.deleteBooking(this.patient.booking.id).subscribe(() => {
+      this.gpService.updateDecision(this.patient.id);
+      }
+    );
   }
 }
 
