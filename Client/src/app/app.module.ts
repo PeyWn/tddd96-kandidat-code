@@ -28,6 +28,7 @@ import { TitlebarViewComponent } from './main/sidebar/overview/titlebar-view/tit
 import { SidebarPanelService} from './main/sidebar/sidebar-panel.service';
 import { DecisionsComponent } from './main/sidebar/overview/decisions/decisions.component';
 import { GetPatientsService} from './main/get-patients.service';
+import { GetCalendarFiltersService} from './main/get-calendar-filters.service';
 import { KeysPipe} from './keyPipe';
 import { CommonModule } from '@angular/common';
 
@@ -94,6 +95,7 @@ import { LoginComponent } from './login/login.component';
     Icd10Service,
     ClinicService,
     BookingService,
+    GetCalendarFiltersService,
     LoginService
   ],
   bootstrap: [AppComponent],
