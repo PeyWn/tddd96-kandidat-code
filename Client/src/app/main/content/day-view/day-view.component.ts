@@ -39,6 +39,7 @@ export class DayViewComponent extends CalendarDayViewComponent implements OnInit
       for (let i = 0; i < rooms.length; ++i) {
         this.roomService.getOpenTimesForRoom(rooms[i].id).subscribe((freeTimes: FreeTime[]) => {
           this.openRoomTimes[rooms[i].id] = freeTimes;
+          this.refresh.next();
         });
       }
     });
@@ -71,6 +72,7 @@ export class DayViewComponent extends CalendarDayViewComponent implements OnInit
   }
 
   beforeDayViewRender(event: CalendarDayViewBeforeRenderEvent, roomId: number): void {
+    if (this.openRoomTimes[roomId] == null) { return; }
     let openTime: FreeTime = null;
     for (let i = 0; i < this.openRoomTimes[roomId].length; ++i) {
       if (this.dayMatches(this.viewDate.getDay(), this.openRoomTimes[roomId][i].weekday)) {
