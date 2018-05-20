@@ -15,6 +15,8 @@ import {DayViewHour, DayViewHourSegment} from 'calendar-utils';
 import {FreeTime} from '../../../http-api/freeTime/FreeTime';
 import {RoomService} from '../../../http-api/room/room.service';
 import {RoomResponse} from '../../../http-api/room/RoomResponse';
+import {GetPatientsService} from '../../get-patients.service';
+import {Patient} from '../../sidebar/planning/infoheader/Patient';
 
 @Component({
   selector: 'app-day-track-view',
@@ -26,8 +28,11 @@ export class DayViewComponent extends CalendarDayViewComponent implements OnInit
   @Input() resourceSchedules: {[index: string]: {events: CalendarEvent[], roomId: number}} = {};
 
   openRoomTimes: Array<Array<FreeTime>>;
+  selectedTimeResourceIndex: string = null;
+  selectedTimeEventIndex: number = -1;
 
   constructor(private roomService: RoomService,
+              private decisionService: GetPatientsService,
               ref: ChangeDetectorRef,
               utils: CalendarUtils) {
     super(ref, utils, 'sv');
@@ -71,8 +76,35 @@ export class DayViewComponent extends CalendarDayViewComponent implements OnInit
     return minutes;
   }
 
-  segmentClicked(date: Date, resource: {[index: string]: {events: CalendarEvent[], roomId: number}}): void {
-    console.log("clicked " + resource.key);
+  continueWithTime() {
+
+  }
+
+  undoTime() {
+    if (this.selectedTimeResourceIndex) {
+      this.resourceSchedules[this.selectedTimeResourceIndex].events.splice(this.selectedTimeEventIndex, 1);
+      this.selectedTimeResourceIndex = null;
+    }
+  }
+
+  segmentClicked(date: Date, resource): void {
+    let currentDecision: Patient = this.decisionService.currentPatient;
+    if (currentDecision) {
+      this.undoTime();
+      this.selectedTimeResourceIndex = resource.key;
+      this.selectedTimeEventIndex = resource.value.events.length;
+      resource.value.events.push(
+        {
+          start: date,
+          end: new Date(date.getTime() + currentDecision.totalOperationTime * 60 * 1000),
+          title: 'Vald tid\ncool nästa rad',
+          color: {
+            primary: '#e3bc08',
+            secondary: '#FDF1BA'
+          }
+        }
+      );
+    }
   }
 
   beforeDayViewRender(event: CalendarDayViewBeforeRenderEvent, roomId: number): void {
