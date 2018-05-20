@@ -1,4 +1,5 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
+import {ProcedureResponse} from '../http-api/procedure/ProcedureResponse';
 
 @Injectable()
 export class GetCalendarFiltersService {
@@ -16,17 +17,21 @@ export class GetCalendarFiltersService {
     this.filtersUpdated.emit();
   }
 
-  addProcedure(procedure: string): void {
-    this.procedures.push(procedure);
+  addProcedures(procedures: ProcedureResponse[]): void {
+    for (let procedure of procedures) {
+      this.procedures.push(procedure.kvåCode);
+    }
     this.filtersUpdated.emit();
   }
 
-  deleteProcedure(procedure: string): void{
-    const index: number = this.procedures.indexOf(procedure);
-    if (index !== -1) {
-      this.procedures.splice(index, 1);
-      this.filtersUpdated.emit();
+  deleteProcedures(procedures: ProcedureResponse[]): void{
+    for (let procedure of procedures) {
+      const index: number = this.procedures.indexOf(procedure.kvåCode);
+      if (index !== -1) {
+        this.procedures.splice(index, 1);
+      }
     }
+    this.filtersUpdated.emit();
   }
 
 }

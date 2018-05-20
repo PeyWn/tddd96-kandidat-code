@@ -153,9 +153,7 @@ export class CalenderViewComponent implements OnInit {
       // If no decision is selected decision list should be filterd
       if(this.gpService.currentPatient == null){
         this.roomService.getProceduresFromRoom(this.rooms[room].id).subscribe((procedures: ProcedureResponse[]) => {
-          for(let procedure of procedures){
-            this.gcfService.addProcedure(procedure.kvåCode);
-          }
+          this.gcfService.addProcedures(procedures);
         });
       }
 
@@ -167,10 +165,8 @@ export class CalenderViewComponent implements OnInit {
       // Remove filters if no decision is selected
       if(this.gpService.currentPatient == null){
         this.roomService.getProceduresFromRoom(this.rooms[room].id).subscribe((procedures: ProcedureResponse[]) => {
-          for(let procedure of procedures){
-            this.gcfService.deleteProcedure(procedure.kvåCode);
-          }
-        })
+          this.gcfService.deleteProcedures(procedures);
+        });
       }
     }
     this.refresh;

@@ -94,8 +94,9 @@ export class DecisionsComponent implements OnInit {
 
   applyKvaFilter(filterObject: Patient): boolean {
     if (this.proceduresFilter.length > 0){
-        return this.proceduresFilter.includes(filterObject.procedures[0].kvåCode);
+      return this.proceduresFilter.includes(filterObject.procedures[0].kvåCode);
     }
+    return true;
   }
 
 
@@ -232,8 +233,6 @@ export class DecisionsComponent implements OnInit {
     });
 
     this.gcfService.filtersUpdated.subscribe(() => {
-      console.log("try to apply calendar filters");
-      console.log(this.proceduresFilter.toString());
       this.filterPatients();
     })
   }
