@@ -22,7 +22,8 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarDateFormatter,
   DAYS_OF_WEEK,
-  CalendarMonthViewDay} from 'angular-calendar';
+  CalendarMonthViewDay
+} from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import {DayViewComponent} from '../day-view/day-view.component';
 import {RoomService} from '../../../http-api/room/room.service';
