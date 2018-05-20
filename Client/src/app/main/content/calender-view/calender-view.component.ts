@@ -2,7 +2,7 @@
 import {
   Component,
   ViewChild,
-  TemplateRef, ViewEncapsulation, OnInit, ViewContainerRef, ComponentFactory, ComponentRef, ComponentFactoryResolver
+  TemplateRef, ViewEncapsulation, OnInit, ComponentFactoryResolver
 } from '@angular/core';
 import {
   startOfDay,
@@ -22,9 +22,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarDateFormatter,
   DAYS_OF_WEEK,
-  CalendarMonthViewDay, CalendarWeekViewEventRow, CalendarWeekViewEvent
-
-} from 'angular-calendar';
+  CalendarMonthViewDay} from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import {DayViewComponent} from '../day-view/day-view.component';
 import {RoomService} from '../../../http-api/room/room.service';
@@ -75,7 +73,7 @@ const colors: any = {
 })
 export class CalenderViewComponent implements OnInit {
   // Set upp for room selection list and track
-  roomEvents: {[index: string]: CalendarEvent[]} = {};
+  roomEvents: {[index: string]: {events: CalendarEvent[], roomId: number}} = {};
   rooms: {[index: string]: RoomResponse} = {};
   roomMap: {[index: string]: boolean} = {};
 
@@ -146,13 +144,12 @@ export class CalenderViewComponent implements OnInit {
   updateRooms($event, room: string): void {
     if (!this.roomMap[room]) {
       this.roomMap[room] = true;
-      this.roomEvents[room] = [];
       this.getTrack(this.rooms[room]);
     } else {
       this.roomMap[room] = false;
       delete this.roomEvents[room];
     }
-    this.refresh;
+    this.refresh.next();
   }
 
 
@@ -302,12 +299,12 @@ export class CalenderViewComponent implements OnInit {
   private getTrack(room: RoomResponse): void {
     console.log('getTrack ' + room.name);
     this.roomService.getBookingsForRoom(room.id).subscribe((bookings: RoomBooking[]) => {
-      this.roomEvents[room.name] = [];
+      this.roomEvents[room.name] = {events: [], roomId: room.id};
         for (let i = 0; i < bookings.length; i++) {
           console.log(bookings[i].Booked_local);
           console.log(this.roomEvents);
           this.decisionService.getDecision(bookings[i].DecisionId).subscribe((decision: DecisionResponse) => {
-            this.roomEvents[room.name].push({start: new Date(bookings[i].Booked_local.start_time),
+            this.roomEvents[room.name].events.push({start: new Date(bookings[i].Booked_local.start_time),
               end: new Date(bookings[i].Booked_local.end_time),
               title: decision.PatientSsn,
               color: colors.blue,
