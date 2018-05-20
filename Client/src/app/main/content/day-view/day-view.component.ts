@@ -71,6 +71,10 @@ export class DayViewComponent extends CalendarDayViewComponent implements OnInit
     return minutes;
   }
 
+  segmentClicked(date: Date, resource: {[index: string]: {events: CalendarEvent[], roomId: number}}): void {
+    console.log("clicked " + resource.key);
+  }
+
   beforeDayViewRender(event: CalendarDayViewBeforeRenderEvent, roomId: number): void {
     if (this.openRoomTimes[roomId] == null) { return; }
     let openTime: FreeTime = null;

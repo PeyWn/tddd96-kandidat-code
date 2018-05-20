@@ -9,6 +9,7 @@
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
     (beforeViewRender)="beforeDayViewRender($event, resource.value.roomId)"
+    (hourSegmentClicked)="segmentClicked($event.date, resource)"
     class="day-view-track">
   </mwl-calendar-day-view>
 </div>
