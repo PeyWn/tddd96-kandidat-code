@@ -97,7 +97,7 @@ export class DayViewComponent extends CalendarDayViewComponent implements OnInit
         {
           start: date,
           end: new Date(date.getTime() + currentDecision.totalOperationTime * 60 * 1000),
-          title: 'Vald tid\ncool nästa rad',
+          title: 'Vald tid<br>cool nästa rad',
           color: {
             primary: '#e3bc08',
             secondary: '#FDF1BA'
