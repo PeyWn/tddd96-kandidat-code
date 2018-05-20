@@ -43,9 +43,12 @@
               </div>
 
               <ul class="list-group list-group-flush">
-                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Tid: {{patient.Tid}}</li>
+                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Senaste Operationsdatum: {{patient.Tid}}</li>
                 <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Brådskandegrad: {{urgency}}</li>
                 <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationstid: {{patient.procedures[0].operationTime}} minuter</li>
+                <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationssal: {{bookedRoomName}}</li>
+                <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Personal: {{bookedStaffName}}</li>
+
               </ul>
             </div>
           </div>
@@ -100,13 +103,13 @@
               </div>
 
               <div class="input-group-prepend">
-                <span class="input-group-text">Start Tid:</span>
+                <span class="input-group-text">Starttid:</span>
                 <input type="datetime-local" class="form-control" [value]="startDate.getDate()" [(ngModel)]="startDate"/>
               </div>
 
               <div class="input-group-prepend">
-                <span class="input-group-text">Slut Tid:</span>
-                <input type="datetime-local" class="form-control" [value]="startDate.getDate()" [(ngModel)]="endDate"/>
+                <span class="input-group-text">Sluttid:</span>
+                <input type="datetime-local" class="form-control" [value]="endDate.getDate()" [(ngModel)]="endDate"/>
               </div>
 
 
@@ -114,6 +117,13 @@
                 <span class="input-group-text">Operationssal:</span>
                 <select #selectedRoom class="form-control" (change)="setCurrentRoom(selectedRoom.value)">
                   <option *ngFor="let room of rooms">{{room.name}}</option>
+                </select>
+              </div>
+
+              <div class="input-group-prepend">
+                <span class="input-group-text">Personal:</span>
+                <select #selectedStaff class="form-control" (change)="setCurrentStaff(selectedStaff.value)">
+                  <option *ngFor="let staff of staffList">{{staff.firstname + ' ' + staff.lastname}}</option>
                 </select>
               </div>
             </div>
