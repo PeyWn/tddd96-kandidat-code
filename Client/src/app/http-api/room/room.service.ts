@@ -24,7 +24,7 @@ export class RoomService {
   }
 
   getOpenTimesForRoom(id: number): Observable<FreeTime[]> {
-    return this.httpClient.get<FreeTime[]>('/room/' + id + '/avaliable');
+    return this.httpClient.get<FreeTime[]>('/room/' + id + '/available');
   }
 
   getBookingsForRoom(id: number): Observable<RoomBooking[]> {

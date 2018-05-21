@@ -37,3 +37,6 @@ ul {
   list-style-type: none;
 }
 
+li > div {
+  text-align: center;
+}

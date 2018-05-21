@@ -1,6 +1,62 @@
 <!doctype html>
 <html lang="en">
 <head>
+
+  <!-- reduced for brevity -->
+
+  <!-- inline spinner styles to be able to display spinner right away -->
+  <style type="text/css">
+    body, html {
+      height: 100%;
+    }
+    .app-loading {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    .app-loading .spinner {
+      height: 200px;
+      width: 200px;
+      animation: rotate 2s linear infinite;
+      transform-origin: center center;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .app-loading .spinner .path {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+      animation: dash 1.5s ease-in-out infinite;
+      stroke-linecap: round;
+      stroke: #ddd;
+    }
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    @keyframes dash {
+      0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+      }
+      50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+      }
+      100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+      }
+    }
+  </style>
+
   <meta charset="utf-8">
   <title>Aeon</title>
   <base href="/">
@@ -10,9 +66,14 @@
   <link rel="icon" type="image/x-icon" href="favicon.png">
 </head>
 <body>
-<app-root>Initierar Aeon...</app-root>
-
-
+<app-root>      <!-- Replaced after load loading Aeon -->
+  <div class="app-loading">
+    <div class="logo"></div>
+    <svg class="spinner" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+    <img src="assets\img\Aeon.png" style="box-shadow: 0 8px 6px -6px black;">
+  </div></app-root>
 </body>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

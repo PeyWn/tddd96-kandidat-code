@@ -2,7 +2,7 @@
 import {
   Component,
   ViewChild,
-  TemplateRef, ViewEncapsulation, OnInit, ViewContainerRef, ComponentFactory, ComponentRef, ComponentFactoryResolver
+  TemplateRef, ViewEncapsulation, OnInit, ComponentFactoryResolver
 } from '@angular/core';
 import {
   startOfDay,
@@ -22,8 +22,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarDateFormatter,
   DAYS_OF_WEEK,
-  CalendarMonthViewDay, CalendarWeekViewEventRow, CalendarWeekViewEvent
-
+  CalendarMonthViewDay
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import {DayViewComponent} from '../day-view/day-view.component';
@@ -77,7 +76,7 @@ const colors: any = {
 })
 export class CalenderViewComponent implements OnInit {
   // Set upp for room selection list and track
-  roomEvents: {[index: string]: CalendarEvent[]} = {};
+  roomEvents: {[index: string]: {events: CalendarEvent[], roomId: number}} = {};
   rooms: {[index: string]: RoomResponse} = {};
   roomMap: {[index: string]: boolean} = {};
 
@@ -137,6 +136,8 @@ export class CalenderViewComponent implements OnInit {
 
   refreshView() {
     this.refresh.next();
+    console.log(this.currentPatient);
+    console.log('REFRESH');
   }
 
 
@@ -148,7 +149,7 @@ export class CalenderViewComponent implements OnInit {
   updateRooms($event, room: string): void {
     if (!this.roomMap[room]) {
       this.roomMap[room] = true;
-      this.roomEvents[room] = [];
+      delete this.roomEvents[room];
 
       // If no decision is selected decision list should be filterd
       if(this.gpService.currentPatient == null){
@@ -156,7 +157,6 @@ export class CalenderViewComponent implements OnInit {
           this.gcfService.addProcedures(procedures);
         });
       }
-
       this.getTrack(this.rooms[room]);
     } else {
       this.roomMap[room] = false;
@@ -169,7 +169,7 @@ export class CalenderViewComponent implements OnInit {
         });
       }
     }
-    this.refresh;
+    this.refresh.next();
   }
 
 
@@ -236,6 +236,10 @@ export class CalenderViewComponent implements OnInit {
               private gcfService: GetCalendarFiltersService) {
     this.gpService.changedPatient.subscribe( () => {
       this.getPatient();
+      console.log(this.currentPatient);
+      if (!this.currentPatient){
+        this.view = 'month';
+      }
       this.refreshView();
 
       // Load rooms
@@ -244,7 +248,6 @@ export class CalenderViewComponent implements OnInit {
       } else {
         this.getAllRooms();
       }
-
     });
   }
 
@@ -320,12 +323,12 @@ export class CalenderViewComponent implements OnInit {
   private getTrack(room: RoomResponse): void {
     console.log('getTrack ' + room.name);
     this.roomService.getBookingsForRoom(room.id).subscribe((bookings: RoomBooking[]) => {
-      this.roomEvents[room.name] = [];
+      this.roomEvents[room.name] = {events: [], roomId: room.id};
         for (let i = 0; i < bookings.length; i++) {
           console.log(bookings[i].Booked_local);
           console.log(this.roomEvents);
           this.decisionService.getDecision(bookings[i].DecisionId).subscribe((decision: DecisionResponse) => {
-            this.roomEvents[room.name].push({start: new Date(bookings[i].Booked_local.start_time),
+            this.roomEvents[room.name].events.push({start: new Date(bookings[i].Booked_local.start_time),
               end: new Date(bookings[i].Booked_local.end_time),
               title: decision.PatientSsn,
               color: colors.blue,
