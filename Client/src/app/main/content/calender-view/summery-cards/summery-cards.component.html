@@ -86,10 +86,6 @@
         </div>
       </div>
     </div>
-
-    <div class="d-flex flex-column" style="width: 40%; min-width: 400px">
-      <h5>This is for spår</h5>
-    </div>
   </div>
 
   <div class="d-flex">
@@ -99,12 +95,6 @@
         <h5 class="card-title" style="font-size: large; font-weight: bold;">Redigera</h5>
          <div class="form-group">
             <div class="input-group">
-
-              <div class="input-group-prepend">
-                <span class="input-group-text">Titel:</span>
-                <input type="text" class="form-control" aria-describedby="eventTitle" [(ngModel)]="title"/>
-              </div>
-
               <div class="input-group-prepend">
                 <span class="input-group-text">Starttid:</span>
                 <input type="text" class="form-control" [value]="startDate.getDate()" [(ngModel)]="startDate"/>

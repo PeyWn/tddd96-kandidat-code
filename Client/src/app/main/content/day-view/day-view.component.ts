@@ -88,6 +88,7 @@ export class DayViewComponent extends CalendarDayViewComponent implements OnInit
     this.bookingInfoService.startDate = event.start;
     this.bookingInfoService.endDate = event.end;
     this.calendar.view = 'summery';
+    this.undoTime();
   }
 
   undoTime() {

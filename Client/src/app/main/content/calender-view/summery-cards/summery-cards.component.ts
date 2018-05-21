@@ -48,8 +48,6 @@ export class SummeryCardsComponent implements OnInit {
   bookedStaffName: string = 'NONE';
   room: RoomResponse;
   staff: StaffResponse;
-  dr: string;
-  title: string;
   startDate: Date;
   endDate: Date;
   bookingStatus: string;
@@ -75,6 +73,9 @@ export class SummeryCardsComponent implements OnInit {
       this.urgency = 'Elektiv';
     }
 
+    this.startDate = new Date();
+    this.endDate = new Date();
+
     if (this.bookingInfoService.roomId !== null) {
       this.endDate = this.bookingInfoService.endDate;
       this.startDate = this.bookingInfoService.startDate;
@@ -83,7 +84,6 @@ export class SummeryCardsComponent implements OnInit {
 
     /*this.startDate = new Date();
     this.endDate = addMinutes(this.startDate, (this.patient.procedures[0].operationTime));*/
-    this.title = 'Åtgärd (TODO) \n' + this.patient.Namn + '\n Doktor';
     this.selectedRoom = 'fak off';
     this.getBookedRoom();
     this.getBookedStaff();
@@ -172,8 +172,19 @@ export class SummeryCardsComponent implements OnInit {
     });
   }
 
-  onFormSubmit () {
-    this.bookService.createBooking(this.gpService.currentPatient.id, this.currentStatus).subscribe((response: BookingResponse) =>{
+  onFormSubmit() {
+    if (this.patient.booking) {
+      this.bookService.deleteBooking(this.patient.booking.id).subscribe(() => {
+          this.makeBooking();
+        }
+      );
+    } else {
+      this.makeBooking();
+    }
+  }
+
+  makeBooking(): void {
+    this.bookService.createBooking(this.gpService.currentPatient.id, this.currentStatus).subscribe((response: BookingResponse) => {
       this.bookService.addRoomToBooking(response.id, this.currentRoom.id, this.startDate, this.endDate).subscribe();
       for (let i = 0; i < this.material.length; i++) {
         this.bookService.addMaterialToBooking(response.id, this.material[i].id, this.startDate, this.endDate).subscribe();
@@ -182,6 +193,7 @@ export class SummeryCardsComponent implements OnInit {
       this.gpService.updateDecision(this.patient.id);
     });
   }
+
   unbook () {
     this.bookService.deleteBooking(this.patient.booking.id).subscribe(() => {
       this.gpService.updateDecision(this.patient.id);
