@@ -3,11 +3,12 @@
   <h1>{{resource.key}}</h1>
   <mwl-calendar-day-view
     [viewDate]="viewDate"
-    [events]="resource.value"
+    [events]="resource.value.events"
     [refresh]="refresh"
     [locale]="locale"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
+    (beforeViewRender)="beforeDayViewRender($event, resource.value.roomId)"
     class="day-view-track">
   </mwl-calendar-day-view>
 </div>

@@ -71,7 +71,6 @@ module.exports.initAPI = function(APP) {
     });
   });
 
-
   //Get all available times of this room
   APP.get('/room/:id/available', function (req, res) {
     DB.Local.findById(req.params.id).then(function (room) {
