@@ -2,6 +2,8 @@
   background-color: gray !important;
 }
 
+.odd-cell {background-color: pink !important;}
+
 .cal-month-view .cal-header {
   text-align: center;
   font-weight: bolder; }

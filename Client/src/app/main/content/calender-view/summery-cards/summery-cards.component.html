@@ -107,18 +107,18 @@
 
               <div class="input-group-prepend">
                 <span class="input-group-text">Starttid:</span>
-                <input type="datetime-local" class="form-control" [value]="startDate.getDate()" [(ngModel)]="startDate"/>
+                <input type="text" class="form-control" [value]="startDate.getDate()" [(ngModel)]="startDate"/>
               </div>
 
               <div class="input-group-prepend">
                 <span class="input-group-text">Sluttid:</span>
-                <input type="datetime-local" class="form-control" [value]="endDate.getDate()" [(ngModel)]="endDate"/>
+                <input type="text" class="form-control" [value]="endDate.getDate()" [(ngModel)]="endDate"/>
               </div>
 
 
               <div class="input-group-prepend">
                 <span class="input-group-text">Operationssal:</span>
-                <select #selectedRoom class="form-control" (change)="setCurrentRoom(selectedRoom.value)">
+                <select [(ngModel)]="selectedRoom" class="form-control" (ngModelChange)="setCurrentRoom()">
                   <option *ngFor="let room of rooms">{{room.name}}</option>
                 </select>
               </div>
@@ -130,7 +130,7 @@
                 </select>
               </div>
               <div class="input-group-prepend">
-                <span class="input-group-text">Personal:</span>
+                <span class="input-group-text">Status:</span>
                 <select #selectedStatus class="form-control" (change)="setCurrentStatus(selectedStatus.value)">
                   <option>Slutgiltig</option>
                   <option>Preliminär</option>

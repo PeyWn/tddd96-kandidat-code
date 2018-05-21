@@ -65,13 +65,6 @@ const colors: any = {
       provide: CalendarDateFormatter,
       useClass: CustomDateFormatter
     }
-  ],
-  styles: [
-    `
-   .odd-cell {
-      background-color: pink !important;
-    }
-  `
   ]
 })
 export class CalenderViewComponent implements OnInit {
