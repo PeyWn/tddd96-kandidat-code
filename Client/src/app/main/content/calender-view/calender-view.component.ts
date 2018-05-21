@@ -135,6 +135,8 @@ export class CalenderViewComponent implements OnInit {
 
   refreshView() {
     this.refresh.next();
+    console.log(this.currentPatient);
+    console.log('REFRESH');
   }
 
 
@@ -218,6 +220,10 @@ export class CalenderViewComponent implements OnInit {
               private decisionService: DecisionService) {
     this.gpService.changedPatient.subscribe( () => {
       this.getPatient();
+      console.log(this.currentPatient);
+      if (!this.currentPatient){
+        this.view = 'month';
+      }
       this.refreshView();
 
       // Load rooms
@@ -226,7 +232,6 @@ export class CalenderViewComponent implements OnInit {
       } else {
         this.getAllRooms();
       }
-
     });
   }
 

@@ -15,7 +15,7 @@
                 <li class="list-group-item"> Namn: {{patient.Namn}} </li>
                 <li class="list-group-item"> Personnummer: {{patient.Personnummer}} </li>
                 <li class="list-group-item"> ICD10: {{patient.ICD10}} </li>
-                <li class="list-group-item"> KVÅ: {{patient.KVA}} </li>
+                <li class="list-group-item"> KVÅ: {{patient.procedures[0]['kvåCode']}} </li>
               </ul>
             </div>
 
@@ -26,9 +26,9 @@
               </div>
 
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Operationstyp: {{patient.Operationstyp}}</li>
-                <li class="list-group-item">Förberedelsetid: {{patient.Forberedelsetid}}</li>
-                <li class="list-group-item">Avvecklingstid: {{patient.Avvecklingstid}}</li>
+                <li class="list-group-item">Operationstyp: {{patient.procedures[0].description}}</li>
+                <li class="list-group-item">Förberedelsetid: {{patient.procedures[0].preparationTime}} minuter</li>
+                <li class="list-group-item">Avvecklingstid: {{patient.procedures[0].dismantlingTime}} minuter</li>
               </ul>
 
               <div class="card-footer  text-center">
@@ -43,9 +43,15 @@
               </div>
 
               <ul class="list-group list-group-flush">
-                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Tid: {{patient.Tid}}</li>
+                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Bokningsstatus: {{bookingStatus}}</li>
+                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Senaste Operationsdatum: {{patient.Tid}}</li>
                 <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Brådskandegrad: {{urgency}}</li>
-                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationstid: {{patient.Operationtid}}</li>
+                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationstid: {{patient.procedures[0].operationTime}} minuter</li>
+                <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationsstart: {{startDate}}</li>
+                <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationsslut: {{endDate}}</li>
+                <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationssal: {{bookedRoomName}}</li>
+                <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Personal: {{bookedStaffName}}</li>
+
               </ul>
             </div>
           </div>
@@ -100,13 +106,13 @@
               </div>
 
               <div class="input-group-prepend">
-                <span class="input-group-text">Start Tid:</span>
+                <span class="input-group-text">Starttid:</span>
                 <input type="datetime-local" class="form-control" [value]="startDate.getDate()" [(ngModel)]="startDate"/>
               </div>
 
               <div class="input-group-prepend">
-                <span class="input-group-text">Slut Tid:</span>
-                <input type="datetime-local" class="form-control" [value]="startDate.getDate()" [(ngModel)]="endDate"/>
+                <span class="input-group-text">Sluttid:</span>
+                <input type="datetime-local" class="form-control" [value]="endDate.getDate()" [(ngModel)]="endDate"/>
               </div>
 
 
@@ -116,10 +122,25 @@
                   <option *ngFor="let room of rooms">{{room.name}}</option>
                 </select>
               </div>
+
+              <div class="input-group-prepend">
+                <span class="input-group-text">Personal:</span>
+                <select #selectedStaff class="form-control" (change)="setCurrentStaff(selectedStaff.value)">
+                  <option *ngFor="let staff of staffList">{{staff.firstname + ' ' + staff.lastname}}</option>
+                </select>
+              </div>
+              <div class="input-group-prepend">
+                <span class="input-group-text">Personal:</span>
+                <select #selectedStatus class="form-control" (change)="setCurrentStatus(selectedStatus.value)">
+                  <option>Slutgiltig</option>
+                  <option>Preliminär</option>
+                </select>
+              </div>
             </div>
           </div>
       </div>
     </div>
 
   </div>
-<div>{{currentRoom.name}}</div>
+<button class="btn btn-primary" (click)="onFormSubmit()">Boka Operation</button>
+<button class="btn btn-primary" *ngIf="this.patient.booking" (click)="unbook()">Avboka Operation</button>
