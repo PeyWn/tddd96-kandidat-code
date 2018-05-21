@@ -36,6 +36,8 @@ import {ProcedureService} from '../../../http-api/procedure/procedure.service';
 import {forEach} from '@angular/router/src/utils/collection';
 import {DecisionService} from '../../../http-api/decision/decision.service';
 import {DecisionResponse} from '../../../http-api/decision/DecisionResponse';
+import {GetCalendarFiltersService} from '../../get-calendar-filters.service';
+import {ProcedureResponse} from '../../../http-api/procedure/ProcedureResponse';
 
 const colors: any = {
   red: {
@@ -147,10 +149,25 @@ export class CalenderViewComponent implements OnInit {
   updateRooms($event, room: string): void {
     if (!this.roomMap[room]) {
       this.roomMap[room] = true;
+      delete this.roomEvents[room];
+
+      // If no decision is selected decision list should be filterd
+      if(this.gpService.currentPatient == null){
+        this.roomService.getProceduresFromRoom(this.rooms[room].id).subscribe((procedures: ProcedureResponse[]) => {
+          this.gcfService.addProcedures(procedures);
+        });
+      }
       this.getTrack(this.rooms[room]);
     } else {
       this.roomMap[room] = false;
       delete this.roomEvents[room];
+
+      // Remove filters if no decision is selected
+      if(this.gpService.currentPatient == null){
+        this.roomService.getProceduresFromRoom(this.rooms[room].id).subscribe((procedures: ProcedureResponse[]) => {
+          this.gcfService.deleteProcedures(procedures);
+        });
+      }
     }
     this.refresh.next();
   }
@@ -215,7 +232,8 @@ export class CalenderViewComponent implements OnInit {
               private resolver: ComponentFactoryResolver,
               private roomService: RoomService,
               private procedureService: ProcedureService,
-              private decisionService: DecisionService) {
+              private decisionService: DecisionService,
+              private gcfService: GetCalendarFiltersService) {
     this.gpService.changedPatient.subscribe( () => {
       this.getPatient();
       console.log(this.currentPatient);
