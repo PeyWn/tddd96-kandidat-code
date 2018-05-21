@@ -4,6 +4,7 @@ import {RoomResponse} from './RoomResponse';
 import {HttpClient} from '@angular/common/http';
 import {FreeTime} from '../freeTime/FreeTime';
 import {RoomBooking} from './RoomBooking';
+import {ProcedureResponse} from '../procedure/ProcedureResponse';
 
 @Injectable()
 export class RoomService {
@@ -28,5 +29,9 @@ export class RoomService {
 
   getBookingsForRoom(id: number): Observable<RoomBooking[]> {
     return this.httpClient.get<RoomBooking[]>('/room/' + id + '/booked');
+  }
+
+  getProceduresFromRoom(id: number): Observable<ProcedureResponse[]> {
+    return this.httpClient.get<ProcedureResponse[]>('/room/' + id + '/procedures');
   }
 }

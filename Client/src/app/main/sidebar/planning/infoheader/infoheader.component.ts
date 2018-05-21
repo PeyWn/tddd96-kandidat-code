@@ -24,6 +24,9 @@ export class InfoheaderComponent implements OnInit {
   }
   constructor(private gpService: GetPatientsService, private spService: SidebarPanelService) {
     this.patient = this.getPatient();
+    this.gpService.changedPatient.subscribe(() => {
+      this.patient = this.getPatient();
+    })
   }
   ngOnInit() {
     if (this.patient.Bradskandegrad) {

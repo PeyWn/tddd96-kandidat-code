@@ -22,6 +22,59 @@ export class GetPatientsService {
 
   @Output() fetchedPatient = new EventEmitter();
 
+
+
+  refreshPatient(decisionId:number){
+    this.decisionService.getDecision(decisionId).subscribe((decision:DecisionResponse) => {
+      this.decisionService.getBookingForDecision(decision.id).subscribe((booking: BookingResponse) => {
+        this.patientService.getPatient(decision.PatientSsn).subscribe((patient: PatientResponse) => {
+          this.decisionService.getProceduresForDecision(decision.id).subscribe((procedures: ProcedureResponse[]) => {
+            let sortedProcedures = new Array<ProcedureResponse>();
+            for (let j = 0; j < procedures.length; j++) {
+              sortedProcedures[procedures[j].DecisionProcedure.procedureOrder - 1] = procedures[j];
+            }
+            let newPatient: Patient = new Patient(
+              decision.id,
+              patient.firstName + ' ' + patient.lastName,
+              patient.ssn,
+              decision.ICD10Code,
+              decision.urgent,
+              new Date(decision.latestDate),
+              booking,
+              sortedProcedures);
+            this.patients[this.patients.findIndex(x => x.id == decisionId)] = newPatient;
+            this.setPatient(this.patients[this.patients.findIndex(x => x.id == decisionId)]);
+          });
+        });
+      })
+    })
+
+  }
+  updateDecision(id:number) {
+    this.decisionService.getDecision(id).subscribe((decision:DecisionResponse) => {
+      this.decisionService.getBookingForDecision(decision.id).subscribe((booking: BookingResponse) => {
+        this.patientService.getPatient(decision.PatientSsn).subscribe((patient: PatientResponse) => {
+          this.decisionService.getProceduresForDecision(decision.id).subscribe((procedures: ProcedureResponse[]) => {
+            let sortedProcedures = new Array<ProcedureResponse>();
+            for (let j = 0; j < procedures.length; j++) {
+              sortedProcedures[procedures[j].DecisionProcedure.procedureOrder - 1] = procedures[j];
+            }
+            let newPatient: Patient = new Patient(
+              decision.id,
+              patient.firstName + ' ' + patient.lastName,
+              patient.ssn,
+              decision.ICD10Code,
+              decision.urgent,
+              new Date(decision.latestDate),
+              booking,
+              sortedProcedures);
+            this.patients[this.patients.findIndex(x => x.id == id)] = newPatient;
+            this.setPatient(this.patients[this.patients.findIndex(x => x.id === id)]);
+          });
+        });
+    })
+  })
+  }
   constructor(
     private decisionService: DecisionService,
     private patientService: PatientService

@@ -2,6 +2,7 @@ import { Component, ViewChild, ViewContainerRef, ComponentRef, ComponentFactory,
 import { GetPatientsService} from '../../../get-patients.service';
 import {InfoheaderComponent} from '../../planning/infoheader/infoheader.component';
 import {Patient} from '../../planning/infoheader/Patient';
+import {GetCalendarFiltersService} from '../../../get-calendar-filters.service';
 
 @Component({
   selector: 'app-decisions',
@@ -17,6 +18,8 @@ export class DecisionsComponent implements OnInit {
   latestSearch: string;
   decisionList: Array<Patient>;
   processList: Patient[];
+  durationFilter: number;
+  proceduresFilter: string[];
   @ViewChild('infoh', { read: ViewContainerRef }) container;
 
   setPatient(newPatient: Patient) {
@@ -89,12 +92,20 @@ export class DecisionsComponent implements OnInit {
     return true;
   }
 
+  applyKvaFilter(filterObject: Patient): boolean {
+    if (this.proceduresFilter.length > 0){
+      return this.proceduresFilter.includes(filterObject.procedures[0].kvåCode);
+    }
+    return true;
+  }
+
 
   applyFilters(filterObject: Patient): boolean {
     return (this.applyElektivFilter(filterObject)
       && this.applyAkutFilter(filterObject)
       && this.applyPrebokadFilter(filterObject)
-      && this.applyBokadFilter(filterObject));
+      && this.applyBokadFilter(filterObject)
+      && this.applyKvaFilter(filterObject));
   }
 
   strMatches(str1: string, str2: string): boolean {
@@ -208,13 +219,22 @@ export class DecisionsComponent implements OnInit {
     return array;
   }
 
-  constructor(private gpService: GetPatientsService, private resolver: ComponentFactoryResolver) {
+  constructor(private gpService: GetPatientsService,
+              private resolver: ComponentFactoryResolver,
+              private gcfService: GetCalendarFiltersService) {
     this.decisionList = this.gpService.patients;
     this.processList = this.decisionList;
+
+    this.durationFilter = this.gcfService.duration;
+    this.proceduresFilter = this.gcfService.procedures;
 
     this.gpService.fetchedPatient.subscribe(() => {
       this.viewAll();
     });
+
+    this.gcfService.filtersUpdated.subscribe(() => {
+      this.filterPatients();
+    })
   }
 
   ngOnInit() {
