@@ -17,3 +17,11 @@
 .track-day>h1{
   text-align: center;
 }
+
+#selecttime {
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  child-align: middle;
+}

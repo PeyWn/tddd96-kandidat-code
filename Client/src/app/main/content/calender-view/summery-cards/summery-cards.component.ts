@@ -17,6 +17,7 @@ addHours
 } from 'date-fns';
 import {RoomResponse} from "../../../../http-api/room/RoomResponse";
 import {RoomService} from "../../../../http-api/room/room.service";
+import {BookingInfoService} from '../booking-info.service';
 
 
 
@@ -40,8 +41,8 @@ export class SummeryCardsComponent implements OnInit {
   startDate: Date;
   endDate: Date;
 
-  constructor(private gpService: GetPatientsService, private procService: ProcedureService, private eventService: BookingService, private roomService: RoomService
-  ) {
+  constructor(private gpService: GetPatientsService, private procService: ProcedureService, private eventService: BookingService, private roomService: RoomService,
+  private bookingInfoService: BookingInfoService) {
     this.patient = this.getPatient();
   }
 

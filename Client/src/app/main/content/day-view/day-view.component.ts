@@ -17,6 +17,9 @@ import {RoomService} from '../../../http-api/room/room.service';
 import {RoomResponse} from '../../../http-api/room/RoomResponse';
 import {GetPatientsService} from '../../get-patients.service';
 import {Patient} from '../../sidebar/planning/infoheader/Patient';
+import {CurrentViewService} from '../../current-view.service';
+import {CalenderViewComponent} from '../calender-view/calender-view.component';
+import {BookingInfoService} from '../calender-view/booking-info.service';
 
 @Component({
   selector: 'app-day-track-view',
@@ -26,6 +29,7 @@ import {Patient} from '../../sidebar/planning/infoheader/Patient';
 export class DayViewComponent extends CalendarDayViewComponent implements OnInit, OnChanges {
   @Input() title;
   @Input() resourceSchedules: {[index: string]: {events: CalendarEvent[], roomId: number}} = {};
+  @Input() calendar: CalenderViewComponent;
 
   openRoomTimes: Array<Array<FreeTime>>;
   selectedTimeResourceIndex: string = null;
@@ -33,6 +37,7 @@ export class DayViewComponent extends CalendarDayViewComponent implements OnInit
 
   constructor(private roomService: RoomService,
               private decisionService: GetPatientsService,
+              private bookingInfoService: BookingInfoService,
               ref: ChangeDetectorRef,
               utils: CalendarUtils) {
     super(ref, utils, 'sv');
@@ -77,7 +82,12 @@ export class DayViewComponent extends CalendarDayViewComponent implements OnInit
   }
 
   continueWithTime() {
-
+    this.bookingInfoService.roomId = this.resourceSchedules[this.selectedTimeResourceIndex].roomId;
+    this.bookingInfoService.roomName = this.selectedTimeResourceIndex;
+    let event = this.resourceSchedules[this.selectedTimeResourceIndex].events[this.selectedTimeEventIndex];
+    this.bookingInfoService.startDate = event.start;
+    this.bookingInfoService.endDate = event.end;
+    this.calendar.view = 'summery';
   }
 
   undoTime() {
@@ -97,7 +107,7 @@ export class DayViewComponent extends CalendarDayViewComponent implements OnInit
         {
           start: date,
           end: new Date(date.getTime() + currentDecision.totalOperationTime * 60 * 1000),
-          title: 'Vald tid<br>cool nästa rad',
+          title: 'Vald tid',
           color: {
             primary: '#e3bc08',
             secondary: '#FDF1BA'

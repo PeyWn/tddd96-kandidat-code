@@ -1,5 +1,7 @@
 <!--<div *ngSwitchCase="'day'">{{ viewDate | calendarDate:(view + 'ViewTitle'):'sv' }}</div>-->
-<button (click)="continueWithTime()">Fortsätt med vald tid</button><button (click)="undoTime()">Ångra vald tid</button>
+<div *ngIf="selectedTimeResourceIndex" id="selecttime">
+  <button class="btn btn-primary" (click)="continueWithTime()">Fortsätt med vald tid</button><button class="btn btn-primary" (click)="undoTime()">Ångra vald tid</button>
+</div>
 <div class="track-day" *ngFor="let resource of resourceSchedules | keys">
   <h1>{{resource.key}}</h1>
   <mwl-calendar-day-view
