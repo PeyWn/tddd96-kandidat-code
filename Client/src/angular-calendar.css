@@ -348,3 +348,7 @@
   height: 0;
   border: solid transparent;
 }
+
+.odd-cell {
+  background-color: pink !important;
+}
