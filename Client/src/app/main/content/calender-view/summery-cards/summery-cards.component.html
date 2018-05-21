@@ -43,9 +43,12 @@
               </div>
 
               <ul class="list-group list-group-flush">
+                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Bokningsstatus: {{bookingStatus}}</li>
                 <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Senaste Operationsdatum: {{patient.Tid}}</li>
                 <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Brådskandegrad: {{urgency}}</li>
                 <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationstid: {{patient.procedures[0].operationTime}} minuter</li>
+                <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationsstart: {{startDate}}</li>
+                <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationsslut: {{endDate}}</li>
                 <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationssal: {{bookedRoomName}}</li>
                 <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Personal: {{bookedStaffName}}</li>
 
@@ -124,6 +127,13 @@
                 <span class="input-group-text">Personal:</span>
                 <select #selectedStaff class="form-control" (change)="setCurrentStaff(selectedStaff.value)">
                   <option *ngFor="let staff of staffList">{{staff.firstname + ' ' + staff.lastname}}</option>
+                </select>
+              </div>
+              <div class="input-group-prepend">
+                <span class="input-group-text">Personal:</span>
+                <select #selectedStatus class="form-control" (change)="setCurrentStatus(selectedStatus.value)">
+                  <option>Slutgiltig</option>
+                  <option>Preliminär</option>
                 </select>
               </div>
             </div>

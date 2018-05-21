@@ -51,10 +51,18 @@ export class SummeryCardsComponent implements OnInit {
   title: string;
   startDate: Date;
   endDate: Date;
+  bookingStatus: string;
+  currentStatus: boolean;
 
   constructor(private gpService: GetPatientsService, private procService: ProcedureService, private bookService: BookingService, private roomService: RoomService, private desService: DecisionService, private staffService: StaffService
   ) {
     this.patient = this.getPatient();
+    this.gpService.changedPatient.subscribe(() => {
+      this.patient = this.getPatient();
+      this.getBookedRoom();
+      this.getBookedStaff();
+      this.getBookingStatus();
+    })
   }
 
   ngOnInit() {
@@ -70,6 +78,7 @@ export class SummeryCardsComponent implements OnInit {
 
     this.getBookedRoom();
     this.getBookedStaff();
+    this.getBookingStatus();
 
     this.roomService.getRoomsByType(1).subscribe((rooms: RoomResponse[])=>{
       this.rooms = rooms;
@@ -93,6 +102,27 @@ export class SummeryCardsComponent implements OnInit {
       if (this.staffList[i].firstname + ' ' + this.staffList[i].lastname === staffName) {
         this.currentStaff = this.staffList[i].id; } }
   }
+
+  setCurrentStatus(status: string){
+    if (status === 'Slutgiltig') {
+      this.currentStatus = true;
+    } else if (status === 'Preliminär') {
+      this.currentStatus = false;
+    }
+  }
+
+  getBookingStatus() {
+    if (this.patient.booking) {
+      if (this.patient.booking.preliminary) {
+        this.bookingStatus = 'Bokad';
+      } else {
+        this.bookingStatus = 'Preliminärbokad';
+      }
+    } else {
+      this.bookingStatus = 'Obokad';
+    }
+  }
+
 
   getPatient(): Patient {
     return this.gpService.currentPatient;
@@ -125,20 +155,21 @@ export class SummeryCardsComponent implements OnInit {
 
 
   onFormSubmit () {
-    this.bookService.createBooking(this.gpService.currentPatient.id, this.preliminary).subscribe((response: BookingResponse) =>{
+    this.bookService.createBooking(this.gpService.currentPatient.id, this.currentStatus).subscribe((response: BookingResponse) =>{
       this.bookService.addRoomToBooking(response.id, this.currentRoom.id, this.startDate, this.endDate).subscribe();
       for(let i = 0; i < this.material.length; i++){
         this.bookService.addMaterialToBooking(response.id, this.material[i].id, this.startDate, this.endDate).subscribe();
       }
       this.bookService.addStaffToBooking(response.id, this.currentStaff, this.startDate, this.endDate).subscribe();
-      this.gpService.updateDecision(this.patient.id)
+      this.gpService.updateDecision(this.patient.id);
     });
   }
   unbook () {
     this.bookService.deleteBooking(this.patient.booking.id).subscribe(() => {
       this.gpService.updateDecision(this.patient.id);
+      this.getPatient();
       }
-    );
+    )
   }
 }
 
