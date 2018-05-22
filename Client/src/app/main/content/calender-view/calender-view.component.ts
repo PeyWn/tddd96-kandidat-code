@@ -143,12 +143,10 @@ export class CalenderViewComponent implements OnInit {
       this.roomMap[room] = true;
       delete this.roomEvents[room];
 
-      // If no decision is selected decision list should be filterd
       if(this.gpService.currentPatient == null){
-        this.roomService.getProceduresFromRoom(this.rooms[room].id).subscribe((procedures: ProcedureResponse[]) => {
-          this.gcfService.addProcedures(procedures);
-        });
+        this.setRoomFilter(this.rooms[room], true);
       }
+      // If no decision is selected decision list should be filterd
       this.getTrack(this.rooms[room]);
     } else {
       this.roomMap[room] = false;
@@ -156,9 +154,7 @@ export class CalenderViewComponent implements OnInit {
 
       // Remove filters if no decision is selected
       if(this.gpService.currentPatient == null){
-        this.roomService.getProceduresFromRoom(this.rooms[room].id).subscribe((procedures: ProcedureResponse[]) => {
-          this.gcfService.deleteProcedures(procedures);
-        });
+        this.setRoomFilter(this.rooms[room], false);
       }
     }
     this.refresh.next();
@@ -292,8 +288,14 @@ export class CalenderViewComponent implements OnInit {
       this.rooms = {};
       this.roomMap = {};
       for (let room of rooms) {
-        this.roomMap[room.name] = false;
         this.rooms[room.name] = room;
+        this.roomMap[room.name] = true;
+        this.getTrack(room);
+
+        // If showing all rooms without patien then filter list of decisions
+        if(this.gpService.currentPatient == null) {
+          this.setRoomFilter(room, true);
+        }
       }
     });
   }
@@ -328,6 +330,18 @@ export class CalenderViewComponent implements OnInit {
           });
         }
     });
+  }
+
+  private setRoomFilter(room: RoomResponse, enable: Boolean) {
+    if(enable){
+      this.roomService.getProceduresFromRoom(room.id).subscribe((procedures: ProcedureResponse[]) => {
+        this.gcfService.addProcedures(procedures);
+      });
+    } else {
+      this.roomService.getProceduresFromRoom(room.id).subscribe((procedures: ProcedureResponse[]) => {
+          this.gcfService.deleteProcedures(procedures);
+        });
+    }
   }
 
   ngOnInit() {
