@@ -1,98 +1,58 @@
-  <div class="d-flex flex-row">
-    <div class="d-flex flex-column">
-      <div class="d-flex flex-row">
+<div class="d-flex">
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: large; font-weight: bold;">Patientinformation</h5>
 
-        <div class="d-flex flex-column">
-
-          <div class="card-deck">
-
-            <div class="card mb-3" >
-              <div class="card-body">
-                <h5 class="card-title">Patientinformation</h5>
-              </div>
-
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"> Namn: {{patient.Namn}} </li>
-                <li class="list-group-item"> Personnummer: {{patient.Personnummer}} </li>
-                <li class="list-group-item"> ICD10: {{patient.ICD10}} </li>
-                <li class="list-group-item"> KVÅ: {{patient.procedures[0]['kvåCode']}} </li>
-              </ul>
-            </div>
-
-
-            <div class="card mb-3" >
-              <div class="card-body">
-                <h5 class="card-title">Operation</h5>
-              </div>
-
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Operationstyp: {{patient.procedures[0].description}}</li>
-                <li class="list-group-item">Förberedelsetid: {{patient.procedures[0].preparationTime}} minuter</li>
-                <li class="list-group-item">Avvecklingstid: {{patient.procedures[0].dismantlingTime}} minuter</li>
-              </ul>
-
-              <div class="card-footer  text-center">
-                <button type="button" class="btn btn-primary" (click)="materialList = !materialList">Materiellista</button>
-              </div>
-
-            </div>
-
-            <div class="card mb-3" [ngClass]="urgency == 'AKUT' ? 'red-primary' : ''">
-              <div class="card-body">
-                <h5 class="card-title" style="font-size: large; font-weight: bold;">Information</h5>
-              </div>
-
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Bokningsstatus: {{bookingStatus}}</li>
-                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Senaste Operationsdatum: {{patient.Tid}}</li>
-                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Brådskandegrad: {{urgency}}</li>
-                <li class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationstid: {{patient.procedures[0].operationTime}} minuter</li>
-                <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationsstart: {{startDate}}</li>
-                <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationsslut: {{endDate}}</li>
-                <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Operationssal: {{bookedRoomName}}</li>
-                <li *ngIf="patient.booking" class="list-group-item" [ngClass]="urgency == 'AKUT' ? 'red-secondary' : ''">Personal: {{bookedStaffName}}</li>
-
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="d-flex flex-row">
-        <div class="d-flex flex column">
-          <div class="container-fluid" style="width: 903px" [hidden]="materialList">
-
-            <h2>Matrial</h2>
-            <table class="table" style = "table-layout: fixed">
-              <thead class = "thead-dark">
-              <tr>
-                <th>Namn</th>
-                <th>Typ</th>
-                <th>Kvant</th>
-                <th>Steril.tid</th>
-              </tr>
-              </thead>
-              <tbody *ngFor="let materiel of this.material">
-              <tr class="table-primary" [ngClass]="materiel.Material_type.name == 'Container' ? 'table-warning' : materiel.Material_type.name == 'Extrainstrument' ? 'table-dark' : ''">
-                <td>{{materiel.name}}</td>
-                <td>{{materiel.Material_type.name}}</td>
-                <td>{{materiel.quantity}}</td>
-                <td>{{materiel.sterilizing_time}}</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ul class="list-group">
+      <li class="list-group-item"> Namn: {{patient.Namn}} </li>
+      <li class="list-group-item"> Personnummer: {{patient.Personnummer}} </li>
+    </ul>
   </div>
+
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: large; font-weight: bold;">Operation</h5>
+    <ul class="list-group">
+      <li class="list-group-item">Huvudåtgärd: {{patient.procedures[0].description}}</li>
+      <li class="list-group-item">ICD10: {{patient.ICD10}} </li>
+      <li class="list-group-item">KVÅ: {{patient.procedures[0]['kvåCode']}} </li>
+      <li class="list-group-item">Förberedelsetid: {{patient.procedures[0].preparationTime}} minuter</li>
+      <li class="list-group-item">Avvecklingstid: {{patient.procedures[0].dismantlingTime}} minuter</li>
+    </ul>
+  </div>
+
+
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: large; font-weight: bold;">Information</h5>
+
+    <ul class="list-group">
+      <li class="list-group-item">Bokningsstatus: {{bookingStatus}}</li>
+      <li class="list-group-item">Senaste Operationsdatum: {{patient.Tid}}</li>
+      <li class="list-group-item">Brådskandegrad: {{urgency}}</li>
+      <li class="list-group-item">Operationstid: {{patient.procedures[0].operationTime}} minuter</li>
+      <li *ngIf="patient.booking" class="list-group-item">Operationsstart: {{startDate}}</li>
+      <li *ngIf="patient.booking" class="list-group-item">Operationsslut: {{endDate}}</li>
+      <li *ngIf="patient.booking" class="list-group-item">Operationssal: {{bookedRoomName}}</li>
+      <li *ngIf="patient.booking" class="list-group-item">Personal: {{bookedStaffName}}</li>
+
+    </ul>
+  </div>
+
+
+</div>
+</div>
+
 
   <div class="d-flex">
 
     <div class="card mb-3">
       <div class="card-body">
-        <h5 class="card-title" style="font-size: large; font-weight: bold;">Redigera</h5>
+        <h5 class="card-title" style="font-size: large; font-weight: bold;">Boka</h5>
          <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
@@ -107,7 +67,7 @@
 
 
               <div class="input-group-prepend">
-                <span class="input-group-text">Operationssal:</span>
+                <span class="input-group-text">Sal:</span>
                 <select [(ngModel)]="selectedRoom" class="form-control" (ngModelChange)="setCurrentRoom()">
                   <option *ngFor="let room of rooms">{{room.name}}</option>
                 </select>
@@ -128,9 +88,36 @@
               </div>
             </div>
           </div>
+        <button class="btn btn-primary" *ngIf="!this.patient.booking" (click)="onFormSubmit()">Boka Operation</button>
+        <button class="btn btn-primary" *ngIf="this.patient.booking" (click)="onFormSubmit()">Omboka Operation</button>
+        <button class="btn btn-primary" *ngIf="this.patient.booking" (click)="unbook()">Avboka Operation</button>
       </div>
     </div>
 
   </div>
-<button class="btn btn-primary" (click)="onFormSubmit()">Boka Operation</button>
-<button class="btn btn-primary" *ngIf="this.patient.booking" (click)="unbook()">Avboka Operation</button>
+
+<div class="card mb-3" >
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: large; font-weight: bold;">Materiel</h5>
+  </div>
+  <div class="container-fluid" style="width: 903px">
+    <table class="table" style = "table-layout: fixed;">
+      <thead>
+      <tr>
+        <th>Namn</th>
+        <th>Typ</th>
+        <th>Kvantitet</th>
+        <th>Steriliseringstid</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let materiel of this.material">
+      <tr>
+        <td>{{materiel.name}}</td>
+        <td>{{materiel.Material_type.name}}</td>
+        <td>{{materiel.quantity}}</td>
+        <td>{{materiel.sterilizing_time}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

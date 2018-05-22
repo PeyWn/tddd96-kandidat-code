@@ -23,7 +23,7 @@
 
 <div class="row text-center">
   <div class="col-md-4">
-    <div class="btn-group">
+    <div *ngIf="view !== 'summery'" class="btn-group">
       <div
         class="btn btn-primary"
         mwlCalendarPreviousView
@@ -86,7 +86,7 @@
 </div>
 <br>
 
-<div class="row text-center">
+<div *ngIf="view !== 'summery'" class="row text-center">
   <div class="col-md">
     <div class="btn-group pull-right">
 
