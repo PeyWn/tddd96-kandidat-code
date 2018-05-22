@@ -101,6 +101,7 @@ export class DecisionsComponent implements OnInit {
 
 
   applyFilters(filterObject: Patient): boolean {
+    console.log('hmm');
     return (this.applyElektivFilter(filterObject)
       && this.applyAkutFilter(filterObject)
       && this.applyPrebokadFilter(filterObject)
@@ -230,6 +231,7 @@ export class DecisionsComponent implements OnInit {
 
     this.gpService.fetchedPatient.subscribe(() => {
       this.viewAll();
+      this.filterPatients();
     });
 
     this.gcfService.filtersUpdated.subscribe(() => {
@@ -238,7 +240,6 @@ export class DecisionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.gcfService.resetProcedures();
     this.viewAll();
   }
 

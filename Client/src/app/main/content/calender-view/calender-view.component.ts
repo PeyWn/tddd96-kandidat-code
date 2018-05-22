@@ -294,6 +294,7 @@ export class CalenderViewComponent implements OnInit {
 
         // If showing all rooms without patien then filter list of decisions
         if(this.gpService.currentPatient == null) {
+          this.gcfService.resetProcedures();
           this.setRoomFilter(room, true);
         }
       }
