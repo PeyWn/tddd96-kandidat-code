@@ -317,8 +317,6 @@ export class CalenderViewComponent implements OnInit {
     this.roomService.getBookingsForRoom(room.id).subscribe((bookings: RoomBooking[]) => {
       this.roomEvents[room.name] = {events: [], roomId: room.id};
         for (let i = 0; i < bookings.length; i++) {
-          console.log(bookings[i].Booked_local);
-          console.log(this.roomEvents);
           this.decisionService.getDecision(bookings[i].DecisionId).subscribe((decision: DecisionResponse) => {
             this.roomEvents[room.name].events.push({start: new Date(bookings[i].Booked_local.start_time),
               end: new Date(bookings[i].Booked_local.end_time),

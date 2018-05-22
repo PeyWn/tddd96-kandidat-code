@@ -234,10 +234,11 @@ export class DecisionsComponent implements OnInit {
 
     this.gcfService.filtersUpdated.subscribe(() => {
       this.filterPatients();
-    })
+    });
   }
 
   ngOnInit() {
+    this.gcfService.resetProcedures();
     this.viewAll();
   }
 
