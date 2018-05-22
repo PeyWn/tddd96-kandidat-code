@@ -9,6 +9,7 @@ export class ButtonpanelOverviewComponent implements OnInit {
   elektivChecked: boolean = false;
   bokadChecked: boolean = false;
   prebokadChecked: boolean = false;
+  obokadChecked: boolean = false;
   searchTxt;
 
   @Output() listModifiers = new EventEmitter<string>();
