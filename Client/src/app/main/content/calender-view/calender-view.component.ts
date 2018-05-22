@@ -227,6 +227,8 @@ export class CalenderViewComponent implements OnInit {
       console.log(this.currentPatient);
       if (!this.currentPatient){
         this.view = 'month';
+      } else if(this.currentPatient.booking != null){
+        this.view = 'summery';
       }
       this.refreshView();
 
