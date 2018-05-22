@@ -67,9 +67,11 @@ export class SummeryCardsComponent implements OnInit {
     this.patient = this.getPatient();
     this.gpService.changedPatient.subscribe(() => {
       this.patient = this.getPatient();
-      this.getBookedRoom();
-      this.getBookedStaff();
-      this.getBookingStatus();
+      if (this.patient != null) {
+        this.getBookedRoom();
+        this.getBookedStaff();
+        this.getBookingStatus();
+      }
     });
   }
 
@@ -92,7 +94,6 @@ export class SummeryCardsComponent implements OnInit {
 
     /*this.startDate = new Date();
     this.endDate = addMinutes(this.startDate, (this.patient.procedures[0].operationTime));*/
-    this.selectedRoom = 'fak off';
     this.getBookedRoom();
     this.getBookedStaff();
     this.getBookingStatus();
