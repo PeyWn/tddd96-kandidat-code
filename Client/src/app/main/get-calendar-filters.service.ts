@@ -34,4 +34,8 @@ export class GetCalendarFiltersService {
     this.filtersUpdated.emit();
   }
 
+  resetProcedures(): void {
+    this.procedures.length = 0;
+  }
+
 }

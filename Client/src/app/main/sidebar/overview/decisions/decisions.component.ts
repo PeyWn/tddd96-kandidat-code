@@ -240,11 +240,12 @@ export class DecisionsComponent implements OnInit {
 
     this.gpService.fetchedPatient.subscribe(() => {
       this.viewAll();
+      this.filterPatients();
     });
 
     this.gcfService.filtersUpdated.subscribe(() => {
       this.filterPatients();
-    })
+    });
   }
 
   ngOnInit() {

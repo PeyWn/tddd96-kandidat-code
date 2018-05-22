@@ -23,8 +23,7 @@
 
 <div class="row text-center">
   <div class="col-md-4">
-    <div class="btn-group">
-      <div
+      <div *ngIf="view !== 'summery'"
         class="btn btn-primary"
         mwlCalendarPreviousView
         [view]="view"
@@ -33,14 +32,14 @@
         (click)="refreshView()">
         Tidigare
       </div>
-      <div
+      <div *ngIf="view !== 'summery'"
         class="btn btn-outline-secondary"
         mwlCalendarToday
         [(viewDate)]="viewDate"
         (click)="refreshView()">
         Idag
       </div>
-      <div
+      <div *ngIf="view !== 'summery'"
         class="btn btn-primary"
         mwlCalendarNextView
         [view]="view"
@@ -50,7 +49,6 @@
         Nästa
       </div>
     </div>
-  </div>
   <div class="col-md-4">
     <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'sv' }}</h3>
   </div>
@@ -86,7 +84,7 @@
 </div>
 <br>
 
-<div class="row text-center">
+<div *ngIf="view !== 'summery'" class="row text-center">
   <div class="col-md">
     <div class="btn-group pull-right">
 
