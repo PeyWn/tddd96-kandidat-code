@@ -288,8 +288,14 @@ export class CalenderViewComponent implements OnInit {
       this.rooms = {};
       this.roomMap = {};
       for (let room of rooms) {
-        this.roomMap[room.name] = false;
         this.rooms[room.name] = room;
+        this.roomMap[room.name] = true;
+        this.getTrack(room);
+
+        // If showing all rooms without patien then filter list of decisions
+        if(this.gpService.currentPatient == null) {
+          this.setRoomFilter(room, true);
+        }
       }
     });
   }
