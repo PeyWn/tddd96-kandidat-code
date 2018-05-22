@@ -15,6 +15,11 @@ import {DayViewHour, DayViewHourSegment} from 'calendar-utils';
 import {FreeTime} from '../../../http-api/freeTime/FreeTime';
 import {RoomService} from '../../../http-api/room/room.service';
 import {RoomResponse} from '../../../http-api/room/RoomResponse';
+import {GetPatientsService} from '../../get-patients.service';
+import {Patient} from '../../sidebar/planning/infoheader/Patient';
+import {CurrentViewService} from '../../current-view.service';
+import {CalenderViewComponent} from '../calender-view/calender-view.component';
+import {BookingInfoService} from '../calender-view/booking-info.service';
 
 @Component({
   selector: 'app-day-track-view',
@@ -24,10 +29,15 @@ import {RoomResponse} from '../../../http-api/room/RoomResponse';
 export class DayViewComponent extends CalendarDayViewComponent implements OnInit, OnChanges {
   @Input() title;
   @Input() resourceSchedules: {[index: string]: {events: CalendarEvent[], roomId: number}} = {};
+  @Input() calendar: CalenderViewComponent;
 
   openRoomTimes: Array<Array<FreeTime>>;
+  selectedTimeResourceIndex: string = null;
+  selectedTimeEventIndex: number = -1;
 
   constructor(private roomService: RoomService,
+              private decisionService: GetPatientsService,
+              private bookingInfoService: BookingInfoService,
               ref: ChangeDetectorRef,
               utils: CalendarUtils) {
     super(ref, utils, 'sv');
@@ -69,6 +79,43 @@ export class DayViewComponent extends CalendarDayViewComponent implements OnInit
     minutes += 60 * Number(clock.substr(0, 2));
     minutes += Number(clock.substring(first + 1, last));
     return minutes;
+  }
+
+  continueWithTime() {
+    this.bookingInfoService.roomId = this.resourceSchedules[this.selectedTimeResourceIndex].roomId;
+    this.bookingInfoService.roomName = this.selectedTimeResourceIndex;
+    let event = this.resourceSchedules[this.selectedTimeResourceIndex].events[this.selectedTimeEventIndex];
+    this.bookingInfoService.startDate = event.start;
+    this.bookingInfoService.endDate = event.end;
+    this.calendar.view = 'summery';
+    this.undoTime();
+  }
+
+  undoTime() {
+    if (this.selectedTimeResourceIndex) {
+      this.resourceSchedules[this.selectedTimeResourceIndex].events.splice(this.selectedTimeEventIndex, 1);
+      this.selectedTimeResourceIndex = null;
+    }
+  }
+
+  segmentClicked(date: Date, resource): void {
+    let currentDecision: Patient = this.decisionService.currentPatient;
+    if (currentDecision) {
+      this.undoTime();
+      this.selectedTimeResourceIndex = resource.key;
+      this.selectedTimeEventIndex = resource.value.events.length;
+      resource.value.events.push(
+        {
+          start: date,
+          end: new Date(date.getTime() + currentDecision.totalOperationTime * 60 * 1000),
+          title: 'Vald tid',
+          color: {
+            primary: '#e3bc08',
+            secondary: '#FDF1BA'
+          }
+        }
+      );
+    }
   }
 
   beforeDayViewRender(event: CalendarDayViewBeforeRenderEvent, roomId: number): void {

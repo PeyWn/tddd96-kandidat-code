@@ -86,10 +86,6 @@
         </div>
       </div>
     </div>
-
-    <div class="d-flex flex-column" style="width: 40%; min-width: 400px">
-      <h5>This is for spår</h5>
-    </div>
   </div>
 
   <div class="d-flex">
@@ -99,26 +95,20 @@
         <h5 class="card-title" style="font-size: large; font-weight: bold;">Redigera</h5>
          <div class="form-group">
             <div class="input-group">
-
-              <div class="input-group-prepend">
-                <span class="input-group-text">Titel:</span>
-                <input type="text" class="form-control" aria-describedby="eventTitle" [(ngModel)]="title"/>
-              </div>
-
               <div class="input-group-prepend">
                 <span class="input-group-text">Starttid:</span>
-                <input type="datetime-local" class="form-control" [value]="startDate.getDate()" [(ngModel)]="startDate"/>
+                <input type="text" class="form-control" [value]="startDate.getDate()" [(ngModel)]="startDate"/>
               </div>
 
               <div class="input-group-prepend">
                 <span class="input-group-text">Sluttid:</span>
-                <input type="datetime-local" class="form-control" [value]="endDate.getDate()" [(ngModel)]="endDate"/>
+                <input type="text" class="form-control" [value]="endDate.getDate()" [(ngModel)]="endDate"/>
               </div>
 
 
               <div class="input-group-prepend">
                 <span class="input-group-text">Operationssal:</span>
-                <select #selectedRoom class="form-control" (change)="setCurrentRoom(selectedRoom.value)">
+                <select [(ngModel)]="selectedRoom" class="form-control" (ngModelChange)="setCurrentRoom()">
                   <option *ngFor="let room of rooms">{{room.name}}</option>
                 </select>
               </div>
@@ -130,7 +120,7 @@
                 </select>
               </div>
               <div class="input-group-prepend">
-                <span class="input-group-text">Personal:</span>
+                <span class="input-group-text">Status:</span>
                 <select #selectedStatus class="form-control" (change)="setCurrentStatus(selectedStatus.value)">
                   <option>Slutgiltig</option>
                   <option>Preliminär</option>

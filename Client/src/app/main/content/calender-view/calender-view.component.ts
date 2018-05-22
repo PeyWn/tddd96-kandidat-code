@@ -133,7 +133,6 @@ export class CalenderViewComponent implements OnInit {
     console.log('REFRESH');
   }
 
-
   combineEvents() {
     this.events = this.eventsNew;
   }

@@ -49,6 +49,7 @@ import {ClinicService} from './http-api/clinic/clinic.service';
 import {BookingService} from './http-api/booking/booking.service';
 import {LoginService} from './login/login.service';
 import { LoginComponent } from './login/login.component';
+import {BookingInfoService} from './main/content/calender-view/booking-info.service';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { LoginComponent } from './login/login.component';
     ClinicService,
     BookingService,
     GetCalendarFiltersService,
-    LoginService
+    LoginService,
+    BookingInfoService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
