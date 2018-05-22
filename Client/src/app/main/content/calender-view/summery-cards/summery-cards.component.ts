@@ -16,6 +16,9 @@ isSameMonth,
 addHours,
   addMinutes
 } from 'date-fns';
+import {
+  CalendarEvent
+} from 'angular-calendar';
 import {RoomResponse} from "../../../../http-api/room/RoomResponse";
 import {RoomService} from "../../../../http-api/room/room.service";
 import {BookingResponse} from '../../../../http-api/booking/BookingResponse';
@@ -53,6 +56,11 @@ export class SummeryCardsComponent implements OnInit {
   bookingStatus: string;
   currentStatus: boolean;
   selectedRoom;
+
+  //Track vars
+  locale: string = "sv";
+  events: CalendarEvent[] = [];
+  resourceSchedules: {[index: string]: CalendarEvent[]} = {};
 
   constructor(private gpService: GetPatientsService, private procService: ProcedureService, private bookService: BookingService, private roomService: RoomService, private desService: DecisionService, private staffService: StaffService, private bookingInfoService: BookingInfoService
   ) {

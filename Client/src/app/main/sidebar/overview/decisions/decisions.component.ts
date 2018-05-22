@@ -13,8 +13,9 @@ import {GetCalendarFiltersService} from '../../../get-calendar-filters.service';
 export class DecisionsComponent implements OnInit {
   akutFilter: boolean;
   elektivFilter: boolean;
-  bokadFilter: boolean;
-  prebokadFilter: boolean;
+  bookedFilter: boolean;
+  prelBookedFilter: boolean;
+  unBookedFilter: boolean;
   latestSearch: string;
   decisionList: Array<Patient>;
   processList: Patient[];
@@ -55,8 +56,9 @@ export class DecisionsComponent implements OnInit {
     switch ($event[0]) {
       case 'AKUT': {this.akutFilter = $event[1]; break; }
       case 'Elektiv': {this.elektivFilter = $event[1]; break; }
-      case 'bokad': {this.bokadFilter = $event[1]; break; }
-      case 'prebokad': {this.prebokadFilter = $event[1]; break; }
+      case 'bokad': {this.bookedFilter = $event[1]; break; }
+      case 'prebokad': {this.prelBookedFilter = $event[1]; break; }
+      case 'obokad': {this.unBookedFilter = $event[1]; break}
       default: break;
     }
   }
@@ -77,16 +79,23 @@ export class DecisionsComponent implements OnInit {
   }
 
 
-  applyBokadFilter(filterObject: Patient): boolean {
-    if (this.bokadFilter) {
-      return filterObject.booking !== null;
+  applyPrelBookedFilter(filterObject: Patient): boolean {
+    if (this.prelBookedFilter) {
+      return filterObject.booking !== null && filterObject.booking.preliminary;
     }
     return true;
   }
 
+  applyBookedFilter(filterObject: Patient): boolean {
+    if (this.bookedFilter) {
+      return filterObject.booking !== null && !filterObject.booking.preliminary
+    }
+    return true
+  }
 
-  applyPrebokadFilter(filterObject: Patient): boolean {
-    if (this.prebokadFilter) {
+
+  applyUnBookedFilter(filterObject: Patient): boolean {
+    if (this.unBookedFilter) {
       return filterObject.booking === null;
     }
     return true;
@@ -103,8 +112,9 @@ export class DecisionsComponent implements OnInit {
   applyFilters(filterObject: Patient): boolean {
     return (this.applyElektivFilter(filterObject)
       && this.applyAkutFilter(filterObject)
-      && this.applyPrebokadFilter(filterObject)
-      && this.applyBokadFilter(filterObject)
+      && this.applyBookedFilter(filterObject)
+      && this.applyPrelBookedFilter(filterObject)
+      && this.applyUnBookedFilter(filterObject)
       && this.applyKvaFilter(filterObject));
   }
 
