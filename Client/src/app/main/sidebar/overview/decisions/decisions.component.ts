@@ -101,7 +101,6 @@ export class DecisionsComponent implements OnInit {
 
 
   applyFilters(filterObject: Patient): boolean {
-    console.log('hmm');
     return (this.applyElektivFilter(filterObject)
       && this.applyAkutFilter(filterObject)
       && this.applyPrebokadFilter(filterObject)
