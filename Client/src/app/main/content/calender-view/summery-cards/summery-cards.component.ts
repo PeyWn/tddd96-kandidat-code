@@ -53,6 +53,8 @@ export class SummeryCardsComponent implements OnInit {
   staff: StaffResponse;
   startDate: Date;
   endDate: Date;
+  bookedStartDate: Date;
+  bookedEndDate: Date;
   bookingStatus: string;
   currentStatus: boolean;
   selectedRoom;
@@ -89,6 +91,8 @@ export class SummeryCardsComponent implements OnInit {
     if (this.bookingInfoService.roomId !== null) {
       this.endDate = this.bookingInfoService.endDate;
       this.startDate = this.bookingInfoService.startDate;
+      this.bookedStartDate = this.bookingInfoService.startDate;
+      this.bookedEndDate = this.bookingInfoService.endDate;
     }
     this.currentStatus = false;
 
