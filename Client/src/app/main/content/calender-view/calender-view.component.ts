@@ -325,7 +325,7 @@ export class CalenderViewComponent implements OnInit {
           this.decisionService.getDecision(bookings[i].DecisionId).subscribe((decision: DecisionResponse) => {
             this.roomEvents[room.name].events.push({start: new Date(bookings[i].Booked_local.start_time),
               end: new Date(bookings[i].Booked_local.end_time),
-              title: decision.PatientSsn,
+              title: decision.PatientSsn +'<br/>' + this.currentPatient.Namn + '<br/>' + decision.Staff.firstname + ' ' + decision.Staff.lastname + '<br/>' + this.currentPatient.procedures[0].kvåCode,
               color: colors.blue,
               actions: this.actions});
           });
