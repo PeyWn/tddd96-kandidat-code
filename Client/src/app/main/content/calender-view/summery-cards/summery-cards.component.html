@@ -83,8 +83,8 @@
 
     <ul class="list-group">
       <li class="list-group-item">Bokningsstatus: {{bookingStatus}}</li>
-      <li *ngIf="patient.booking" class="list-group-item">Operationsstart: {{startDate}}</li>
-      <li *ngIf="patient.booking" class="list-group-item">Operationsslut: {{endDate}}</li>
+      <li *ngIf="patient.booking" class="list-group-item">Operationsstart: {{bookedStartDate}}</li>
+      <li *ngIf="patient.booking" class="list-group-item">Operationsslut: {{bookedEndDate}}</li>
       <li *ngIf="patient.booking" class="list-group-item">Operationssal: {{bookedRoomName}}</li>
       <li *ngIf="patient.booking" class="list-group-item">Personal: {{bookedStaffName}}</li>
 
@@ -105,12 +105,12 @@
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Starttid:</span>
-                <input type="text" class="form-control" [value]="startDate.getDate()" [(ngModel)]="startDate"/>
+                <input type="text" class="form-control" [value]="startDate" [(ngModel)]="startDate"/>
               </div>
 
               <div class="input-group-prepend">
                 <span class="input-group-text">Sluttid:</span>
-                <input type="text" class="form-control" [value]="endDate.getDate()" [(ngModel)]="endDate"/>
+                <input type="text" class="form-control" [value]="endDate" [(ngModel)]="endDate"/>
               </div>
 
 

@@ -29,6 +29,7 @@ import {StaffResponse} from '../../../../http-api/staff/StaffResponse';
 import {BookingRoom} from '../../../../http-api/booking/BookingRoom';
 import {BookingStaff} from '../../../../http-api/booking/BookingStaff';
 import {BookingInfoService} from '../booking-info.service';
+import {RoomBooking} from '../../../../http-api/room/RoomBooking';
 
 
 
@@ -66,9 +67,9 @@ export class SummeryCardsComponent implements OnInit {
 
   constructor(private gpService: GetPatientsService, private procService: ProcedureService, private bookService: BookingService, private roomService: RoomService, private desService: DecisionService, private staffService: StaffService, private bookingInfoService: BookingInfoService
   ) {
-    this.patient = this.getPatient();
+    this.getPatient();
     this.gpService.changedPatient.subscribe(() => {
-      this.patient = this.getPatient();
+      this.getPatient();
       if (this.patient != null) {
         this.getBookedRoom();
         this.getBookedStaff();
@@ -78,7 +79,7 @@ export class SummeryCardsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProcedureMaterial(this.getPatient().procedures[0].kvåCode);
+    this.getProcedureMaterial(this.patient.procedures[0].kvåCode);
     if (this.patient.Bradskandegrad) {
       this.urgency = 'AKUT';
     } else {
@@ -95,6 +96,8 @@ export class SummeryCardsComponent implements OnInit {
       this.bookedEndDate = this.bookingInfoService.endDate;
     }
     this.currentStatus = false;
+
+    this.updateBookedTimes();
 
     /*this.startDate = new Date();
     this.endDate = addMinutes(this.startDate, (this.patient.procedures[0].operationTime));*/
@@ -144,6 +147,19 @@ export class SummeryCardsComponent implements OnInit {
     }
   }
 
+  updateBookedTimes() {
+    if (this.patient && this.patient.booking) {
+      this.bookService.getBookedRooms(this.patient.booking.id).subscribe((bookResponse: BookingRoom[]) => {
+        this.roomService.getRoom(bookResponse[0].id).subscribe((roomResponse: RoomResponse) => {
+          this.roomService.getBookingsForRoom(roomResponse.id).subscribe((bookedRoom: RoomBooking[]) => {
+            this.bookedStartDate = new Date(bookedRoom[0].Booked_local.start_time);
+            this.bookedEndDate = new Date(bookedRoom[0].Booked_local.end_time);
+          })
+        })
+      })
+    }
+  }
+
   getBookingStatus() {
     if (this.patient.booking) {
       if (this.patient.booking.preliminary) {
@@ -157,8 +173,11 @@ export class SummeryCardsComponent implements OnInit {
   }
 
 
-  getPatient(): Patient {
-    return this.gpService.currentPatient;
+  getPatient() {
+    this.patient = this.gpService.currentPatient;
+    if (this.patient && this.patient.booking) {
+      this.updateBookedTimes();
+    }
   }
 
   getBookedRoom() {
@@ -210,7 +229,6 @@ export class SummeryCardsComponent implements OnInit {
   unbook () {
     this.bookService.deleteBooking(this.patient.booking.id).subscribe(() => {
       this.gpService.updateDecision(this.patient.id);
-      this.getPatient();
       }
     );
   }
