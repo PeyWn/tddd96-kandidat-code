@@ -165,6 +165,8 @@ export class SummeryCardsComponent implements OnInit {
     if (this.patient.booking) {
       this.bookService.getBookedRooms(this.patient.booking.id).subscribe((response: BookingRoom[]) => {
         this.bookedRoomName = response[0].name;
+        this.startDate = new Date(response[0].Booked_local.start_time);
+        this.endDate = new Date(response[0].Booked_local.end_time);
       });
     }
   }
@@ -172,7 +174,9 @@ export class SummeryCardsComponent implements OnInit {
   getBookedStaff() {
     if (this.patient.booking) {
       this.bookService.getBookedStaff(this.patient.booking.id).subscribe( (response: BookingStaff[]) => {
-        this.bookedStaffName = response[0].firstname + ' ' + response[0].lastname;
+        if (response.length > 0) {
+          this.bookedStaffName = response[0].firstname + ' ' + response[0].lastname;
+        }
       });
     }
   }
