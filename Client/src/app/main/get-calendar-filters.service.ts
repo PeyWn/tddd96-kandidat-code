@@ -24,7 +24,7 @@ export class GetCalendarFiltersService {
     this.filtersUpdated.emit();
   }
 
-  deleteProcedures(procedures: ProcedureResponse[]): void{
+  deleteProcedures(procedures: ProcedureResponse[]): void {
     for (let procedure of procedures) {
       const index: number = this.procedures.indexOf(procedure.kvåCode);
       if (index !== -1) {

@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {GetPatientsService} from "../../../get-patients.service";
-import {Patient} from "../../../sidebar/planning/infoheader/Patient";
-import {ProcedureService} from "../../../../http-api/procedure/procedure.service";
-import {MaterialResponse} from "../../../../http-api/material/MaterialResponse";
-import {BookingService} from "../../../../http-api/booking/booking.service";
+import {GetPatientsService} from '../../../get-patients.service';
+import {Patient} from '../../../sidebar/planning/infoheader/Patient';
+import {ProcedureService} from '../../../../http-api/procedure/procedure.service';
+import {MaterialResponse} from '../../../../http-api/material/MaterialResponse';
+import {BookingService} from '../../../../http-api/booking/booking.service';
 
 import {
 startOfDay,
@@ -19,8 +19,8 @@ addHours,
 import {
   CalendarEvent
 } from 'angular-calendar';
-import {RoomResponse} from "../../../../http-api/room/RoomResponse";
-import {RoomService} from "../../../../http-api/room/room.service";
+import {RoomResponse} from '../../../../http-api/room/RoomResponse';
+import {RoomService} from '../../../../http-api/room/room.service';
 import {BookingResponse} from '../../../../http-api/booking/BookingResponse';
 import {forEach} from '@angular/router/src/utils/collection';
 import {DecisionService} from '../../../../http-api/decision/decision.service';
@@ -59,8 +59,8 @@ export class SummeryCardsComponent implements OnInit {
   currentStatus: boolean;
   selectedRoom;
 
-  //Track vars
-  locale: string = "sv";
+  // Track vars
+  locale: string = 'sv';
   events: CalendarEvent[] = [];
   resourceSchedules: {[index: string]: CalendarEvent[]} = {};
 

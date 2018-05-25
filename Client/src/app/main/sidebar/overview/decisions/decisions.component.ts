@@ -58,7 +58,7 @@ export class DecisionsComponent implements OnInit {
       case 'Elektiv': {this.elektivFilter = $event[1]; break; }
       case 'bokad': {this.bookedFilter = $event[1]; break; }
       case 'prebokad': {this.prelBookedFilter = $event[1]; break; }
-      case 'obokad': {this.unBookedFilter = $event[1]; break}
+      case 'obokad': {this.unBookedFilter = $event[1]; break; }
       default: break;
     }
   }
@@ -88,9 +88,9 @@ export class DecisionsComponent implements OnInit {
 
   applyBookedFilter(filterObject: Patient): boolean {
     if (this.bookedFilter) {
-      return filterObject.booking !== null && !filterObject.booking.preliminary
+      return filterObject.booking !== null && !filterObject.booking.preliminary;
     }
-    return true
+    return true;
   }
 
 
@@ -102,7 +102,7 @@ export class DecisionsComponent implements OnInit {
   }
 
   applyKvaFilter(filterObject: Patient): boolean {
-    if (this.proceduresFilter.length > 0){
+    if (this.proceduresFilter.length > 0) {
       return this.proceduresFilter.includes(filterObject.procedures[0].kvåCode);
     }
     return true;
