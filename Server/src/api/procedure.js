@@ -40,7 +40,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/procedure/:code/staff', function(req, res) {
     DB.Procedure.findById(req.params.code).then(function(procedure) {
       if(procedure){
-        procedure.getStaffs(Object.assign(STAFF.INCLUDE, {joinTableAttributes: []})).then(function(staff) {
+        procedure.getStaffs(Object.assign({joinTableAttributes: []}, STAFF.INCLUDE)).then(function(staff) {
           res.send(staff);
         }).catch(function(err){
           console.log(err);
@@ -59,7 +59,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/procedure/:code/room', function(req, res) {
     DB.Procedure.findById(req.params.code).then(function(procedure) {
       if(procedure){
-        procedure.getLocals(Object.assign(ROOM.INCLUDE, {joinTableAttributes: []})).then(function(room) {
+        procedure.getLocals(Object.assign({joinTableAttributes: []}, ROOM.INCLUDE)).then(function(room) {
           res.send(room);
         }).catch(function(err){
           console.log(err);
@@ -78,7 +78,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/procedure/:code/material', function(req, res) {
     DB.Procedure.findById(req.params.code).then(function(procedure) {
       if(procedure){
-        procedure.getMaterials(Object.assign(MATERIAL.INCLUDE, {joinTableAttributes: []})).then(function(materials) {
+        procedure.getMaterials(Object.assign({joinTableAttributes: []}, MATERIAL.INCLUDE)).then(function(materials) {
           res.send(materials);
         }).catch(function(err){
           console.log(err);
@@ -97,7 +97,7 @@ module.exports.initAPI = function(APP) {
   APP.get('/procedure/:code/decision', function(req, res) {
     DB.Procedure.findById(req.params.code).then(function(procedure) {
       if(procedure){
-        procedure.getDecisions(Object.assign(DECISION.INCLUDE, {joinTableAttributes: []})).then(function(decisions) {
+        procedure.getDecisions(Object.assign({joinTableAttributes: []}, DECISION.INCLUDE)).then(function(decisions) {
           res.send(decisions);
         }).catch(function(err){
           console.log(err);

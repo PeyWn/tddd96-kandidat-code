@@ -25,7 +25,6 @@ import {
   CalendarMonthViewDay
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
-import {DayViewComponent} from '../day-view/day-view.component';
 import {RoomService} from '../../../http-api/room/room.service';
 import {RoomResponse} from '../../../http-api/room/RoomResponse';
 import {RoomBooking} from '../../../http-api/room/RoomBooking';
@@ -33,7 +32,6 @@ import {GetPatientsService} from '../../get-patients.service';
 import { SidebarPanelService} from '../../sidebar/sidebar-panel.service';
 import {Patient} from '../../sidebar/planning/infoheader/Patient';
 import {ProcedureService} from '../../../http-api/procedure/procedure.service';
-import {forEach} from '@angular/router/src/utils/collection';
 import {DecisionService} from '../../../http-api/decision/decision.service';
 import {DecisionResponse} from '../../../http-api/decision/DecisionResponse';
 import {GetCalendarFiltersService} from '../../get-calendar-filters.service';
@@ -143,7 +141,7 @@ export class CalenderViewComponent implements OnInit {
       this.roomMap[room] = true;
       delete this.roomEvents[room];
 
-      if(this.gpService.currentPatient == null){
+      if (this.gpService.currentPatient == null) {
         this.setRoomFilter(this.rooms[room], true);
       }
       // If no decision is selected decision list should be filterd
@@ -153,7 +151,7 @@ export class CalenderViewComponent implements OnInit {
       delete this.roomEvents[room];
 
       // Remove filters if no decision is selected
-      if(this.gpService.currentPatient == null){
+      if (this.gpService.currentPatient == null) {
         this.setRoomFilter(this.rooms[room], false);
       }
     }
@@ -225,9 +223,9 @@ export class CalenderViewComponent implements OnInit {
     this.gpService.changedPatient.subscribe( () => {
       this.getPatient();
       console.log(this.currentPatient);
-      if (!this.currentPatient){
+      if (!this.currentPatient) {
         this.view = 'month';
-      } else if(this.currentPatient.booking != null){
+      } else if (this.currentPatient.booking != null) {
         this.view = 'summery';
       }
       this.refreshView();
@@ -295,7 +293,7 @@ export class CalenderViewComponent implements OnInit {
         this.getTrack(room);
 
         // If showing all rooms without patien then filter list of decisions
-        if(this.gpService.currentPatient == null) {
+        if (this.gpService.currentPatient == null) {
           this.gcfService.resetProcedures();
           this.setRoomFilter(room, true);
         }
@@ -334,7 +332,7 @@ export class CalenderViewComponent implements OnInit {
   }
 
   private setRoomFilter(room: RoomResponse, enable: Boolean) {
-    if(enable){
+    if (enable) {
       this.roomService.getProceduresFromRoom(room.id).subscribe((procedures: ProcedureResponse[]) => {
         this.gcfService.addProcedures(procedures);
       });

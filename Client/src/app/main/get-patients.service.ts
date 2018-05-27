@@ -12,20 +12,19 @@ export class GetPatientsService {
   patients: Array<Patient>;
   currentPatient: Patient;
 
+  @Output() changedPatient = new EventEmitter();
+
+  @Output() fetchedPatient = new EventEmitter();
+
+
   setPatient(newPatient: Patient) {
     this.currentPatient = newPatient;
     this.changedPatient.emit();
 
   }
 
-  @Output() changedPatient = new EventEmitter();
-
-  @Output() fetchedPatient = new EventEmitter();
-
-
-
-  refreshPatient(decisionId:number){
-    this.decisionService.getDecision(decisionId).subscribe((decision:DecisionResponse) => {
+  refreshPatient(decisionId: number) {
+    this.decisionService.getDecision(decisionId).subscribe((decision: DecisionResponse) => {
       this.decisionService.getBookingForDecision(decision.id).subscribe((booking: BookingResponse) => {
         this.patientService.getPatient(decision.PatientSsn).subscribe((patient: PatientResponse) => {
           this.decisionService.getProceduresForDecision(decision.id).subscribe((procedures: ProcedureResponse[]) => {
@@ -42,16 +41,16 @@ export class GetPatientsService {
               new Date(decision.latestDate),
               booking,
               sortedProcedures);
-            this.patients[this.patients.findIndex(x => x.id == decisionId)] = newPatient;
-            this.setPatient(this.patients[this.patients.findIndex(x => x.id == decisionId)]);
+            this.patients[this.patients.findIndex(x => x.id === decisionId)] = newPatient;
+            this.setPatient(this.patients[this.patients.findIndex(x => x.id === decisionId)]);
           });
         });
-      })
-    })
+      });
+    });
 
   }
-  updateDecision(id:number) {
-    this.decisionService.getDecision(id).subscribe((decision:DecisionResponse) => {
+  updateDecision(id: number) {
+    this.decisionService.getDecision(id).subscribe((decision: DecisionResponse) => {
       this.decisionService.getBookingForDecision(decision.id).subscribe((booking: BookingResponse) => {
         this.patientService.getPatient(decision.PatientSsn).subscribe((patient: PatientResponse) => {
           this.decisionService.getProceduresForDecision(decision.id).subscribe((procedures: ProcedureResponse[]) => {
@@ -68,12 +67,12 @@ export class GetPatientsService {
               new Date(decision.latestDate),
               booking,
               sortedProcedures);
-            this.patients[this.patients.findIndex(x => x.id == id)] = newPatient;
+            this.patients[this.patients.findIndex(x => x.id === id)] = newPatient;
             this.setPatient(this.patients[this.patients.findIndex(x => x.id === id)]);
           });
         });
-    })
-  })
+    });
+  });
   }
   constructor(
     private decisionService: DecisionService,
