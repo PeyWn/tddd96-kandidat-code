@@ -22,7 +22,6 @@ import {
 import {RoomResponse} from '../../../../http-api/room/RoomResponse';
 import {RoomService} from '../../../../http-api/room/room.service';
 import {BookingResponse} from '../../../../http-api/booking/BookingResponse';
-import {forEach} from '@angular/router/src/utils/collection';
 import {DecisionService} from '../../../../http-api/decision/decision.service';
 import {StaffService} from '../../../../http-api/staff/staff.service';
 import {StaffResponse} from '../../../../http-api/staff/StaffResponse';
@@ -91,8 +90,6 @@ export class SummeryCardsComponent implements OnInit {
     if (this.bookingInfoService.roomId !== null) {
       this.endDate = this.bookingInfoService.endDate;
       this.startDate = this.bookingInfoService.startDate;
-      this.bookedStartDate = this.bookingInfoService.startDate;
-      this.bookedEndDate = this.bookingInfoService.endDate;
     }
     this.currentStatus = false;
 
@@ -165,8 +162,10 @@ export class SummeryCardsComponent implements OnInit {
     if (this.patient.booking) {
       this.bookService.getBookedRooms(this.patient.booking.id).subscribe((response: BookingRoom[]) => {
         this.bookedRoomName = response[0].name;
-        this.startDate = new Date(response[0].Booked_local.start_time);
-        this.endDate = new Date(response[0].Booked_local.end_time);
+        this.bookedStartDate = new Date(response[0].Booked_local.start_time);
+        this.bookedEndDate = new Date(response[0].Booked_local.end_time);
+        this.startDate = this.bookedStartDate;
+        this.endDate = this.bookedEndDate;
       });
     }
   }

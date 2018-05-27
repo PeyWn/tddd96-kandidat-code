@@ -36,6 +36,8 @@ import {DecisionService} from '../../../http-api/decision/decision.service';
 import {DecisionResponse} from '../../../http-api/decision/DecisionResponse';
 import {GetCalendarFiltersService} from '../../get-calendar-filters.service';
 import {ProcedureResponse} from '../../../http-api/procedure/ProcedureResponse';
+import {BookingService} from '../../../http-api/booking/booking.service';
+import {BookingStaff} from '../../../http-api/booking/BookingStaff';
 
 const colors: any = {
   red: {
@@ -127,8 +129,6 @@ export class CalenderViewComponent implements OnInit {
 
   refreshView() {
     this.refresh.next();
-    console.log(this.currentPatient);
-    console.log('REFRESH');
   }
 
   combineEvents() {
@@ -219,10 +219,10 @@ export class CalenderViewComponent implements OnInit {
               private roomService: RoomService,
               private procedureService: ProcedureService,
               private decisionService: DecisionService,
-              private gcfService: GetCalendarFiltersService) {
+              private gcfService: GetCalendarFiltersService,
+              private bookService: BookingService) {
     this.gpService.changedPatient.subscribe( () => {
       this.getPatient();
-      console.log(this.currentPatient);
       if (!this.currentPatient) {
         this.view = 'month';
       } else if (this.currentPatient.booking != null) {
@@ -321,11 +321,14 @@ export class CalenderViewComponent implements OnInit {
       this.roomEvents[room.name] = {events: [], roomId: room.id};
         for (let i = 0; i < bookings.length; i++) {
           this.decisionService.getDecision(bookings[i].DecisionId).subscribe((decision: DecisionResponse) => {
-            this.roomEvents[room.name].events.push({start: new Date(bookings[i].Booked_local.start_time),
-              end: new Date(bookings[i].Booked_local.end_time),
-              title: '<br/> Patient: ' + decision.PatientSsn + '<br/>' + 'Kirurg: ' + decision.Staff.firstname + ' ' + decision.Staff.lastname + '<br/>' + 'ICD10: ' + decision.ICD10Code,
-              color: colors.blue,
-              actions: this.actions});
+            this.bookService.getBookedStaff(bookings[i].id).subscribe((staff:BookingStaff[]) => {
+              console.log(staff[i]);
+              this.roomEvents[room.name].events.push({start: new Date(bookings[i].Booked_local.start_time),
+                end: new Date(bookings[i].Booked_local.end_time),
+                title: '<br/> Patient: ' + decision.PatientSsn + '<br/>' + 'Kirurg: ' + staff[0].firstname + ' ' + staff[0].lastname + '<br/>' + 'ICD10: ' + decision.ICD10Code,
+                color: colors.blue,
+                actions: this.actions});
+            })
           });
         }
     });
