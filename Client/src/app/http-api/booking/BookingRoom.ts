@@ -6,5 +6,5 @@ export class BookingRoom {
   name: string;
   LocalType: RoomType;
 
-  Booked_room: BookedRoom;
+  Booked_local: BookedRoom;
 }

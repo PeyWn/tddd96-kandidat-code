@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {GetPatientsService} from "../../../get-patients.service";
-import {Patient} from "../../../sidebar/planning/infoheader/Patient";
-import {ProcedureService} from "../../../../http-api/procedure/procedure.service";
-import {MaterialResponse} from "../../../../http-api/material/MaterialResponse";
-import {BookingService} from "../../../../http-api/booking/booking.service";
+import {GetPatientsService} from '../../../get-patients.service';
+import {Patient} from '../../../sidebar/planning/infoheader/Patient';
+import {ProcedureService} from '../../../../http-api/procedure/procedure.service';
+import {MaterialResponse} from '../../../../http-api/material/MaterialResponse';
+import {BookingService} from '../../../../http-api/booking/booking.service';
 
 import {
 startOfDay,
@@ -19,8 +19,8 @@ addHours,
 import {
   CalendarEvent
 } from 'angular-calendar';
-import {RoomResponse} from "../../../../http-api/room/RoomResponse";
-import {RoomService} from "../../../../http-api/room/room.service";
+import {RoomResponse} from '../../../../http-api/room/RoomResponse';
+import {RoomService} from '../../../../http-api/room/room.service';
 import {BookingResponse} from '../../../../http-api/booking/BookingResponse';
 import {forEach} from '@angular/router/src/utils/collection';
 import {DecisionService} from '../../../../http-api/decision/decision.service';
@@ -59,8 +59,8 @@ export class SummeryCardsComponent implements OnInit {
   currentStatus: boolean;
   selectedRoom;
 
-  //Track vars
-  locale: string = "sv";
+  // Track vars
+  locale: string = 'sv';
   events: CalendarEvent[] = [];
   resourceSchedules: {[index: string]: CalendarEvent[]} = {};
 
@@ -165,6 +165,8 @@ export class SummeryCardsComponent implements OnInit {
     if (this.patient.booking) {
       this.bookService.getBookedRooms(this.patient.booking.id).subscribe((response: BookingRoom[]) => {
         this.bookedRoomName = response[0].name;
+        this.startDate = new Date(response[0].Booked_local.start_time);
+        this.endDate = new Date(response[0].Booked_local.end_time);
       });
     }
   }
@@ -172,7 +174,9 @@ export class SummeryCardsComponent implements OnInit {
   getBookedStaff() {
     if (this.patient.booking) {
       this.bookService.getBookedStaff(this.patient.booking.id).subscribe( (response: BookingStaff[]) => {
-        this.bookedStaffName = response[0].firstname + ' ' + response[0].lastname;
+        if (response.length > 0) {
+          this.bookedStaffName = response[0].firstname + ' ' + response[0].lastname;
+        }
       });
     }
   }
